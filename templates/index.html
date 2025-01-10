@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Bienvenido a la Aplicación</h1>
-    <button onclick="window.location.href='/generar_planilla'">Generar Planilla</button>
-    <button onclick="window.location.href='/editar_planilla'">Editar Planilla</button>
-    <button onclick="window.location.href='/ver_planilla'">Ver Planilla</button>
+    <button onclick="window.location.href='/generar_planilla'">Generar Planilla</button>    
+    <button onclick="window.location.href='{{ url_for('seleccionar_planilla') }}'" class="btn btn-primary">Ver Planilla</button>
+
 </body>
 </html>

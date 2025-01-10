@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Planilla</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
+</head>
+<body>
+
+    <a href="{{ url_for('home') }}">
+        <button type="button">Volver</button>
+    </a>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h1>Seleccionar tipo de planilla</h1>
+    <form method="POST" id="form_select">
+        <label for="tipo_planilla">Seleccionar tipo de planilla:</label>
+        <select id="tipo_planilla" name="tipo_planilla">
+            <!-- Opción no seleccionable -->
+            <option value="" disabled {% if not tipo_planilla %}selected{% endif %}>Seleccione un tipo</option>
+            <option value="cardiologico" {% if tipo_planilla == 'cardiologico' %}selected{% endif %}>Cardiológico</option>
+            <option value="politraumatizado" {% if tipo_planilla == 'politraumatizado' %}selected{% endif %}>Politraumatizado</option>
+        </select>
+
+        <!-- Campo de búsqueda -->
+        <label for="buscar_nombre">Buscar por nombre:</label>
+        <input type="text" id="buscar_nombre" name="buscar_nombre" value="{{ buscar_nombre }}" placeholder="Buscar nombre...">
+        
+        <button type="submit">Ver Archivos</button>
+    </form>
+
+
+    <!-- Aquí se cargará la lista de archivos después de seleccionar el tipo de planilla -->
+    {% if tipo_planilla %}
+    <div id="lista_planillas">
+        <h2>Planillas guardadas:</h2>
+        <ul id="archivos">
+            {% if archivos %}
+                {% for archivo in archivos %}
+                    <li><a href="/ver_detalle_planilla/{{ tipo_planilla }}/{{ archivo }}">{{ archivo }}</a></li>
+                {% endfor %}
+            {% else %}
+                <li>No se encontraron formularios.</li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <script>
+        // Función para manejar la selección de tipo de planilla y mostrar la lista de formularios
+        $('#tipo_planilla').change(function() {
+            $('#form_select').submit();  // Enviar el formulario cuando cambie el valor
+        });
+    </script>
+</body>
+</html>
