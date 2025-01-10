@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Planilla Cardiológica</title>
+</head>
+<body>
+
+    <a href="{{ url_for('seleccionar_planilla') }}">
+        <button type="button">Volver</button>
+    </a>
+    
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h1>Detalle Planilla Cardiológica</h1>
+    
+    <h3>Datos del Paciente</h3>
+    <p><strong>Nombre del Paciente:</strong> {{ planilla.nombre_paciente }}</p>
+    <p><strong>Motivo de Ingreso/Diagnóstico:</strong> {{ planilla.motivo_ingreso_diag }}</p>
+
+    <h3>Condiciones Cardiológicas</h3>
+    <p><strong>Dolor Precordial:</strong> {{ 'Sí' if planilla.dolor_precordial else 'No' }}</p>
+    <p><strong>SCASEST:</strong> {{ 'Sí' if planilla.scaest else 'No' }}</p>
+    <p><strong>SCACEST:</strong> {{ 'Sí' if planilla.scacest else 'No' }}</p>
+    <p><strong>Insuficiencia Cardíaca:</strong> {{ 'Sí' if planilla.insuficiencia_cardiaca else 'No' }}</p>
+    <p><strong>Pericarditis:</strong> {{ 'Sí' if planilla.pericarditis else 'No' }}</p>
+    <p><strong>Emergencia Hipertensiva:</strong> {{ 'Sí' if planilla.emergencia_hipertensiva else 'No' }}</p>
+    <p><strong>Síncope:</strong> {{ 'Sí' if planilla.sincop else 'No' }}</p>
+    <p><strong>Shock:</strong> {{ 'Sí' if planilla.shock else 'No' }}</p>
+    <p><strong>TEP:</strong> {{ 'Sí' if planilla.tep else 'No' }}</p>
+    <p><strong>Arritmia:</strong> {{ 'Sí' if planilla.arritmia else 'No' }}</p>
+
+    <h3>Antecedentes</h3>
+    <p>{{ planilla.antecedentes if planilla.antecedentes else 'No especificado' }}</p>
+
+    <h3>Enfermedad Actual</h3>
+    <p><strong>Disnea:</strong> {{ 'Sí' if planilla.disnea else 'No' }}</p>
+    <p><strong>Dolor Precordial Típico:</strong> {{ 'Sí' if planilla.dolor_precordial_tipico else 'No' }}</p>
+    <p><strong>HTA:</strong> {{ 'Sí' if planilla.hta else 'No' }}</p>
+    <p><strong>Mareos:</strong> {{ 'Sí' if planilla.mareos else 'No' }}</p>
+    <p><strong>Palpitaciones:</strong> {{ 'Sí' if planilla.palpitaciones else 'No' }}</p>
+    <p><strong>Taquicardia:</strong> {{ 'Sí' if planilla.taquicardia else 'No' }}</p>
+    <p><strong>Bradicardia:</strong> {{ 'Sí' if planilla.bradicardia else 'No' }}</p>
+    <p><strong>Hipotensión/Shock:</strong> {{ 'Sí' if planilla.hipotension_shock else 'No' }}</p>
+    <p><strong>Cianosis:</strong> {{ 'Sí' if planilla.cianosis else 'No' }}</p>
+
+    <h3>Signos Vitales y Examen Físico</h3>
+    <p><strong>Respiratorio:</strong> {{ planilla.respiratorio if planilla.respiratorio else 'No especificado' }}</p>
+    <p><strong>Mecánica Ventilatoria:</strong> {{ planilla.mecanica_ventilatoria if planilla.mecanica_ventilatoria else 'No especificado' }}</p>
+    <p><strong>Buena Entrada de Aire Bilateral:</strong> {{ 'Sí' if planilla.buena_entrada_aire else 'No' }}</p>
+    <p><strong>Hipoventilación Der.:</strong> {{ 'Sí' if planilla.hipoventilacion_der else 'No' }}</p>
+    <p><strong>Hipoventilación Izq.:</strong> {{ 'Sí' if planilla.hipoventilacion_izq else 'No' }}</p>
+    <p><strong>Roncus:</strong> {{ 'Sí' if planilla.roncus else 'No' }}</p>
+    <p><strong>Sibilancias:</strong> {{ 'Sí' if planilla.sibilancias else 'No' }}</p>
+    <p><strong>Rales:</strong> {{ 'Sí' if planilla.rales else 'No' }}</p>
+    <p><strong>ARM:</strong> {{ 'Sí' if planilla.arm else 'No' }}</p>
+
+    <h3>Otros Signos Vitales</h3>
+    <p><strong>TA (Tensión Arterial):</strong> {{ planilla.ta }}</p>
+    <p><strong>TAM (Tensión Arterial Media):</strong> {{ planilla.tam }}</p>
+    <p><strong>PVC (Presión Venosa Central):</strong> {{ planilla.pvc }}</p>
+    <p><strong>FC (Frecuencia Cardíaca):</strong> {{ planilla.fc }}</p>
+    <p><strong>Relleno Capilar:</strong> {{ planilla.relleno_capilar }}</p>
+
+    <h3>Otros Datos</h3>
+    <p><strong>Soplos:</strong> {{ 'Sí' if planilla.soplos else 'No' }}</p>
+    <p><strong>Ingurgitación Yugular:</strong> {{ 'Sí' if planilla.ingurgitacion_yugular else 'No' }}</p>
+    <p><strong>Edemas:</strong> {{ 'Sí' if planilla.edemas else 'No' }}</p>
+    <p><strong>Pulsos Regulares:</strong> {{ 'Sí' if planilla.pulsos_regulares else 'No' }}</p>
+    <p><strong>Pulsos Irregulares:</strong> {{ 'Sí' if planilla.pulsos_irregulares else 'No' }}</p>
+
+    <h3>Abdomen</h3>
+    <p><strong>Abdomen:</strong> {{ planilla.abdomen }}</p>
+    <p><strong>RHA:</strong> {{ planilla.rha }}</p>
+
+    <h3>Neurológico</h3>
+    <p><strong>Bajo Sedoanalgesia:</strong> {{ 'Sí' if planilla.bajo_sedoanalgesia else 'No' }}</p>
+    <p><strong>Glasgow:</strong> {{ planilla.glasgow if planilla.glasgow else 'No especificado' }}</p>
+    
+    <!-- Continúa con los demás campos como enzimas, ecocardiograma, etc. -->
+
+    <a href="{{ url_for('editar_cardiologico', archivo=archivo) }}">Editar Planilla</a>
+
+</body>
+</html>

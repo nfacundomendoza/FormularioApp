@@ -193,8 +193,6 @@ def ver_detalle_planilla(tipo, archivo):
     Ruta para ver los detalles de una planilla guardada.
     Dependiendo del tipo de planilla (Cardiológico o Politraumatizado), se renderiza una plantilla específica.
     """
-    # Asegurarse de que el tipo tiene la "s" al final si es "cardiologico"
-    tipo = tipo + 's' if tipo == 'cardiologico' else tipo
 
     # Construir la ruta completa al archivo usando os.path.join()
     folder_path = os.path.join('saved_forms', f'formularios_{tipo}')
@@ -211,11 +209,117 @@ def ver_detalle_planilla(tipo, archivo):
 
     # Dependiendo del tipo de planilla, renderizamos una plantilla diferente
     if tipo == 'cardiologicos':
-        return render_template('detalle_cardiologico.html', planilla=planilla_data)
+        return render_template('detalle_cardiologico.html', planilla=planilla_data, archivo=archivo)
     elif tipo == 'politraumatizados':
-        return render_template('detalle_politraumatizado.html', planilla=planilla_data)
+        return render_template('detalle_politraumatizado.html', planilla=planilla_data, archivo=archivo)
     else:
         return "Tipo de planilla no válido"
+
+
+
+@app.route('/editar_cardiologico/<archivo>', methods=['GET', 'POST'])
+def editar_cardiologico(archivo):
+    """
+    Ruta para editar un formulario cardiológico existente.
+    Los datos se cargan desde un archivo JSON y se usan para inicializar el formulario.
+    """
+    # Ruta completa al archivo
+    folder_path = os.path.join('saved_forms', 'formularios_cardiologicos')
+    file_path = os.path.join(folder_path, archivo)
+
+    print(f"URL accedida: {request.url}")
+    print(f"Path del archivo: {file_path}")
+
+    try:
+        # Cargar los datos del archivo JSON
+        with open(file_path, 'r') as file:
+            planilla_data = json.load(file)
+    except Exception as e:
+        return f"Error al cargar el archivo: {e}", 500
+
+    # Crear el formulario e inicializarlo con los datos cargados
+    form = FormularioCardiologico(data=planilla_data)
+
+    if form.validate_on_submit():  # Si el formulario es enviado y válido
+        try:
+            # Actualizar los datos del formulario
+            formulario_data = {
+                'nombre_paciente': form.nombre_paciente.data,
+                'motivo_ingreso_diag': form.motivo_ingreso_diag.data,
+                'dolor_precordial': form.dolor_precordial.data,
+                'scaest': form.scaest.data,
+                'scacest': form.scacest.data,
+                'insuficiencia_cardiaca': form.insuficiencia_cardiaca.data,
+                'pericarditis': form.pericarditis.data,
+                'emergencia_hipertensiva': form.emergencia_hipertensiva.data,
+                'sincop': form.sincop.data,
+                'shock': form.shock.data,
+                'tep': form.tep.data,
+                'arritmia': form.arritmia.data,
+                'antecedentes': form.antecedentes.data,
+                'disnea': form.disnea.data,
+                'dolor_precordial_tipico': form.dolor_precordial_tipico.data,
+                'hta': form.hta.data,
+                'mareos': form.mareos.data,
+                'palpitaciones': form.palpitaciones.data,
+                'taquicardia': form.taquicardia.data,
+                'bradicardia': form.bradicardia.data,
+                'hipotension_shock': form.hipotension_shock.data,
+                'cianosis': form.cianosis.data,
+                'respiratorio': form.respiratorio.data,
+                'mecanica_ventilatoria': form.mecanica_ventilatoria.data,
+                'buena_entrada_aire': form.buena_entrada_aire.data,
+                'hipoventilacion_der': form.hipoventilacion_der.data,
+                'hipoventilacion_izq': form.hipoventilacion_izq.data,
+                'roncus': form.roncus.data,
+                'sibilancias': form.sibilancias.data,
+                'rales': form.rales.data,
+                'arm': form.arm.data,
+                'ta': form.ta.data,
+                'tam': form.tam.data,
+                'pvc': form.pvc.data,
+                'fc': form.fc.data,
+                'relleno_capilar': form.relleno_capilar.data,
+                'soplos': form.soplos.data,
+                'ingurgitacion_yugular': form.ingurgitacion_yugular.data,
+                'edemas': form.edemas.data,
+                'pulsos_regulares': form.pulsos_regulares.data,
+                'pulsos_irregulares': form.pulsos_irregulares.data,
+                'fallo_bomba': form.fallo_bomba.data,
+                'killip_kimball': form.killip_kimball.data,
+                'derrame_pericardico': form.derrame_pericardico.data,
+                'aceptable_perf_periferica': form.aceptable_perf_periferica.data,
+                'shock2': form.shock2.data,
+                'inotropicos': form.inotropicos.data,
+                'abdomen': form.abdomen.data,
+                'rha': form.rha.data,
+                'diuresis': form.diuresis.data,
+                'sonda_vesical': form.sonda_vesical.data,
+                'bajo_sedoanalgesia': form.bajo_sedoanalgesia.data,
+                'glasgow': form.glasgow.data,
+                'pupilas': form.pupilas.data,
+                'foco_motor': form.foco_motor.data,
+                'enzimas': form.enzimas.data,
+                'rx_torax': form.rx_torax.data,
+                'ecg': form.ecg.data,
+                'ecocardiograma': form.ecocardiograma.data,
+            }
+
+            # Guardar los datos actualizados en el archivo JSON
+            with open(file_path, 'w') as file:
+                json.dump(formulario_data, file, indent=4)
+
+            # Mensaje de éxito
+            flash('Formulario actualizado correctamente.', 'success')
+
+        except Exception as e:
+            flash(f'Error al guardar el formulario: {str(e)}', 'danger')
+
+        # Redirigir a la página de visualización o donde prefieras
+        return redirect(url_for('ver_detalle_planilla', tipo='cardiologicos',archivo=archivo))
+
+    # Renderizar la plantilla con el formulario y los datos
+    return render_template('editar_cardiologico.html', form=form)
 
 
 

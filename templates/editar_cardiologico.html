@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Planilla Cardiológica</title>
+</head>
+<body>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h1>Editar Planilla Cardiológica</h1>
+    
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <h3>Datos del Paciente</h3>
+        <div>
+            <label for="nombre_paciente">Nombre del Paciente:</label>
+            {{ form.nombre_paciente(class="form-control") }}
+        </div>
+
+        <div>
+            <label for="motivo_ingreso_diag">Motivo de Ingreso/Diagnóstico:</label>
+            {{ form.motivo_ingreso_diag(class="form-control") }}
+        </div>
+
+        <h3>Condiciones Cardiológicas</h3>
+        <div>
+            <label for="dolor_precordial">Dolor Precordial:</label>
+            {{ form.dolor_precordial() }}
+        </div>
+
+        <div>
+            <label for="scaest">SCASEST:</label>
+            {{ form.scaest() }}
+        </div>
+
+        <div>
+            <label for="scacest">SCACEST:</label>
+            {{ form.scacest() }}
+        </div>
+
+        <div>
+            <label for="insuficiencia_cardiaca">Insuficiencia Cardíaca:</label>
+            {{ form.insuficiencia_cardiaca() }}
+        </div>
+
+        <div>
+            <label for="pericarditis">Pericarditis:</label>
+            {{ form.pericarditis() }}
+        </div>
+
+        <div>
+            <label for="emergencia_hipertensiva">Emergencia Hipertensiva:</label>
+            {{ form.emergencia_hipertensiva() }}
+        </div>
+
+        <div>
+            <label for="sincop">Síncope:</label>
+            {{ form.sincop() }}
+        </div>
+
+        <div>
+            <label for="shock">Shock:</label>
+            {{ form.shock() }}
+        </div>
+
+        <div>
+            <label for="tep">TEP:</label>
+            {{ form.tep() }}
+        </div>
+
+        <div>
+            <label for="arritmia">Arritmia:</label>
+            {{ form.arritmia() }}
+        </div>
+
+        <!-- Agregar más campos según sea necesario -->
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</body>
+</html>
