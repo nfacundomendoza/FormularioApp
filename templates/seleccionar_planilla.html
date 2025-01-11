@@ -39,7 +39,6 @@
         <button type="submit">Ver Archivos</button>
     </form>
 
-
     <!-- Aquí se cargará la lista de archivos después de seleccionar el tipo de planilla -->
     {% if tipo_planilla %}
     <div id="lista_planillas">
@@ -47,7 +46,11 @@
         <ul id="archivos">
             {% if archivos %}
                 {% for archivo in archivos %}
-                    <li><a href="/ver_detalle_planilla/{{ tipo_planilla }}/{{ archivo }}">{{ archivo }}</a></li>
+                    {% if tipo_planilla == 'cardiologico' %}
+                        <li><a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}">{{ archivo }}</a></li>
+                    {% elif tipo_planilla == 'politraumatizado' %}
+                        <li><a href="{{ url_for('detalle_politraumatizado', archivo=archivo) }}">{{ archivo }}</a></li>
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 <li>No se encontraron formularios.</li>

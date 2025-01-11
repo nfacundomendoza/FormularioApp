@@ -62,16 +62,17 @@ def guia_t_cardiologico():
                 'nombre_paciente': form.nombre_paciente.data,
                 'motivo_ingreso_diag': form.motivo_ingreso_diag.data,
                 'dolor_precordial': form.dolor_precordial.data,
-                'scaest': form.scaest.data,
+                'scasest': form.scasest.data,  
                 'scacest': form.scacest.data,
-                'insuficiencia_cardiaca': form.insuficiencia_cardiaca.data,
+                'insuficiencia_cardiaca_descompensada': form.insuficiencia_cardiaca_descompensada.data,  
                 'pericarditis': form.pericarditis.data,
                 'emergencia_hipertensiva': form.emergencia_hipertensiva.data,
-                'sincop': form.sincop.data,
+                'sincope': form.sincope.data,  
                 'shock': form.shock.data,
                 'tep': form.tep.data,
                 'arritmia': form.arritmia.data,
                 'antecedentes': form.antecedentes.data,
+                'enfermedad_actual': form.enfermedad_actual.data,
                 'disnea': form.disnea.data,
                 'dolor_precordial_tipico': form.dolor_precordial_tipico.data,
                 'hta': form.hta.data,
@@ -83,7 +84,7 @@ def guia_t_cardiologico():
                 'cianosis': form.cianosis.data,
                 'respiratorio': form.respiratorio.data,
                 'mecanica_ventilatoria': form.mecanica_ventilatoria.data,
-                'buena_entrada_aire': form.buena_entrada_aire.data,
+                'buena_entrada_aire_bilateral': form.buena_entrada_aire_bilateral.data,  
                 'hipoventilacion_der': form.hipoventilacion_der.data,
                 'hipoventilacion_izq': form.hipoventilacion_izq.data,
                 'roncus': form.roncus.data,
@@ -103,10 +104,11 @@ def guia_t_cardiologico():
                 'fallo_bomba': form.fallo_bomba.data,
                 'killip_kimball': form.killip_kimball.data,
                 'derrame_pericardico': form.derrame_pericardico.data,
-                'aceptable_perf_periferica': form.aceptable_perf_periferica.data,
-                'shock2': form.shock2.data,
+                'aceptable_perf_periferica': form.aceptable_perfusion_periferica.data, 
+                'shock_2': form.shock_2.data,  
                 'inotropicos': form.inotropicos.data,
                 'abdomen': form.abdomen.data,
+                'blando_depresible_indoloro': form.blando_depresible_indoloro.data,
                 'rha': form.rha.data,
                 'diuresis': form.diuresis.data,
                 'sonda_vesical': form.sonda_vesical.data,
@@ -114,15 +116,18 @@ def guia_t_cardiologico():
                 'glasgow': form.glasgow.data,
                 'pupilas': form.pupilas.data,
                 'foco_motor': form.foco_motor.data,
-                'enzimas': form.enzimas.data,
-                'rx_torax': form.rx_torax.data,
+                'laboratorio': form.laboratorio.data,
                 'ecg': form.ecg.data,
                 'ecocardiograma': form.ecocardiograma.data
             }
 
-            # Crear el nombre del archivo
-            filename = f"{form.nombre_paciente.data.replace(' ', '_').lower()}_cardiologico.json"
-            filepath = os.path.join('saved_forms/formularios_cardiologicos', filename)
+            # Crear el nombre del archivo y asegurarse de que no tenga caracteres inválidos
+            filename = f"{form.nombre_paciente.data.replace(' ', '_').lower()}.json"
+            directory = 'saved_forms/formularios_cardiologicos'
+            if not os.path.exists(directory):
+                os.makedirs(directory)  # Crear el directorio si no existe
+
+            filepath = os.path.join(directory, filename)
 
             # Guardar los datos en un archivo JSON
             with open(filepath, 'w') as json_file:
@@ -158,16 +163,14 @@ def seleccionar_planilla():
 
     if request.method == 'POST':
         tipo_planilla = request.form.get('tipo_planilla')
-        buscar_nombre = request.form.get('buscar_nombre', '').lower()  # Convertir a minúsculas para una búsqueda insensible a mayúsculas
-        
-        # Asegurarse de que el tipo tiene la "s" al final"
-        tipo_planilla = tipo_planilla + 's'
+        buscar_nombre = request.form.get('buscar_nombre', '').lower() 
+      
 
         # Verificar que los valores coincidan con las carpetas correctas
-        if tipo_planilla == 'cardiologicos':
-            folder_path = 'saved_forms/formularios_cardiologicos'  # Cambié esto para que sea 'formularios_cardiologicos'
-        elif tipo_planilla == 'politraumatizados':
-            folder_path = 'saved_forms/formularios_politraumatizados'  # Asegurando que coincida con la carpeta de politraumatizados
+        if tipo_planilla == 'cardiologico':
+            folder_path = 'saved_forms/formularios_cardiologicos'  
+        elif tipo_planilla == 'politraumatizado':
+            folder_path = 'saved_forms/formularios_politraumatizados' 
         else:
             tipo_planilla = None
 
@@ -186,16 +189,13 @@ def seleccionar_planilla():
     return render_template('seleccionar_planilla.html', tipo_planilla=tipo_planilla, archivos=archivos, buscar_nombre=buscar_nombre)
 
 
-
-@app.route('/ver_detalle_planilla/<tipo>/<archivo>', methods=['GET'])
-def ver_detalle_planilla(tipo, archivo):
+@app.route('/detalle_cardiologico/<archivo>', methods=['GET'])
+def detalle_cardiologico(archivo):
     """
-    Ruta para ver los detalles de una planilla guardada.
-    Dependiendo del tipo de planilla (Cardiológico o Politraumatizado), se renderiza una plantilla específica.
+    Ruta para ver los detalles de una planilla cardiológica guardada.
     """
-
     # Construir la ruta completa al archivo usando os.path.join()
-    folder_path = os.path.join('saved_forms', f'formularios_{tipo}')
+    folder_path = 'saved_forms/formularios_cardiologicos'
     file_path = os.path.join(folder_path, archivo)  # Ruta completa
     
     print(f"Ruta del archivo: {file_path}")  # Imprimir la ruta para depurar
@@ -205,17 +205,31 @@ def ver_detalle_planilla(tipo, archivo):
         with open(file_path, 'r') as file:
             planilla_data = json.load(file)
     except Exception as e:
-        return f"Error al cargar el archivo: {e}"
+        return f"Error al cargar el archivo: {e}", 500
 
-    # Dependiendo del tipo de planilla, renderizamos una plantilla diferente
-    if tipo == 'cardiologicos':
-        return render_template('detalle_cardiologico.html', planilla=planilla_data, archivo=archivo)
-    elif tipo == 'politraumatizados':
-        return render_template('detalle_politraumatizado.html', planilla=planilla_data, archivo=archivo)
-    else:
-        return "Tipo de planilla no válido"
+    # Renderizamos la plantilla específica para cardiológico
+    return render_template('detalle_cardiologico.html', planilla=planilla_data, archivo=archivo)
 
+@app.route('/detalle_politraumatizado/<archivo>', methods=['GET'])
+def detalle_politraumatizado(archivo):
+    """
+    Ruta para ver los detalles de una planilla politraumatizado guardada.
+    """
+    # Construir la ruta completa al archivo usando os.path.join()
+    folder_path = 'saved_forms/formularios_politraumatizados'
+    file_path = os.path.join(folder_path, archivo)  # Ruta completa
+    
+    print(f"Ruta del archivo: {file_path}")  # Imprimir la ruta para depurar
 
+    try:
+        # Intentamos abrir el archivo y cargarlo como JSON
+        with open(file_path, 'r') as file:
+            planilla_data = json.load(file)
+    except Exception as e:
+        return f"Error al cargar el archivo: {e}", 500
+
+    # Renderizamos la plantilla específica para politraumatizado
+    return render_template('detalle_politraumatizado.html', planilla=planilla_data, archivo=archivo)
 
 @app.route('/editar_cardiologico/<archivo>', methods=['GET', 'POST'])
 def editar_cardiologico(archivo):
@@ -223,7 +237,6 @@ def editar_cardiologico(archivo):
     Ruta para editar un formulario cardiológico existente.
     Los datos se cargan desde un archivo JSON y se usan para inicializar el formulario.
     """
-    # Ruta completa al archivo
     folder_path = os.path.join('saved_forms', 'formularios_cardiologicos')
     file_path = os.path.join(folder_path, archivo)
 
@@ -242,21 +255,22 @@ def editar_cardiologico(archivo):
 
     if form.validate_on_submit():  # Si el formulario es enviado y válido
         try:
-            # Actualizar los datos del formulario
+            # Crear un diccionario con los datos del formulario
             formulario_data = {
                 'nombre_paciente': form.nombre_paciente.data,
                 'motivo_ingreso_diag': form.motivo_ingreso_diag.data,
                 'dolor_precordial': form.dolor_precordial.data,
-                'scaest': form.scaest.data,
+                'scasest': form.scasest.data,
                 'scacest': form.scacest.data,
-                'insuficiencia_cardiaca': form.insuficiencia_cardiaca.data,
+                'insuficiencia_cardiaca_descompensada': form.insuficiencia_cardiaca_descompensada.data,
                 'pericarditis': form.pericarditis.data,
                 'emergencia_hipertensiva': form.emergencia_hipertensiva.data,
-                'sincop': form.sincop.data,
+                'sincope': form.sincope.data,
                 'shock': form.shock.data,
                 'tep': form.tep.data,
                 'arritmia': form.arritmia.data,
                 'antecedentes': form.antecedentes.data,
+                'enfermedad_actual': form.enfermedad_actual.data,
                 'disnea': form.disnea.data,
                 'dolor_precordial_tipico': form.dolor_precordial_tipico.data,
                 'hta': form.hta.data,
@@ -268,7 +282,7 @@ def editar_cardiologico(archivo):
                 'cianosis': form.cianosis.data,
                 'respiratorio': form.respiratorio.data,
                 'mecanica_ventilatoria': form.mecanica_ventilatoria.data,
-                'buena_entrada_aire': form.buena_entrada_aire.data,
+                'buena_entrada_aire_bilateral': form.buena_entrada_aire_bilateral.data,
                 'hipoventilacion_der': form.hipoventilacion_der.data,
                 'hipoventilacion_izq': form.hipoventilacion_izq.data,
                 'roncus': form.roncus.data,
@@ -289,9 +303,10 @@ def editar_cardiologico(archivo):
                 'killip_kimball': form.killip_kimball.data,
                 'derrame_pericardico': form.derrame_pericardico.data,
                 'aceptable_perf_periferica': form.aceptable_perf_periferica.data,
-                'shock2': form.shock2.data,
+                'shock_2': form.shock_2.data,
                 'inotropicos': form.inotropicos.data,
                 'abdomen': form.abdomen.data,
+                'blando_depresible_indoloro': form.blando_depresible_indoloro.data,
                 'rha': form.rha.data,
                 'diuresis': form.diuresis.data,
                 'sonda_vesical': form.sonda_vesical.data,
@@ -299,10 +314,9 @@ def editar_cardiologico(archivo):
                 'glasgow': form.glasgow.data,
                 'pupilas': form.pupilas.data,
                 'foco_motor': form.foco_motor.data,
-                'enzimas': form.enzimas.data,
-                'rx_torax': form.rx_torax.data,
+                'laboratorio': form.laboratorio.data,
                 'ecg': form.ecg.data,
-                'ecocardiograma': form.ecocardiograma.data,
+                'ecocardiograma': form.ecocardiograma.data
             }
 
             # Guardar los datos actualizados en el archivo JSON
@@ -315,11 +329,12 @@ def editar_cardiologico(archivo):
         except Exception as e:
             flash(f'Error al guardar el formulario: {str(e)}', 'danger')
 
-        # Redirigir a la página de visualización o donde prefieras
-        return redirect(url_for('ver_detalle_planilla', tipo='cardiologicos',archivo=archivo))
+        # Redirigir después de guardar el formulario
+        return redirect(url_for('detalle_cardiologico', archivo=archivo))
 
-    # Renderizar la plantilla con el formulario y los datos
+    # Si el formulario no es válido o es un GET
     return render_template('editar_cardiologico.html', form=form)
+
 
 
 
