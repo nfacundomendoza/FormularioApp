@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Planilla Cardiológica</title>
 </head>
-<body>
-    
+<body>  
+
+    <a href="{{ url_for('home') }}">
+        <button type="button">Volver al Menú Principal</button>
+    </a>
+
+    <a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}">
+        <button type="button">Volver</button>
+    </a>   
+
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <ul>
@@ -316,8 +324,33 @@
 
     <!-- Botón para enviar el formulario -->
     <div class="mb-3">
-        {{ form.submit(class="btn btn-primary") }}
+        {{ form.submit(id="guardarBtn", class="btn btn-primary") }}
     </div>
+    
+    <script>
+        document.getElementById("guardarBtn").addEventListener("click", function(event){
+            var confirmacion = confirm("¿Estás seguro de que quieres guardar los cambios?");
+            if (!confirmacion) {
+                event.preventDefault();  // Evita que el formulario se envíe si el usuario cancela
+            }
+        });
+    </script>
+
+    <a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}">
+        <button type="button" id="cancelarBtn">Cancelar</button>
+    </a>
+
+    <script>
+        document.getElementById("cancelarBtn").addEventListener("click", function(event){
+            var confirmacion = confirm("¿Estás seguro de que quieres cancelar? Los cambios no guardados se perderán.");
+            if (!confirmacion) {
+                event.preventDefault();  // Evita que el enlace sea seguido si el usuario cancela
+            }
+        });
+    </script>
+    
+    
+
 </form>
 
     {% if form.errors %}

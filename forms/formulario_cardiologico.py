@@ -87,4 +87,4 @@ class FormularioCardiologico(FlaskForm):
     ecocardiograma = StringField("Ecocardiograma:", validators=[DataRequired()])
 
     # Botón para enviar el formulario
-    submit = SubmitField("Enviar")
+    submit = SubmitField("Guardar")

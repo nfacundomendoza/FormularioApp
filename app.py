@@ -341,7 +341,7 @@ def editar_cardiologico(archivo):
         return redirect(url_for('detalle_cardiologico', archivo=archivo))
 
     # Si el formulario no es válido o es un GET
-    return render_template('editar_cardiologico.html', form=form)
+    return render_template('editar_cardiologico.html', form=form, archivo=archivo)
 
 
 
