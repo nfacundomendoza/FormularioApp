@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, TextAreaField, BooleanField
-from wtforms.validators import DataRequired, Optional
+from wtforms.validators import DataRequired
 
 class FormularioCardiologico(FlaskForm):
     nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired()])
