@@ -36,8 +36,7 @@
             {{ form.nombre_paciente(class="form-control") }}
         </div>
 
-        <!-- Primera Sección de Campos -->
-        <h4>Primera Sección</h4>
+        
         <div class="mb-3">
             <label for="motivo_ingreso_diag" class="form-label">Motivo de Ingreso/Diag:</label>
             {{ form.motivo_ingreso_diag(class="form-control") }}
@@ -83,8 +82,7 @@
             {{ form.arritmia() }} Arritmia
         </div>
 
-        <!-- Segunda Sección de Campos -->
-        <h4>Segunda Sección</h4>
+        
         <div class="mb-3">
             <label for="antecedentes" class="form-label">Antecedentes:</label>
             {{ form.antecedentes(class="form-control") }}
@@ -131,8 +129,7 @@
             {{ form.cianosis() }} Cianosis
         </div>
 
-        <!-- Tercera Sección de Campos -->
-        <h4>Tercera Sección</h4>
+        
         <div class="mb-3">
             <label for="examen_fisico" class="form-label">Examen Físico:</label>
             {{ form.examen_fisico(class="form-control") }}
@@ -180,29 +177,32 @@
             {{ form.arm() }} ARM
         </div>
 
-        <!-- Cuarta Sección de Campos -->
-        <h4>Cuarta Sección</h4>
         <div class="mb-3">
             <label for="cardiovascular" class="form-label">Cardiovascular:</label>
             {{ form.cardiovascular(class="form-control") }}
         </div>
 
+                
         <div class="mb-3">
-            {{ form.ta() }} TA
+            <label for="ta" class="form-label">TA:</label>
+            {{ form.ta(class="form-control") }}
         </div>
 
         <div class="mb-3">
-            {{ form.tam() }} TAM
+            <label for="tam" class="form-label">TAM:</label>
+            {{ form.tam(class="form-control") }}
         </div>
 
         <div class="mb-3">
-            {{ form.pvc() }} PVC
+            <label for="pvc" class="form-label">PVC:</label>
+            {{ form.pvc(class="form-control") }}
         </div>
 
         <div class="mb-3">
-            {{ form.fc() }} FC
+            <label for="fc" class="form-label">FC:</label>
+            {{ form.fc(class="form-control") }}
         </div>
-
+        
         <div class="mb-3">
             {{ form.relleno_capilar() }} Relleno Capilar
         </div>
@@ -255,8 +255,6 @@
             {{ form.inotropicos() }} Inotrópicos
         </div>
 
-        <!-- Sexta Sección -->
-        <h4>Sexta Sección</h4>
         <div class="mb-3">
             <label for="abdomen" class="form-label">Abdomen:</label>
             {{ form.abdomen(class="form-control") }}
@@ -270,8 +268,6 @@
             {{ form.rha() }} RHA
         </div>
 
-        <!-- Séptima Sección -->
-        <h4>Séptima Sección</h4>
         <div class="mb-3">
             <label for="diuresis" class="form-label">Diuresis:</label>
             {{ form.diuresis(class="form-control") }}
@@ -281,8 +277,6 @@
             {{ form.sonda_vesical() }} Sonda Vesical
         </div>
 
-        <!-- Octava Sección -->
-        <h4>Octava Sección</h4>
         <div class="mb-3">
             <label for="neurologico" class="form-label">Neurológico:</label>
             {{ form.neurologico(class="form-control") }}
@@ -304,8 +298,6 @@
             {{ form.foco_motor() }} Foco Motor
         </div>
 
-        <!-- Campos de texto adicionales -->
-        <h4>Campos Adicionales</h4>
         <div class="mb-3">
             <label for="laboratorio" class="form-label">Laboratorio:</label>
             {{ form.laboratorio(class="form-control") }}

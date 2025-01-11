@@ -3,9 +3,10 @@ from wtforms import StringField, IntegerField, SubmitField, TextAreaField, Boole
 from wtforms.validators import DataRequired, Optional
 
 class FormularioCardiologico(FlaskForm):
-    nombre_paciente = StringField('Nombre del Paciente', validators=[DataRequired()])
+    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired()])
+
     # Primera sección de campos
-    motivo_ingreso_diag = StringField("Motivo de Ingreso/Diag:", validators=[DataRequired()])
+    motivo_ingreso_diag = TextAreaField("Motivo de Ingreso/Diag:")
     dolor_precordial = BooleanField("Dolor Precordial")
     scasest = BooleanField("SCASEST")
     scacest = BooleanField("SCACEST")
@@ -18,8 +19,8 @@ class FormularioCardiologico(FlaskForm):
     arritmia = BooleanField("Arritmia")
     
     # Segunda sección de campos
-    antecedentes = StringField("Antecedentes:", validators=[DataRequired()])
-    enfermedad_actual = StringField("Enfermedad Actual:", validators=[DataRequired()])
+    antecedentes = TextAreaField("Antecedentes:")
+    enfermedad_actual = TextAreaField("Enfermedad Actual:")
     disnea = BooleanField("Disnea")
     dolor_precordial_tipico = BooleanField("Dolor Precordial Típico")
     hta = BooleanField("HTA")
@@ -31,9 +32,9 @@ class FormularioCardiologico(FlaskForm):
     cianosis = BooleanField("Cianosis")
 
     # Tercera sección de campos
-    examen_fisico = StringField("Examen Físico:", validators=[DataRequired()])
-    signos_vitales = StringField("Signos Vitales:", validators=[DataRequired()])
-    respiratorio = StringField("Respiratorio:", validators=[DataRequired()])
+    examen_fisico = TextAreaField("Examen Físico:")
+    signos_vitales = TextAreaField("Signos Vitales:")
+    respiratorio = TextAreaField("Respiratorio:")
     mecanica_ventilatoria = BooleanField("Mecánica Ventilatoria")
     buena_entrada_aire_bilateral = BooleanField("Buena Entrada de Aire Bilateral")
     hipoventilacion_der = BooleanField("Hipoventilación DER")
@@ -44,11 +45,11 @@ class FormularioCardiologico(FlaskForm):
     arm = BooleanField("ARM")
     
     # Cuarta sección de campos
-    cardiovascular = StringField("Cardiovascular:", validators=[DataRequired()])
-    ta = BooleanField("TA")
-    tam = BooleanField("TAM")
-    pvc = BooleanField("PVC")
-    fc = BooleanField("FC")
+    cardiovascular = TextAreaField("Cardiovascular:")
+    ta = TextAreaField("TA")
+    tam = TextAreaField("TAM")
+    pvc = TextAreaField("PVC")
+    fc = TextAreaField("FC")
     relleno_capilar = BooleanField("Relleno Capilar")
 
     r1_r2_normofoneticos = BooleanField("R1 y R2 Normofonéticos")
@@ -66,25 +67,25 @@ class FormularioCardiologico(FlaskForm):
     inotropicos = BooleanField("Inotrópicos")
 
     # Sexta sección de campos
-    abdomen = StringField("Abdomen:", validators=[DataRequired()])
+    abdomen = TextAreaField("Abdomen:")
     blando_depresible_indoloro = BooleanField("Blando, Depresible, Indoloro")
     rha = BooleanField("RHA")
 
     # Séptima sección de campos
-    diuresis = StringField("Diuresis:", validators=[DataRequired()])
+    diuresis = TextAreaField("Diuresis:")
     sonda_vesical = BooleanField("Sonda Vesical")
 
     # Octava sección de campos
-    neurologico = StringField("Neurológico:", validators=[DataRequired()])
+    neurologico = TextAreaField("Neurológico:")
     bajo_sedoanalgesia = BooleanField("Bajo Sedoanalgesia")
     glasgow = BooleanField("Glasgow")
     pupilas = BooleanField("Pupilas")
     foco_motor = BooleanField("Foco Motor")
    
    # Campos de texto adicionales
-    laboratorio = StringField("Laboratorio:", validators=[DataRequired()])
-    ecg = StringField("ECG:", validators=[DataRequired()])
-    ecocardiograma = StringField("Ecocardiograma:", validators=[DataRequired()])
+    laboratorio = TextAreaField("Laboratorio:")
+    ecg = TextAreaField("ECG:")
+    ecocardiograma = TextAreaField("Ecocardiograma:")
 
     # Botón para enviar el formulario
     submit = SubmitField("Guardar")
