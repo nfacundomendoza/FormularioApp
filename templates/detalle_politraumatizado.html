@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Politraumatizado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('home') }}">
+        <button type="button">Volver al Menú Principal</button>
+    </a>
+
+    <a href="{{ url_for('seleccionar_planilla') }}">
+        <button type="button">Volver a Seleccionar Planilla</button>
+    </a>
+    
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <h1>Detalle de la Planilla Politraumatizado</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Clave</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in planilla.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>
+                    {% if value is boolean %}
+                        {{ 'Sí' if value else 'No' }}
+                    {% else %}
+                        {{ value }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('editar_politraumatizado', archivo=archivo) }}">Editar Planilla</a>
+
+    <hr>
+    <footer class="text-center mt-4">
+        <p>Archivo: {{ archivo }}</p>
+    </footer>
+</body>
+</html>

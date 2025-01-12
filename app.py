@@ -1,3 +1,4 @@
+from datetime import datetime, time
 import os
 from flask import Flask, flash, json, render_template, redirect, request, url_for
 from forms.formulario_cardiologico import FormularioCardiologico 
@@ -442,6 +443,144 @@ def editar_cardiologico(archivo):
     # Si el formulario no es válido o es un GET
     return render_template('editar_cardiologico.html', form=form, archivo=archivo)
 
+
+@app.route('/editar_politraumatizado/<archivo>', methods=['GET', 'POST'])
+def editar_politraumatizado(archivo):
+    """
+    Ruta para editar un formulario cardiológico existente.
+    Los datos se cargan desde un archivo JSON y se usan para inicializar el formulario.
+    """
+    folder_path = os.path.join('saved_forms', 'formularios_politraumatizados')
+    file_path = os.path.join(folder_path, archivo)
+
+    print(f"URL accedida: {request.url}")
+    print(f"Path del archivo: {file_path}")
+
+    try:
+        # Cargar los datos del archivo JSON
+        with open(file_path, 'r') as file:
+            planilla_data = json.load(file)
+    except Exception as e:
+        return f"Error al cargar el archivo: {e}", 500
+
+    try:
+        fecha_evento_str = planilla_data.get("fecha_evento")
+        if fecha_evento_str:
+            planilla_data["fecha_evento"] = datetime.strptime(fecha_evento_str, "%a, %d %b %Y %H:%M:%S %Z")
+        else:
+            planilla_data["fecha_evento"] = None
+    except Exception as e:
+        return f"Error al procesar fecha_evento u hora: {e}", 500
+      
+    # Check for valid hora_str and split it correctly
+    hora_str = planilla_data.get("hora")
+    if hora_str:
+        try:
+            # Split the time string into hours and minutes
+            hour, minute = map(int, hora_str.split(":"))
+            # Create a time object
+            planilla_data["hora"] = time(hour, minute)
+        except ValueError:
+            # Handle the case where the hora format is incorrect
+            planilla_data["hora"] = None
+    else:
+        # Handle the case where hora is missing
+        planilla_data["hora"] = None
+    
+    # Crear el formulario e inicializarlo con los datos cargados
+    form = FormularioPolitraumatizado(data=planilla_data)
+
+    if form.validate_on_submit():  # Si el formulario es enviado y válido
+        try:
+            # Crear un diccionario con los datos del formulario
+            formulario_data = {
+                'nombre_paciente': form.nombre_paciente.data,
+            'sexo': form.sexo.data,
+            'fecha_evento': form.fecha_evento.data,
+            'hora': form.hora.data.strftime('%H:%M') if form.hora.data else '',
+            'tipo_evento': form.tipo_evento.data,
+            'estado_general': form.estado_general.data,
+            'temperatura': form.temperatura.data,
+            'palidez': form.palidez.data,
+            'cianosis': form.cianosis.data,
+            'edemas': form.edemas.data,
+            'lesiones_piel_partes_blandas': form.lesiones_piel_partes_blandas.data,
+            'respiratorio': form.respiratorio.data,
+            'trauma_torax_cerrado': form.trauma_torax_cerrado.data,
+            'fracturas_costales': form.fracturas_costales.data,
+            'contusiones': form.contusiones.data,
+            'arm': form.arm.data,
+            'sato2': form.sato2.data,
+            'pafi': form.pafi.data,
+            'buena_entrada_aire_bilateral': form.buena_entrada_aire_bilateral.data,
+            'fr': form.fr.data,
+            'hipoventilacion_derecha': form.hipoventilacion_derecha.data,
+            'hipoventilacion_izquierda': form.hipoventilacion_izquierda.data,
+            'neumotorax': form.neumotorax.data,
+            'hemotorax': form.hemotorax.data,
+            'tap': form.tap.data,
+            'circulatorio': form.circulatorio.data,
+            'ta': form.ta.data,
+            'tam': form.tam.data,
+            'pvc': form.pvc.data,
+            'fc': form.fc.data,
+            'relleno_capilar': form.relleno_capilar.data,
+            'hemorragia_externa_activa': form.hemorragia_externa_activa.data,
+            'sospecha_hemorragia_interna': form.sospecha_hemorragia_interna.data,
+            'fallo_de_bomba': form.fallo_de_bomba.data,
+            'derrame_pericardico': form.derrame_pericardico.data,
+            'aceptable_perfusion_periferica': form.aceptable_perfusion_periferica.data,
+            'shock': form.shock.data,
+            'inotropicos': form.inotropicos.data,
+            'requerimiento_de_transfusion': form.requerimiento_de_transfusion.data,
+            'abdomen': form.abdomen.data,
+            'trauma_abdominal_cerrado': form.trauma_abdominal_cerrado.data,
+            'trauma_abdominal_abierto': form.trauma_abdominal_abierto.data,
+            'blando_depresible_indoloro': form.blando_depresible_indoloro.data,
+            'rha': form.rha.data,
+            'distendido': form.distendido.data,
+            'sng': form.sng.data,
+            'alim_enteral': form.alim_enteral.data,
+            'intervencion_quirurgica': form.intervencion_quirurgica.data,
+            'detalle_intervencion': form.detalle_intervencion.data,
+            'drenajes': form.drenajes.data,
+            'diuresis': form.diuresis.data,
+            'sonda_vesical': form.sonda_vesical.data,
+            'funcion_neurologica': form.funcion_neurologica.data,
+            'tec': form.tec.data,
+            'trauma_columna': form.trauma_columna.data,
+            'bajo_sedanalgesia': form.bajo_sedanalgesia.data,
+            'glasgow': form.glasgow.data,
+            'pupilas': form.pupilas.data,
+            'foco_motor': form.foco_motor.data,
+            'pic': form.pic.data,
+            'collar_cervical': form.collar_cervical.data,
+            'inmovilizacion_tabla': form.inmovilizacion_tabla.data,
+            'lesion_traumatologica': form.lesion_traumatologica.data,
+            'rts': form.rts.data,
+            'imagenes': form.imagenes.data,
+            'laboratorio': form.laboratorio.data,
+            'interconsultas': form.interconsultas.data,
+            'pronostico': form.pronostico.data,
+            'apache_ii': form.apache_ii.data,
+            'sofa': form.sofa.data
+            }
+
+            # Guardar los datos actualizados en el archivo JSON
+            with open(file_path, 'w') as file:
+                json.dump(formulario_data, file, indent=4)
+
+            # Mensaje de éxito
+            flash('Formulario actualizado correctamente.', 'success')
+
+        except Exception as e:
+            flash(f'Error al guardar el formulario: {str(e)}', 'danger')
+
+        # Redirigir después de guardar el formulario
+        return redirect(url_for('detalle_politraumatizado', archivo=archivo))
+
+    # Si el formulario no es válido o es un GET
+    return render_template('editar_politraumatizado.html', form=form, archivo=archivo)
 
 
 
