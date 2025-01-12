@@ -1,7 +1,7 @@
 import datetime
 from flask_wtf import FlaskForm
 from wtforms import DateField, SelectField, SubmitField, TextAreaField, TimeField, IntegerField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, InputRequired
 
 class FormularioPolitraumatizado(FlaskForm):
     nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired()])
@@ -39,10 +39,10 @@ class FormularioPolitraumatizado(FlaskForm):
     fracturas_costales = BooleanField('FRACTURAS COSTALES')
     contusiones = BooleanField('CONTUSIONES')
     arm = BooleanField('ARM')
-    sato2 = IntegerField('SATO2', default=0, validators=[DataRequired()])
-    pafi = IntegerField('PAFi', default=0, validators=[DataRequired()])
+    sato2 = IntegerField('SATO2', default=0, validators=[InputRequired()])
+    pafi = IntegerField('PAFi', default=0, validators=[InputRequired()])
     buena_entrada_aire_bilateral = BooleanField('BUENA ENTRADA DE AIRE BILATERAL')
-    fr = IntegerField('FR', default=0, validators=[DataRequired()])
+    fr = IntegerField('FR', default=0, validators=[InputRequired()])
     hipoventilacion_derecha = BooleanField('HIPOVENTILACION DERECHA')
     hipoventilacion_izquierda = BooleanField('HIPOVENTILACION IZQUIERDA')
     neumotorax = BooleanField('NEUMOTORAX')
@@ -84,14 +84,14 @@ class FormularioPolitraumatizado(FlaskForm):
     glasgow = TextAreaField('GLASGOW')
     pupilas = TextAreaField('PUPILAS')
     foco_motor = TextAreaField('FOCO MOTOR')
-    pic = IntegerField('PIC', default=0, validators=[DataRequired()])
+    pic = IntegerField('PIC', default=0, validators=[InputRequired()])
     drenajes = BooleanField('DRENAJES')
 
     collar_cervical = BooleanField('COLLAR CERVICAL')
     inmovilizacion_tabla = BooleanField('INMOVILIZACIÓN CON TABLA')
 
     lesion_traumatologica = TextAreaField('LESION TRAMATOLÓGICA')
-    rts = IntegerField('REVISED TRAUMA SCORED', default=0, validators=[DataRequired()])
+    rts = IntegerField('REVISED TRAUMA SCORED', default=0, validators=[InputRequired()])
     imagenes = TextAreaField('IMÁGENES')
     laboratorio = TextAreaField('LABORATORIO')
     interconsultas = TextAreaField('INTERCONSULTAS')

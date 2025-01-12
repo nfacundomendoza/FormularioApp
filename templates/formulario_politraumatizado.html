@@ -352,11 +352,16 @@
             {{ form.submit(class="btn btn-primary") }}
         </div>
     </form>
-
-    {% if form.errors %}
+    
+        {% if form.errors %}
         <ul>
-            {% for field, errors in form.errors.items() %}
-                <li><strong>{{ field.label.text }}:</strong>
+            {% for field_name, errors in form.errors.items() %}
+                <li>
+                    <strong>
+                        {# Buscar el campo en el formulario por su nombre #}
+                        {% set field = form[field_name] %}
+                        {{ field.label.text if field.label else field_name }}:
+                    </strong>
                     <ul>
                         {% for error in errors %}
                             <li>{{ error }}</li>
