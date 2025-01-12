@@ -7,6 +7,17 @@
 </head>
 <body>
     <button onclick="window.location.href='/'">Volver</button>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
     <h1>Selecciona una Guía</h1>
     <button onclick="window.location.href='/guia_t_cardiologico'">GUIA T CARDIOLÓGICO</button>
     <button onclick="window.location.href='/guia_t_politraumatizado'">GUIA T POLITRAUMATIZADO</button>

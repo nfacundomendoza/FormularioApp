@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario GUIA T CARDIOLÓGICO</title>
+    
+</head>
+<body>
+
+     <a href="{{ url_for('home') }}">
+        <button type="button">Volver al Menú Principal</button>
+    </a>
+    
+    <a href="{{ url_for('generar_planilla') }}">
+        <button type="button">Volver a Seleccionar Guía</button>
+    </a>
+   
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+
+    <h1>Formulario GUIA T POLITRAUMATIZADO</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }} <!-- Para incluir un token CSRF para proteger el formulario -->
+
+        <!-- Nombre del Paciente -->
+        <div class="mb-3">
+            <label for="nombre_paciente" class="form-label">Nombre del Paciente</label>
+            {{ form.nombre_paciente(class="form-control") }}
+        </div>
+            
+        <div class="mb-3">
+            <label for="sexo" class="form-label">Sexo</label>
+            {{ form.sexo(class="form-select") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="fecha_evento" class="form-label">Fecha del Evento</label>
+            {{ form.fecha_evento(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="hora" class="form-label">Hora</label>
+            {{ form.hora(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="tipo_evento" class="form-label">Tipo de Evento</label>
+            {{ form.tipo_evento(class="form-select") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="estado_general" class="form-label">Estado General</label>
+            {{ form.estado_general(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="temperatura" class="form-label">Temperatura</label>
+            {{ form.temperatura(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.palidez(class="form-check-input") }}Palidez
+        </div>
+        
+        <div class="form-check">
+            {{ form.cianosis(class="form-check-input") }}Cianosis
+        </div>
+        
+        <div class="form-check">
+            {{ form.edemas(class="form-check-input") }}Edemas
+        </div>
+        
+        <div class="mb-3">
+            <label for="lesiones_piel_partes_blandas" class="form-label">Lesiones de Piel y Partes Blandas</label>
+            {{ form.lesiones_piel_partes_blandas(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="respiratorio" class="form-label">Respiratorio</label>
+            {{ form.respiratorio(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.trauma_torax_cerrado(class="form-check-input") }}Trauma de Tórax Cerrado
+        </div>
+        
+        <div class="form-check">
+            {{ form.fracturas_costales(class="form-check-input") }}Fracturas Costales
+        </div>
+        
+        <div class="form-check">
+            {{ form.contusiones(class="form-check-input") }}Contusiones
+        </div>
+        
+        <div class="form-check">
+            {{ form.arm(class="form-check-input") }}ARM
+        </div>
+        
+        <div class="mb-3">
+            <label for="sato2" class="form-label">SATO2</label>
+            {{ form.sato2(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="pafi" class="form-label">PAFi</label>
+            {{ form.pafi(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.buena_entrada_aire_bilateral(class="form-check-input") }}Buena Entrada de Aire Bilateral
+        </div>
+        
+        <div class="mb-3">
+            <label for="fr" class="form-label">FR</label>
+            {{ form.fr(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.hipoventilacion_derecha(class="form-check-input") }}Hipoventilación Derecha
+        </div>
+        
+        <div class="form-check">
+            {{ form.hipoventilacion_izquierda(class="form-check-input") }}Hipoventilación Izquierda
+        </div>
+        
+        <div class="form-check">
+            {{ form.neumotorax(class="form-check-input") }}Neumotórax
+        </div>
+        
+        <div class="form-check">
+            {{ form.hemotorax(class="form-check-input") }}Hemotórax
+        </div>
+        
+        <div class="form-check">
+            {{ form.tap(class="form-check-input") }}TAP
+        </div>
+        
+        <div class="mb-3">
+            <label for="circulatorio" class="form-label">Circulatorio</label>
+            {{ form.circulatorio(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="ta" class="form-label">TA</label>
+            {{ form.ta(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="tam" class="form-label">TAM</label>
+            {{ form.tam(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="pvc" class="form-label">PVC</label>
+            {{ form.pvc(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="fc" class="form-label">FC</label>
+            {{ form.fc(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.relleno_capilar(class="form-check-input") }}Relleno Capilar
+        </div>
+        
+        <div class="form-check">
+            {{ form.hemorragia_externa_activa(class="form-check-input") }}Hemorragia Externa Activa
+        </div>
+        
+        <div class="form-check">
+            {{ form.sospecha_hemorragia_interna(class="form-check-input") }}Sospecha de Hemorragia Interna
+        </div>
+        
+        <div class="form-check">
+            {{ form.fallo_de_bomba(class="form-check-input") }}Fallo de Bomba
+        </div>
+        
+        <div class="form-check">
+            {{ form.derrame_pericardico(class="form-check-input") }}Derrame Pericárdico
+        </div>
+        
+        <div class="form-check">
+            {{ form.aceptable_perfusion_periferica(class="form-check-input") }}Aceptable Perfusión Periférica
+        </div>
+        
+        <div class="form-check">
+            {{ form.shock(class="form-check-input") }}Shock
+        </div>
+        
+        <div class="form-check">
+            {{ form.inotropicos(class="form-check-input") }}Inotrópicos
+        </div>
+        
+        <div class="form-check">
+            {{ form.requerimiento_de_transfusion(class="form-check-input") }}Requerimiento de Transfusión
+        </div>
+        
+        <div class="mb-3">
+            <label for="abdomen" class="form-label">Abdomen</label>
+            {{ form.abdomen(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.trauma_abdominal_cerrado(class="form-check-input") }}Trauma Abdominal Cerrado
+        </div>
+        
+        <div class="form-check">
+            {{ form.trauma_abdominal_abierto(class="form-check-input") }}Trauma Abdominal Abierto
+        </div>
+        
+        <div class="form-check">
+            {{ form.blando_depresible_indoloro(class="form-check-input") }}Blando, Depresible, Indoloro
+        </div>
+        
+        <div class="mb-3">
+            <label for="rha" class="form-label">RHA</label>
+            {{ form.rha(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.distendido(class="form-check-input") }}Distendido
+        </div>
+        
+        <div class="form-check">
+            {{ form.sng(class="form-check-input") }}SNG
+        </div>
+        
+        <div class="form-check">
+            {{ form.alim_enteral(class="form-check-input") }}Alimentación Enteral
+        </div>
+
+        <div class="form-check">
+            {{ form.intervencion_quirurgica(class="form-check-input") }}Intervención Quirúrgica
+        </div>
+        
+        <div class="mb-3">
+            <label for="detalle_intervencion" class="form-label">Detalle de Intervención</label>
+            {{ form.detalle_intervencion(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.drenajes(class="form-check-input") }}Drenajes
+        </div>
+        
+        <div class="mb-3">
+            <label for="diuresis" class="form-label">Diuresis</label>
+            {{ form.diuresis(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.sonda_vesical(class="form-check-input") }}Sonda Vesical
+        </div>
+        
+        <div class="mb-3">
+            <label for="funcion_neurologica" class="form-label">Función Neurológica</label>
+            {{ form.funcion_neurologica(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.tec(class="form-check-input") }}TEC
+        </div>
+        
+        <div class="form-check">
+            {{ form.trauma_columna(class="form-check-input") }}Trauma Columna
+        </div>
+        
+        <div class="form-check">
+            {{ form.bajo_sedanalgesia(class="form-check-input") }}Bajo Sedoanalgesia
+        </div>
+        
+        <div class="mb-3">
+            <label for="glasgow" class="form-label">Glasgow</label>
+            {{ form.glasgow(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="pupilas" class="form-label">Pupilas</label>
+            {{ form.pupilas(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="foco_motor" class="form-label">Foco Motor</label>
+            {{ form.foco_motor(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="pic" class="form-label">PIC</label>
+            {{ form.pic(class="form-control") }}
+        </div>
+        
+        <div class="form-check">
+            {{ form.collar_cervical(class="form-check-input") }}Collar Cervical
+        </div>
+        
+        <div class="form-check">
+            {{ form.inmovilizacion_tabla(class="form-check-input") }}Inmovilización con Tabla
+        </div>
+        
+        <div class="mb-3">
+            <label for="lesion_traumatologica" class="form-label">Lesión Traumatológica</label>
+            {{ form.lesion_traumatologica(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="rts" class="form-label">Revised Trauma Score (RTS)</label>
+            {{ form.rts(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="imagenes" class="form-label">Imágenes</label>
+            {{ form.imagenes(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="laboratorio" class="form-label">Laboratorio</label>
+            {{ form.laboratorio(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="interconsultas" class="form-label">Interconsultas</label>
+            {{ form.interconsultas(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="pronostico" class="form-label">Pronóstico</label>
+            {{ form.pronostico(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="apache_ii" class="form-label">APACHE II</label>
+            {{ form.apache_ii(class="form-control") }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="sofa" class="form-label">SOFA</label>
+            {{ form.sofa(class="form-control") }}
+        </div>
+        
+
+        <!-- Botón para enviar el formulario -->
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+
+    {% if form.errors %}
+        <ul>
+            {% for field, errors in form.errors.items() %}
+                <li><strong>{{ field.label.text }}:</strong>
+                    <ul>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

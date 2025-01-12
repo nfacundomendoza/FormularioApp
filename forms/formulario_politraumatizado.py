@@ -1,7 +1,6 @@
-
-
+import datetime
 from flask_wtf import FlaskForm
-from wtforms import DateField, SelectField, TextAreaField,TimeField, IntegerField, BooleanField
+from wtforms import DateField, SelectField, SubmitField, TextAreaField,TimeField, IntegerField, BooleanField
 from wtforms.validators import DataRequired
 
 
@@ -12,8 +11,16 @@ class FormularioPolitraumatizado(FlaskForm):
 
     sexo = SelectField('SEXO', choices=[('F', 'Femenino'), ('M', 'Masculino')])
 
-    fecha_evento = DateField('FECHA DEL EVENTO', format='%Y-%m-%d')
-    hora = TimeField('HORA', format='%H:%M')
+ # Definir funciones para la fecha y la hora
+    def get_default_date():
+        return datetime.date.today()
+
+    def get_default_time():
+        return datetime.datetime.now().time()
+
+    # Usar las funciones como valores por defecto
+    fecha_evento = DateField('FECHA DEL EVENTO', format='%Y-%m-%d', default=get_default_date)
+    hora = TimeField('HORA', format='%H:%M', default=get_default_time)
 
     tipo_evento = SelectField(
             'TIPO DE EVENTO', 
@@ -38,10 +45,10 @@ class FormularioPolitraumatizado(FlaskForm):
     fracturas_costales = BooleanField('FRACTURAS COSTALES')
     contusiones = BooleanField('CONTUSIONES')
     arm = BooleanField('ARM')
-    sato2 = IntegerField('SATO2')
-    pafi = IntegerField('PAFi')
+    sato2 = IntegerField('SATO2', default=0)
+    pafi = IntegerField('PAFi', default=0)
     buena_entrada_aire_bilateral = BooleanField('BUENA ENTRADA DE AIRE BILATERAL')
-    fr = IntegerField('FR')
+    fr = IntegerField('FR', default=0)
     hipoventilacion_derecha = BooleanField('HIPOVENTILACION DERECHA')
     hipoventilacion_izquierda = BooleanField('HIPOVENTILACION IZQUIERDA')
     neumotorax = BooleanField('NEUMOTORAX')
@@ -84,17 +91,21 @@ class FormularioPolitraumatizado(FlaskForm):
     glasgow = TextAreaField('GLASGOW')
     pupilas = TextAreaField('PUPILAS')
     foco_motor = TextAreaField('FOCO MOTOR')
-    pic = IntegerField('PIC')
+    pic = IntegerField('PIC', default=0)
     drenajes = BooleanField('DRENAJES')
 
     collar_cervical = BooleanField('COLLAR CERVICAL')
     inmovilizacion_tabla = BooleanField('INMOVILIZACIÓN CON TABLA')
 
     lesion_traumatologica = TextAreaField('LESION TRAMATOLÓGICA')
-    rts = IntegerField('REVISED TRAUMA SCORED')
+    rts = IntegerField('REVISED TRAUMA SCORED', default=0)
     imagenes = TextAreaField('IMÁGENES')
     laboratorio = TextAreaField('LABORATORIO')
     interconsultas = TextAreaField('INTERCONSULTAS')
     pronostico = TextAreaField('PRONÓSTICO')
     apache_ii = TextAreaField('APACHE II')
     sofa = TextAreaField('SOFA')
+
+    
+    # Botón para enviar el formulario
+    submit = SubmitField("Guardar")
