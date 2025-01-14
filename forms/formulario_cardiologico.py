@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField, BooleanField, SelectField
+from wtforms import StringField, SubmitField, IntegerField, TextAreaField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Optional
 
 class FormularioCardiologico(FlaskForm):
-    nombre_paciente = StringField('Nombre del Paciente', validators=[DataRequired()])
+    nombre_paciente = StringField('Nombre del Paciente', validators=[DataRequired(message="El nombre del paciente es obligatorio.")])
     # Motivo de ingreso/Diagnóstico
-    motivo_ingreso_diag = TextAreaField('Motivo de Ingreso/Diagnóstico', validators=[DataRequired()])
+    motivo_ingreso_diag = TextAreaField('Motivo de Ingreso/Diagnóstico', validators=[DataRequired(message="El motivo de ingreso/diagnóstico es obligatorio.")])
 
     # Condiciones relacionadas con la cardiología
     dolor_precordial = BooleanField('Dolor Precordial')
@@ -45,11 +45,11 @@ class FormularioCardiologico(FlaskForm):
     arm = BooleanField('ARM')
     
     # Cardiovascular: Signos Vitales
-    ta = StringField('TA (Tensión Arterial)', validators=[DataRequired()])
-    tam = StringField('TAM (Tensión Arterial Media)', validators=[DataRequired()])
-    pvc = StringField('PVC (Presión Venosa Central)', validators=[DataRequired()])
-    fc = StringField('FC (Frecuencia Cardíaca)', validators=[DataRequired()])
-    relleno_capilar = StringField('Relleno Capilar', validators=[DataRequired()])
+    ta = StringField('TA (Tensión Arterial)', validators=[DataRequired(message="La tensión arterial es obligatoria.")])
+    tam = StringField('TAM (Tensión Arterial Media)', validators=[DataRequired(message="La tensión arterial media es obligatoria.")])
+    pvc = StringField('PVC (Presión Venosa Central)', validators=[DataRequired(message="La presión venosa central es obligatoria.")])
+    fc = StringField('FC (Frecuencia Cardíaca)', validators=[DataRequired(message="La frecuencia cardíaca es obligatoria.")])
+    relleno_capilar = StringField('Relleno Capilar', validators=[DataRequired(message="El relleno capilar es obligatorio.")])
     
     # Otros campos
     soplos = BooleanField('Soplos')
@@ -65,7 +65,7 @@ class FormularioCardiologico(FlaskForm):
     inotropicos = BooleanField('Inotrópicos')
 
     # Abdomen
-    abdomen = StringField('Abdomen', validators=[DataRequired()])
+    abdomen = StringField('Abdomen', validators=[DataRequired(message="la información del abdomen es obligatoria.")])
     rha = StringField('RHA', validators=[Optional()])
 
     # Diuresis y sonda vesical
@@ -83,3 +83,5 @@ class FormularioCardiologico(FlaskForm):
     rx_torax = StringField('RX de Tórax', validators=[Optional()])
     ecg = StringField('ECG', validators=[Optional()])
     ecocardiograma = StringField('Ecocardiograma', validators=[Optional()])
+
+    submit = SubmitField('Guardar')

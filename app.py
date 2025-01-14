@@ -148,7 +148,7 @@ def guia_t_politraumatizado():
     Aún no implementado.
     """
     # Lógica para 'GUIA T POLITRAUMATIZADO'
-    return "Formulario GUIA T POLITRAUMATIZADO"
+    return render_template('formulario_politraumatizado.html')
 
 @app.route('/seleccionar_planilla', methods=['GET', 'POST'])
 def seleccionar_planilla():

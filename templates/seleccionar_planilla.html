@@ -1,66 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleccionar Planilla</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery -->
-</head>
-<body>
+{% extends "layout.html"%}
 
-    <a href="{{ url_for('home') }}">
-        <button type="button">Volver</button>
-    </a>
+{% block title %} Seleccionar Planilla {% endblock %}
+
+{% block content %}
     
-    {% with messages = get_flashed_messages(with_categories=true) %}
+{% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-        <ul>
+        <ul class="list-unstyled">
         {% for category, message in messages %}
             <li class="alert alert-{{ category }}">{{ message }}</li>
         {% endfor %}
         </ul>
     {% endif %}
-    {% endwith %}
+{% endwith %}
 
-    <h1>Seleccionar tipo de planilla</h1>
-    <form method="POST" id="form_select">
-        <label for="tipo_planilla">Seleccionar tipo de planilla:</label>
-        <select id="tipo_planilla" name="tipo_planilla">
-            <!-- Opción no seleccionable -->
-            <option value="" disabled {% if not tipo_planilla %}selected{% endif %}>Seleccione un tipo</option>
-            <option value="cardiologico" {% if tipo_planilla == 'cardiologico' %}selected{% endif %}>Cardiológico</option>
-            <option value="politraumatizado" {% if tipo_planilla == 'politraumatizado' %}selected{% endif %}>Politraumatizado</option>
-        </select>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Seleccionar tipo de planilla</h1>
+    <div class="form-container mx-auto">
+        <form method="POST" id="form_select" class="mb-4">
+            <div class="form-group mb-3">
+                <label for="tipo_planilla">Seleccionar tipo de planilla:</label>
+                <select id="tipo_planilla" name="tipo_planilla" class="form-control">
+                    <option value="" disabled {% if not tipo_planilla %}selected{% endif %}>Seleccione un tipo</option>
+                    <option value="cardiologico" {% if tipo_planilla == 'cardiologico' %}selected{% endif %}>Cardiológico</option>
+                    <option value="politraumatizado" {% if tipo_planilla == 'politraumatizado' %}selected{% endif %}>Politraumatizado</option>
+                </select>
+            </div>
 
-        <!-- Campo de búsqueda -->
-        <label for="buscar_nombre">Buscar por nombre:</label>
-        <input type="text" id="buscar_nombre" name="buscar_nombre" value="{{ buscar_nombre }}" placeholder="Buscar nombre...">
-        
-        <button type="submit">Ver Archivos</button>
-    </form>
+            <div class="form-group mb-3">
+                <label for="buscar_nombre">Buscar por nombre:</label>
+                <input type="text" id="buscar_nombre" name="buscar_nombre" value="{{ buscar_nombre }}" placeholder="Buscar nombre..." class="form-control">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Ver Archivos</button>
+        </form>
+    </div>
 
-
-    <!-- Aquí se cargará la lista de archivos después de seleccionar el tipo de planilla -->
     {% if tipo_planilla %}
     <div id="lista_planillas">
         <h2>Planillas guardadas:</h2>
-        <ul id="archivos">
+        <ul id="archivos" class="list-group">
             {% if archivos %}
                 {% for archivo in archivos %}
-                    <li><a href="/ver_detalle_planilla/{{ tipo_planilla }}/{{ archivo }}">{{ archivo }}</a></li>
+                    <li class="list-group-item"><a href="/ver_detalle_planilla/{{ tipo_planilla }}/{{ archivo }}">{{ archivo }}</a></li>
                 {% endfor %}
             {% else %}
-                <li>No se encontraron formularios.</li>
+                <li class="list-group-item">No se encontraron formularios.</li>
             {% endif %}
         </ul>
     </div>
     {% endif %}
 
-    <script>
-        // Función para manejar la selección de tipo de planilla y mostrar la lista de formularios
-        $('#tipo_planilla').change(function() {
-            $('#form_select').submit();  // Enviar el formulario cuando cambie el valor
-        });
-    </script>
-</body>
-</html>
+    <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}
