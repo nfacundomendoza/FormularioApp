@@ -8,10 +8,14 @@
 
 </div>
     <div class="container mt-5">
+
         <a href="{{ url_for('generar_planilla') }}" class="btn btn-secondary mb-3">Volver a Seleccionar Guía</a>
 
         <h1 class="text-center mb-4">Formulario GUIA T CARDIOLÓGICO</h1>
+
         <form method="POST" class="mb-4" novalidate>
+
+            {{ form.hidden_tag() }}
 
             <div class="form-group mb-3">
                 {{ form.nombre_paciente.label }}
@@ -19,22 +23,19 @@
                 {{ show_errors(form.nombre_paciente) }}
             </div>
 
-            <!-- Motivo de Ingreso/Diagnóstico -->
             <div class="form-group mb-3">
                 {{ form.motivo_ingreso_diag.label }}
                 {{ form.motivo_ingreso_diag(class="form-control", placeholder="Ingresar motivo del ingreso o diagnóstico.") }}
-                {{ show_errors(form.motivo_ingreso_diag) }}
             </div>
 
-            <!-- Condiciones relacionadas con la cardiología -->
             <div class="form-group mb-3">
                 {{ form.dolor_precordial.label }}
                 {{ form.dolor_precordial(class="form-check-input") }}
             </div>
 
             <div class="form-group mb-3">
-                {{ form.scaest.label }}
-                {{ form.scaest(class="form-check-input") }}
+                {{ form.scasest.label }}
+                {{ form.scasest(class="form-check-input") }}
             </div>
 
             <div class="form-group mb-3">
@@ -43,8 +44,8 @@
             </div>
 
             <div class="form-group mb-3">
-                {{ form.insuficiencia_cardiaca.label}}
-                {{ form.insuficiencia_cardiaca(class="form-check-input") }}
+                {{ form.insuficiencia_cardiaca_descompensada.label}}
+                {{ form.insuficiencia_cardiaca_descompensada(class="form-check-input") }}
             </div>
 
             <div class="form-group mb-3">
@@ -57,9 +58,10 @@
                 {{ form.emergencia_hipertensiva(class="form-check-input") }}
             </div>
 
-        <div class="mb-3">
-            {{ form.sincope() }} Síncope
-        </div>
+            <div class="mb-3">
+                {{ form.sincope.label }}        
+                {{ form.sincope() }} 
+            </div>
 
             <div class="form-group mb-3">
                 {{ form.shock.label }}
@@ -81,8 +83,12 @@
                 {{ form.antecedentes.label }}
                 {{ form.antecedentes(class="form-control", placeholder="Ingresar antecedentes.") }}
             </div>
+            
+            <div class="mb-3">
+                {{ form.enfermedad_actual.label }}
+                {{ form.enfermedad_actual(class="form-control") }}
+            </div>
 
-            <!-- Enfermedad Actual -->
             <div class="form-group mb-3">
                 {{ form.disnea.label }}
                 {{ form.disnea(class="form-check-input") }}
@@ -104,7 +110,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="palpitaciones">Palpitaciones</label>
+                {{ form.palpitaciones.label }}
                 {{ form.palpitaciones(class="form-check-input") }}
             </div>
 
@@ -128,7 +134,16 @@
                 {{ form.cianosis(class="form-check-input") }}
             </div>
 
-            <!-- Examen físico: Signos Vitales -->
+            <div class="mb-3">
+                {{ form.examen_fisico.label }}
+                {{ form.examen_fisico(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.signos_vitales.label }}
+                {{ form.signos_vitales(class="form-control") }}
+            </div>
+
             <div class="form-group mb-3">
                 {{ form.respiratorio.label }}
                 {{ form.respiratorio(class="form-control", placeholder="Ingresar situación respiratoria.") }}
@@ -140,8 +155,8 @@
             </div>
 
             <div class="form-group mb-3">
-                {{ form.buena_entrada_aire.label }}
-                {{ form.buena_entrada_aire(class="form-check-input") }}
+                {{ form.buena_entrada_aire_bilateral.label }}
+                {{ form.buena_entrada_aire_bilateral(class="form-check-input") }}
             </div>
 
             <div class="form-group mb-3">
@@ -174,35 +189,34 @@
                 {{ form.arm(class="form-check-input") }}
             </div>
 
-            <!-- Cardiovascular: Signos Vitales -->
+            <div class="mb-3">
+                {{ form.cardiovascular.label }}
+                {{ form.cardiovascular(class="form-control") }}
+            </div>
+
             <div class="form-group mb-3">
                 {{ form.ta.label }}
                 {{ form.ta(class="form-control", placeholder="Ingresar tensión arterial.") }}
-                {{ show_errors(form.ta) }}
             </div>
 
             <div class="form-group mb-3">
                 {{ form.tam.label }}
                 {{ form.tam(class="form-control", placeholder="Ingresar tensión arterial media.") }}
-                {{ show_errors(form.tam) }}
             </div>
 
             <div class="form-group mb-3">
                 {{ form.pvc.label }}
                 {{ form.pvc(class="form-control", placeholder="Ingresar presión venosa central.") }}
-                {{ show_errors(form.pvc) }}
             </div>
 
             <div class="form-group mb-3">
                 {{ form.fc.label }}
                 {{ form.fc(class="form-control", placeholder="Ingresar frecuencia cardíaca.") }}
-                {{ show_errors(form.fc) }}
             </div>
 
             <div class="form-group mb-3">
                 {{ form.relleno_capilar.label }}
                 {{ form.relleno_capilar(class="form-control", placeholder="Ingresar relleno capilar.") }}
-                {{ show_errors(form.relleno_capilar) }}
             </div>
 
             <!-- Otros campos -->
@@ -247,13 +261,13 @@
             </div>
 
             <div class="form-group mb-3">
-                {{ form.aceptable_perf_periferica.label }}
-                {{ form.aceptable_perf_periferica(class="form-check-input") }}
+                {{ form.aceptable_perfusion_periferica.label }}
+                {{ form.aceptable_perfusion_periferica(class="form-check-input") }}
             </div>
 
             <div class="form-group mb-3">
-                {{ form.shock2.label }}
-                {{ form.shock2(class="form-check-input") }}
+                {{ form.shock_2.label }}
+                {{ form.shock_2(class="form-check-input") }}
             </div>
 
             <div class="form-group mb-3">
@@ -265,7 +279,11 @@
             <div class="form-group mb-3">
                 {{ form.abdomen.label }}
                 {{ form.abdomen(class="form-control", placeholder="Ingresar informacion de abdomen.") }}
-                {{ show_errors(form.abdomen) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.blando_depresible_indoloro.label }}
+                {{ form.blando_depresible_indoloro() }} 
             </div>
 
             <div class="form-group mb-3">
@@ -273,7 +291,55 @@
                 {{ form.rha(class="form-control", placeholder="Ingresar RHA.") }}
             </div>
 
-            <!-- Botón de submit -->
+            <div class="mb-3">
+                {{ form.diuresis.label }}   
+                {{ form.diuresis(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ form.sonda_vesical.label }}
+                {{ form.sonda_vesical() }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form.neurologico.label }}
+                {{ form.neurologico(class="form-control") }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form.bajo_sedoanalgesia.label }}
+                {{ form.bajo_sedoanalgesia() }} 
+            </div>
+            
+            <div class="mb-3">
+                {{ form.glasgow.label}}
+                {{ form.glasgow() }} 
+            </div>
+            
+            <div class="mb-3">
+                {{ form.pupilas.label }}
+                {{ form.pupilas() }} 
+            </div>
+            
+            <div class="mb-3">
+                {{ form.foco_motor.label }}
+                {{ form.foco_motor() }} 
+            </div>
+            
+            <div class="mb-3">
+                {{ form.laboratorio.label }}
+                {{ form.laboratorio(class="form-control") }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form.ecg.label }}
+                {{ form.ecg(class="form-control") }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form.ecocardiograma.label }}
+                {{ form.ecocardiograma(class="form-control") }}
+            </div>
+
             {{ form.submit(class="btn btn-primary", value="Guardar") }}
         </form>
     </div>

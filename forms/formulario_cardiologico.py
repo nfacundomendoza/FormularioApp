@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, TextAreaField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Optional
 
 class FormularioCardiologico(FlaskForm):
-    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired()])
+    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired(message="El nombre del paciente es obligatorio")])
 
     # Primera sección de campos
     motivo_ingreso_diag = TextAreaField("Motivo de Ingreso/Diag:")
@@ -72,17 +72,21 @@ class FormularioCardiologico(FlaskForm):
     rha = BooleanField("RHA")
 
     # Diuresis y sonda vesical
-    diuresis = StringField('Diuresis', validators=[Optional()])
-    sonda_vesical = StringField('Sonda Vesical', validators=[Optional()])
+    diuresis = TextAreaField("Diuresis:")
+    sonda_vesical = BooleanField("Sonda Vesical")
 
     # Neurológico
+    neurologico = TextAreaField("Neurológico:")
     bajo_sedoanalgesia = BooleanField('Bajo Sedoanalgesia')
-    glasgow = StringField('Glasgow', validators=[Optional()])
-    pupilas = StringField('Pupilas', validators=[Optional()])
-    foco_motor = StringField('Foco Motor', validators=[Optional()])
+    glasgow = StringField('Glasgow')
+    pupilas = StringField('Pupilas')
+    foco_motor = StringField('Foco Motor')
 
     # Laboratorio
-    enzimas = StringField('Enzimas', validators=[Optional()])
-    rx_torax = StringField('RX de Tórax', validators=[Optional()])
-    ecg = StringField('ECG', validators=[Optional()])
-    ecocardiograma = StringField('Ecocardiograma', validators=[Optional()])
+    laboratorio = TextAreaField("Laboratorio:")
+    enzimas = StringField('Enzimas')
+    rx_torax = StringField('RX de Tórax')
+    ecg = StringField('ECG')
+    ecocardiograma = StringField('Ecocardiograma')
+
+    submit = SubmitField("Guardar")

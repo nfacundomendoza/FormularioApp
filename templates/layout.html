@@ -9,6 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
+{% from "messages.html" import show_messages %}
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">
@@ -16,6 +18,8 @@
             Hospital de Pinamar
         </a>
     </nav>
+
+    {{ show_messages() }}
 
     <main class="container text-center mt-5">
         {% block content %}{% endblock %}
