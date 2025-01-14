@@ -71,21 +71,18 @@ class FormularioCardiologico(FlaskForm):
     blando_depresible_indoloro = BooleanField("Blando, Depresible, Indoloro")
     rha = BooleanField("RHA")
 
-    # Séptima sección de campos
-    diuresis = TextAreaField("Diuresis:")
-    sonda_vesical = BooleanField("Sonda Vesical")
+    # Diuresis y sonda vesical
+    diuresis = StringField('Diuresis', validators=[Optional()])
+    sonda_vesical = StringField('Sonda Vesical', validators=[Optional()])
 
-    # Octava sección de campos
-    neurologico = TextAreaField("Neurológico:")
-    bajo_sedoanalgesia = BooleanField("Bajo Sedoanalgesia")
-    glasgow = BooleanField("Glasgow")
-    pupilas = BooleanField("Pupilas")
-    foco_motor = BooleanField("Foco Motor")
-   
-   # Campos de texto adicionales
-    laboratorio = TextAreaField("Laboratorio:")
-    ecg = TextAreaField("ECG:")
-    ecocardiograma = TextAreaField("Ecocardiograma:")
+    # Neurológico
+    bajo_sedoanalgesia = BooleanField('Bajo Sedoanalgesia')
+    glasgow = StringField('Glasgow', validators=[Optional()])
+    pupilas = StringField('Pupilas', validators=[Optional()])
+    foco_motor = StringField('Foco Motor', validators=[Optional()])
 
-    # Botón para enviar el formulario
-    submit = SubmitField("Guardar")
+    # Laboratorio
+    enzimas = StringField('Enzimas', validators=[Optional()])
+    rx_torax = StringField('RX de Tórax', validators=[Optional()])
+    ecg = StringField('ECG', validators=[Optional()])
+    ecocardiograma = StringField('Ecocardiograma', validators=[Optional()])

@@ -1,337 +1,282 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario GUIA T CARDIOLÓGICO</title>
-</head>
-<body>
+{% extends "layout.html"%}
 
-     <a href="{{ url_for('home') }}">
-        <button type="button">Volver al Menú Principal</button>
-    </a>
-    
-    <a href="{{ url_for('generar_planilla') }}">
-        <button type="button">Volver a Seleccionar Guía</button>
-    </a>
-   
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul>
-        {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
+{% block title %}Formulario GUIA T CARDIOLÓGICO{% endblock %}
 
+{% block content %}
 
-    <h1>Formulario GUIA T CARDIOLÓGICO</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }} <!-- Para incluir un token CSRF para proteger el formulario -->
+{% from "macro.html" import show_errors %}
 
-        <!-- Nombre del Paciente -->
-        <div class="mb-3">
-            <label for="nombre_paciente" class="form-label">Nombre del Paciente</label>
-            {{ form.nombre_paciente(class="form-control") }}
-        </div>
+</div>
+    <div class="container mt-5">
+        <a href="{{ url_for('generar_planilla') }}" class="btn btn-secondary mb-3">Volver a Seleccionar Guía</a>
 
-        
-        <div class="mb-3">
-            <label for="motivo_ingreso_diag" class="form-label">Motivo de Ingreso/Diag:</label>
-            {{ form.motivo_ingreso_diag(class="form-control") }}
-        </div>
+        <h1 class="text-center mb-4">Formulario GUIA T CARDIOLÓGICO</h1>
+        <form method="POST" class="mb-4" novalidate>
 
-        <div class="mb-3">
-            {{ form.dolor_precordial() }} Dolor Precordial
-        </div>
+            <div class="form-group mb-3">
+                {{ form.nombre_paciente.label }}
+                {{ form.nombre_paciente(class="form-control", placeholder="Ingresar nombre del paciente.") }}
+                {{ show_errors(form.nombre_paciente) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.scasest() }} SCASEST
-        </div>
+            <!-- Motivo de Ingreso/Diagnóstico -->
+            <div class="form-group mb-3">
+                {{ form.motivo_ingreso_diag.label }}
+                {{ form.motivo_ingreso_diag(class="form-control", placeholder="Ingresar motivo del ingreso o diagnóstico.") }}
+                {{ show_errors(form.motivo_ingreso_diag) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.scacest() }} SCACEST
-        </div>
+            <!-- Condiciones relacionadas con la cardiología -->
+            <div class="form-group mb-3">
+                {{ form.dolor_precordial.label }}
+                {{ form.dolor_precordial(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.insuficiencia_cardiaca_descompensada() }} Insuficiencia Cardíaca Descompensada
-        </div>
+            <div class="form-group mb-3">
+                {{ form.scaest.label }}
+                {{ form.scaest(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.pericarditis() }} Pericarditis
-        </div>
+            <div class="form-group mb-3">
+                {{ form.scacest.label }}
+                {{ form.scacest(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.emergencia_hipertensiva() }} Emergencia Hipertensiva
-        </div>
+            <div class="form-group mb-3">
+                {{ form.insuficiencia_cardiaca.label}}
+                {{ form.insuficiencia_cardiaca(class="form-check-input") }}
+            </div>
+
+            <div class="form-group mb-3">
+                {{ form.pericarditis.label }}
+                {{ form.pericarditis(class="form-check-input") }}
+            </div>
+
+            <div class="form-group mb-3">
+                {{ form.emergencia_hipertensiva.label}}
+                {{ form.emergencia_hipertensiva(class="form-check-input") }}
+            </div>
 
         <div class="mb-3">
             {{ form.sincope() }} Síncope
         </div>
 
-        <div class="mb-3">
-            {{ form.shock() }} Shock
-        </div>
+            <div class="form-group mb-3">
+                {{ form.shock.label }}
+                {{ form.shock(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.tep() }} TEP
-        </div>
+            <div class="form-group mb-3">
+                {{ form.tep.label }}
+                {{ form.tep(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.arritmia() }} Arritmia
-        </div>
+            <div class="form-group mb-3">
+                {{ form.arritmia.label }}
+                {{ form.arritmia(class="form-check-input") }}
+            </div>
 
-        
-        <div class="mb-3">
-            <label for="antecedentes" class="form-label">Antecedentes:</label>
-            {{ form.antecedentes(class="form-control") }}
-        </div>
+            <!-- Antecedentes -->
+            <div class="form-group mb-3">
+                {{ form.antecedentes.label }}
+                {{ form.antecedentes(class="form-control", placeholder="Ingresar antecedentes.") }}
+            </div>
 
-        <div class="mb-3">
-            <label for="enfermedad_actual" class="form-label">Enfermedad Actual:</label>
-            {{ form.enfermedad_actual(class="form-control") }}
-        </div>
+            <!-- Enfermedad Actual -->
+            <div class="form-group mb-3">
+                {{ form.disnea.label }}
+                {{ form.disnea(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.disnea() }} Disnea
-        </div>
+            <div class="form-group mb-3">
+                {{ form.dolor_precordial_tipico.label }}
+                {{ form.dolor_precordial_tipico(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.dolor_precordial_tipico() }} Dolor Precordial Típico
-        </div>
+            <div class="form-group mb-3">
+                {{ form.hta.label }}
+                {{ form.hta(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.hta() }} HTA
-        </div>
+            <div class="form-group mb-3">
+                {{ form.mareos.label }}
+                {{ form.mareos(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.mareos() }} Mareos
-        </div>
+            <div class="form-group mb-3">
+                <label for="palpitaciones">Palpitaciones</label>
+                {{ form.palpitaciones(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.palpitaciones() }} Palpitaciones
-        </div>
+            <div class="form-group mb-3">
+                {{ form.taquicardia.label }}
+                {{ form.taquicardia(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.taquicardia() }} Taquicardia
-        </div>
+            <div class="form-group mb-3">
+                {{ form.bradicardia.label }}
+                {{ form.bradicardia(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.bradicardia() }} Bradicardia
-        </div>
+            <div class="form-group mb-3">
+                {{ form.hipotension_shock.label}}
+                {{ form.hipotension_shock(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.hipotension_shock() }} Hipotensión/Shock
-        </div>
+            <div class="form-group mb-3">
+                {{ form.cianosis.label }}
+                {{ form.cianosis(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.cianosis() }} Cianosis
-        </div>
+            <!-- Examen físico: Signos Vitales -->
+            <div class="form-group mb-3">
+                {{ form.respiratorio.label }}
+                {{ form.respiratorio(class="form-control", placeholder="Ingresar situación respiratoria.") }}
+            </div>
 
-        
-        <div class="mb-3">
-            <label for="examen_fisico" class="form-label">Examen Físico:</label>
-            {{ form.examen_fisico(class="form-control") }}
-        </div>
+            <div class="form-group mb-3">
+                {{ form.mecanica_ventilatoria.label}}
+                {{ form.mecanica_ventilatoria(class="form-control", placeholder="Ingresar mecánica ventilatoria.") }}
+            </div>
 
-        <div class="mb-3">
-            <label for="signos_vitales" class="form-label">Signos Vitales:</label>
-            {{ form.signos_vitales(class="form-control") }}
-        </div>
+            <div class="form-group mb-3">
+                {{ form.buena_entrada_aire.label }}
+                {{ form.buena_entrada_aire(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            <label for="respiratorio" class="form-label">Respiratorio:</label>
-            {{ form.respiratorio(class="form-control") }}
-        </div>
+            <div class="form-group mb-3">
+                {{ form.hipoventilacion_der.label }}
+                {{ form.hipoventilacion_der(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.mecanica_ventilatoria() }} Mecánica Ventilatoria
-        </div>
+            <div class="form-group mb-3">
+                {{ form.hipoventilacion_izq.label }}
+                {{ form.hipoventilacion_izq(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.buena_entrada_aire_bilateral() }} Buena Entrada de Aire Bilateral
-        </div>
+            <div class="form-group mb-3">
+                {{ form.roncus.label }}
+                {{ form.roncus(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.hipoventilacion_der() }} Hipoventilación DER
-        </div>
+            <div class="form-group mb-3">
+                {{ form.sibilancias.label }}
+                {{ form.sibilancias(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.hipoventilacion_izq() }} Hipoventilación IZQ
-        </div>
+            <div class="form-group mb-3">
+                {{ form.rales.label }}
+                {{ form.rales(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.roncus() }} Roncus
-        </div>
+            <div class="form-group mb-3">
+                {{ form.arm.label }}
+                {{ form.arm(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.sibilancias() }} Sibilancias
-        </div>
+            <!-- Cardiovascular: Signos Vitales -->
+            <div class="form-group mb-3">
+                {{ form.ta.label }}
+                {{ form.ta(class="form-control", placeholder="Ingresar tensión arterial.") }}
+                {{ show_errors(form.ta) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.rales() }} Rales
-        </div>
+            <div class="form-group mb-3">
+                {{ form.tam.label }}
+                {{ form.tam(class="form-control", placeholder="Ingresar tensión arterial media.") }}
+                {{ show_errors(form.tam) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.arm() }} ARM
-        </div>
+            <div class="form-group mb-3">
+                {{ form.pvc.label }}
+                {{ form.pvc(class="form-control", placeholder="Ingresar presión venosa central.") }}
+                {{ show_errors(form.pvc) }}
+            </div>
 
-        <div class="mb-3">
-            <label for="cardiovascular" class="form-label">Cardiovascular:</label>
-            {{ form.cardiovascular(class="form-control") }}
-        </div>
+            <div class="form-group mb-3">
+                {{ form.fc.label }}
+                {{ form.fc(class="form-control", placeholder="Ingresar frecuencia cardíaca.") }}
+                {{ show_errors(form.fc) }}
+            </div>
 
-                
-        <div class="mb-3">
-            <label for="ta" class="form-label">TA:</label>
-            {{ form.ta(class="form-control") }}
-        </div>
+            <div class="form-group mb-3">
+                {{ form.relleno_capilar.label }}
+                {{ form.relleno_capilar(class="form-control", placeholder="Ingresar relleno capilar.") }}
+                {{ show_errors(form.relleno_capilar) }}
+            </div>
 
-        <div class="mb-3">
-            <label for="tam" class="form-label">TAM:</label>
-            {{ form.tam(class="form-control") }}
-        </div>
+            <!-- Otros campos -->
+            <div class="form-group mb-3">
+                {{ form.soplos.label }}
+                {{ form.soplos(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            <label for="pvc" class="form-label">PVC:</label>
-            {{ form.pvc(class="form-control") }}
-        </div>
+            <div class="form-group mb-3">
+                {{ form.ingurgitacion_yugular.label}}
+                {{ form.ingurgitacion_yugular(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            <label for="fc" class="form-label">FC:</label>
-            {{ form.fc(class="form-control") }}
-        </div>
-        
-        <div class="mb-3">
-            {{ form.relleno_capilar() }} Relleno Capilar
-        </div>
+            <div class="form-group mb-3">
+                {{ form.edemas.label }}
+                {{ form.edemas(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.r1_r2_normofoneticos() }} R1 y R2 Normofonéticos
-        </div>
+            <div class="form-group mb-3">
+                {{ form.pulsos_regulares.label }}
+                {{ form.pulsos_regulares(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.soplos() }} Soplos
-        </div>
+            <div class="form-group mb-3">
+                {{ form.pulsos_irregulares.label }}
+                {{ form.pulsos_irregulares(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.ingurgitacion_yugular() }} Ingurgitación Yugular
-        </div>
+            <div class="form-group mb-3">
+                {{ form.fallo_bomba.label }}
+                {{ form.fallo_bomba(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.edemas() }} Edemas
-        </div>
+            <div class="form-group mb-3">
+                {{ form.killip_kimball.label }}
+                {{ form.killip_kimball(class="form-control", placeholder="Ingresar Killip-Kimball.") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.pulsos_regulares() }} Pulsos Regulares
-        </div>
+            <div class="form-group mb-3">
+                {{ form.derrame_pericardico.label}}
+                {{ form.derrame_pericardico(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.pulsos_irregulares() }} Pulsos Irregulares
-        </div>
+            <div class="form-group mb-3">
+                {{ form.aceptable_perf_periferica.label }}
+                {{ form.aceptable_perf_periferica(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.fallo_bomba() }} Fallo de Bomba
-        </div>
+            <div class="form-group mb-3">
+                {{ form.shock2.label }}
+                {{ form.shock2(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.killip_kimball() }} Killip-Kimball
-        </div>
+            <div class="form-group mb-3">
+                {{ form.inotropicos.label }}
+                {{ form.inotropicos(class="form-check-input") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.derrame_pericardico() }} Derrame Pericárdico
-        </div>
+            <!-- Otros campos relacionados con abdomen, diuresis, etc. -->
+            <div class="form-group mb-3">
+                {{ form.abdomen.label }}
+                {{ form.abdomen(class="form-control", placeholder="Ingresar informacion de abdomen.") }}
+                {{ show_errors(form.abdomen) }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.aceptable_perfusion_periferica() }} Aceptable Perfusión Periférica
-        </div>
+            <div class="form-group mb-3">
+                {{ form.rha.label}}
+                {{ form.rha(class="form-control", placeholder="Ingresar RHA.") }}
+            </div>
 
-        <div class="mb-3">
-            {{ form.shock_2() }} Shock
-        </div>
+            <!-- Botón de submit -->
+            {{ form.submit(class="btn btn-primary", value="Guardar") }}
+        </form>
+    </div>
+</div>
 
-        <div class="mb-3">
-            {{ form.inotropicos() }} Inotrópicos
-        </div>
-
-        <div class="mb-3">
-            <label for="abdomen" class="form-label">Abdomen:</label>
-            {{ form.abdomen(class="form-control") }}
-        </div>
-
-        <div class="mb-3">
-            {{ form.blando_depresible_indoloro() }} Blando, Depresible, Indoloro
-        </div>
-
-        <div class="mb-3">
-            {{ form.rha() }} RHA
-        </div>
-
-        <div class="mb-3">
-            <label for="diuresis" class="form-label">Diuresis:</label>
-            {{ form.diuresis(class="form-control") }}
-        </div>
-
-        <div class="mb-3">
-            {{ form.sonda_vesical() }} Sonda Vesical
-        </div>
-
-        <div class="mb-3">
-            <label for="neurologico" class="form-label">Neurológico:</label>
-            {{ form.neurologico(class="form-control") }}
-        </div>
-
-        <div class="mb-3">
-            {{ form.bajo_sedoanalgesia() }} Bajo Sedoanalgesia
-        </div>
-
-        <div class="mb-3">
-            {{ form.glasgow() }} Glasgow
-        </div>
-
-        <div class="mb-3">
-            {{ form.pupilas() }} Pupilas
-        </div>
-
-        <div class="mb-3">
-            {{ form.foco_motor() }} Foco Motor
-        </div>
-
-        <div class="mb-3">
-            <label for="laboratorio" class="form-label">Laboratorio:</label>
-            {{ form.laboratorio(class="form-control") }}
-        </div>
-
-        <div class="mb-3">
-            <label for="ecg" class="form-label">ECG:</label>
-            {{ form.ecg(class="form-control") }}
-        </div>
-
-        <div class="mb-3">
-            <label for="ecocardiograma" class="form-label">Ecocardiograma:</label>
-            {{ form.ecocardiograma(class="form-control") }}
-        </div>
-
-
-        <!-- Botón para enviar el formulario -->
-        <div class="mb-3">
-            {{ form.submit(class="btn btn-primary") }}
-        </div>
-    </form>
-
-    {% if form.errors %}
-        <ul>
-            {% for field, errors in form.errors.items() %}
-                <li><strong>{{ field.label.text }}:</strong>
-                    <ul>
-                        {% for error in errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</body>
-</html>
+{% endblock %}

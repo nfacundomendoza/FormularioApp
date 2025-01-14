@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleccionar Guía</title>
-</head>
-<body>
-    <button onclick="window.location.href='/'">Volver</button>
-    
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul>
-        {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
+{% extends "layout.html" %}
 
-    <h1>Selecciona una Guía</h1>
-    <button onclick="window.location.href='/guia_t_cardiologico'">GUIA T CARDIOLÓGICO</button>
-    <button onclick="window.location.href='/guia_t_politraumatizado'">GUIA T POLITRAUMATIZADO</button>
-</body>
-</html>
+{% block title %}Seleccionar Guía{% endblock %}
+
+{% block content %}
+    <h1 class="text-center my-4">Selecciona una Guía</h1>
+    <div class="container text-center">
+        <div class="btn-group mt-3">
+            <button onclick="window.location.href='/guia_t_cardiologico'" class="btn btn-success mx-2">GUIA T CARDIOLÓGICO</button>
+            <button onclick="window.location.href='/guia_t_politraumatizado'" class="btn btn-success mx-2">GUIA T POLITRAUMATIZADO</button>
+        </div>
+        <div class="mt-3">
+            <button onclick="window.location.href='/'" class="btn btn-secondary">Volver</button>
+        </div>
+    </div>
+{% endblock %}

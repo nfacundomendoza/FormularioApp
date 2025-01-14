@@ -155,6 +155,10 @@ def guia_t_cardiologico():
 def guia_t_politraumatizado():
     """
     Ruta para mostrar el formulario de la guía T Politraumatizado.
+    Aún no implementado.
+    """
+    # Lógica para 'GUIA T POLITRAUMATIZADO'
+    return render_template('formulario_politraumatizado.html')
     """
     form = FormularioPolitraumatizado()
 

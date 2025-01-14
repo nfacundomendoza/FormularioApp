@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
-</head>
-<body>
-    <h1>Bienvenido a la Aplicación</h1>
-    <button onclick="window.location.href='/generar_planilla'">Generar Planilla</button>    
-    <button onclick="window.location.href='{{ url_for('seleccionar_planilla') }}'" class="btn btn-primary">Ver Planilla</button>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %}Página Principal{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Bienvenido a la Aplicación</h1>
+        <p>Seleccione una opción:</p>
+        <a href="{{ url_for('generar_planilla') }}" class="btn btn-secondary">Generar Planilla</a>
+        <a href="{{ url_for('seleccionar_planilla') }}" class="btn btn-primary">Ver Planilla</a>
+    </div>
+{% endblock %}
