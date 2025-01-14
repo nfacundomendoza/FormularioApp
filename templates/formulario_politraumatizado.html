@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario GUIA T CARDIOLÓGICO</title>
-    
-</head>
-<body>
+{% extends "layout.html" %}
 
-     <a href="{{ url_for('home') }}">
+{% block title %}Formulario GUIA T POLITRAUMATIZADO{% endblock %}
+
+{% block content %}
+
+{% from "macro.html" import show_errors %}
+
+<div>
+    <a href="{{ url_for('home') }}">
         <button type="button">Volver al Menú Principal</button>
     </a>
     
@@ -16,25 +15,17 @@
         <button type="button">Volver a Seleccionar Guía</button>
     </a>
    
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul>
-        {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
-
-
     <h1>Formulario GUIA T POLITRAUMATIZADO</h1>
-    <form method="POST">
+
+    <form method="POST" novalidate>
+
         {{ form.hidden_tag() }} <!-- Para incluir un token CSRF para proteger el formulario -->
 
         <!-- Nombre del Paciente -->
         <div class="mb-3">
             <label for="nombre_paciente" class="form-label">Nombre del Paciente</label>
             {{ form.nombre_paciente(class="form-control") }}
+            {{ show_errors(form.nombre_paciente) }}
         </div>
             
         <div class="mb-3">
@@ -371,5 +362,6 @@
             {% endfor %}
         </ul>
     {% endif %}
-</body>
-</html>
+</div>
+
+{% endblock %}

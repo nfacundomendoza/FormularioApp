@@ -4,7 +4,7 @@ from wtforms import DateField, SelectField, SubmitField, TextAreaField, TimeFiel
 from wtforms.validators import DataRequired, InputRequired
 
 class FormularioPolitraumatizado(FlaskForm):
-    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired()])
+    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired(message="El nombre del paciente es obligatorio")])
     sexo = SelectField('SEXO', choices=[('F', 'Femenino'), ('M', 'Masculino')])
 
     def get_default_date():

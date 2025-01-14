@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Planilla Cardiológica</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+{% extends "layout.html" %}
 
+{% block title %}Detalle cardiologico{% endblock %}
+
+{% block content %}
+
+<div>
     <a href="{{ url_for('home') }}">
         <button type="button">Volver al Menú Principal</button>
     </a>
@@ -15,17 +12,6 @@
     <a href="{{ url_for('seleccionar_planilla') }}">
         <button type="button">Volver a Seleccionar Planilla</button>
     </a>
-    
-    
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul>
-        {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
 
     <h1>Detalle Planilla Cardiológica</h1>
     <div class="container mt-5">
@@ -34,8 +20,9 @@
             <div class="card-header">
                 Información del Paciente: {{ planilla['nombre_paciente'] }}
             </div>
+            <h5 class="card-title">Detalles del Diagnóstico</h5>
             <div class="card-body">
-                <h5 class="card-title">Detalles del Diagnóstico</h5>
+                
                 <p><strong>Motivo de ingreso/diagnóstico:</strong> {{ planilla['motivo_ingreso_diag'] }}</p>
                 <p><strong>Dolor precordial:</strong> {{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</p>
                 <p><strong>SCAs:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
@@ -92,19 +79,43 @@
                 <p><strong>Glasgow:</strong> {{ 'Sí' if planilla['glasgow'] else 'No' }}</p>
                 <p><strong>Pupilas:</strong> {{ 'Sí' if planilla['pupilas'] else 'No' }}</p>
                 <p><strong>Foco motor:</strong> {{ 'Sí' if planilla['foco_motor'] else 'No' }}</p>
-            </div>
-        </div>
-    
-        <div class="card mt-4">
-            <div class="card-header">
-                Exámenes y Resultados
-            </div>
-            <div class="card-body">
                 <p><strong>Laboratorio:</strong> {{ planilla['laboratorio'] }}</p>
                 <p><strong>ECG:</strong> {{ planilla['ecg'] }}</p>
                 <p><strong>Ecocardiograma:</strong> {{ planilla['ecocardiograma'] }}</p>
             </div>
         </div>
+
+    <button id="copyButton">Copiar al Portapapeles</button>
+
+    <script>
+        // Obtén el botón de copiar
+        const copyButton = document.getElementById('copyButton');
+    
+        // Selecciona los elementos que contienen los datos que quieres copiar
+        const contentToCopy = [
+            "Motivo de ingreso/diagnóstico: " + document.querySelector('p strong').nextElementSibling.textContent,
+            "Shock: " + (document.querySelector('p strong:contains("Shock")').nextElementSibling.textContent),
+            "Ecocardiograma: " + document.querySelector('p strong:contains("Ecocardiograma")').nextElementSibling.textContent
+        ].join("\n");
+    
+        // Agrega el evento al botón
+        copyButton.addEventListener('click', () => {
+            // Crear un área de texto temporal para copiar
+            const textarea = document.createElement('textarea');
+            textarea.value = contentToCopy;
+            document.body.appendChild(textarea);
+    
+            // Seleccionar y copiar el contenido
+            textarea.select();
+            document.execCommand('copy');
+    
+            // Eliminar el área de texto temporal
+            document.body.removeChild(textarea);
+    
+            // Notificación de que se ha copiado
+            alert('Información específica copiada al portapapeles!');
+        });
+    </script>
 
     <a href="{{ url_for('editar_cardiologico', archivo=archivo) }}">Editar Planilla</a>
 
@@ -114,9 +125,5 @@
     </footer>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
 
-</body>
-</html>
