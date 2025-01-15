@@ -3,7 +3,7 @@ from wtforms import StringField, IntegerField, SubmitField, TextAreaField, Boole
 from wtforms.validators import DataRequired, Optional
 
 class FormularioCardiologico(FlaskForm):
-    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired(message="El nombre del paciente es obligatorio")])
+    nombre_paciente = TextAreaField('Nombre del Paciente', validators=[DataRequired(message="El nombre del paciente es obligatorio.")])
 
     # Primera sección de campos
     motivo_ingreso_diag = TextAreaField("Motivo de Ingreso/Diag:")

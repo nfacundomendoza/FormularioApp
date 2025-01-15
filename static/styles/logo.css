@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'VAG Rounded Next Bold';
+    src: url('/static/fonts/VAG-Rounded-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;    
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-brand img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.navbar-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.hospital-brand {
+    font-family: 'VAG Rounded Next Bold', sans-serif;
+    font-weight: bold;
+}
