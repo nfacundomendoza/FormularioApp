@@ -87,14 +87,17 @@
 
     <div class="text-center mt-3">
         <button class="btn btn-success" id="copyButton">Copiar al Portapapeles</button>
+        <button class="btn btn-primary" id="generatePdfButton">Descargar PDF</button>
         <a class="btn btn-danger" href="{{ url_for('editar_cardiologico', archivo=archivo) }}">Editar Planilla</a>
     </div>
 
     <div id="mensaje" class="d-none">Información copiada en Portapapeles</div>
 
-    <p class="text-center mt-3">Archivo: {{ archivo }}</p>
+    <p id="archivo" class="text-center mt-3"> {{ archivo }}</p>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="/static/js/downloadPDF.js"></script>
 <script src="/static/js/copyText.js"></script>
 
 {% endblock %}
