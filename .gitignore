@@ -3,4 +3,5 @@ __pycache__/
 *.pyo
 
 saved_forms/
-
+formularios_cardiologicos/
+formularios_politraumatizados/
