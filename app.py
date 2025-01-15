@@ -55,7 +55,7 @@ def guia_t_cardiologico():
     Si el formulario es enviado y válido, guarda los datos en un archivo JSON.
     """
     form = FormularioCardiologico()
-    print(form.validate_on_submit())
+   
     if form.validate_on_submit():  # Si el formulario se envía y es válido
         try:
             # Crear un diccionario con los datos del formulario

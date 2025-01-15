@@ -5,24 +5,22 @@
 {% block content %}
 
 <div>
-    <a href="{{ url_for('home') }}">
-        <button type="button">Volver al Menú Principal</button>
-    </a>
 
-    <a href="{{ url_for('seleccionar_planilla') }}">
-        <button type="button">Volver a Seleccionar Planilla</button>
-    </a>
+    <h1 class="text-center mb-3 display-4 fw-bold">Detalle Planilla Cardiológica</h1>
+    
+    <div class="text-center mt-3">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver al Menú Principal</a>
+        <a href="{{ url_for('seleccionar_planilla') }}" class="btn btn-secondary">Volver a Seleccionar Planilla</a>
+    </div>
 
-    <h1>Detalle Planilla Cardiológica</h1>
-    <div class="container mt-5">
+    <div class="container mt-3">
     
         <div class="card">
             <div class="card-header">
                 Información del Paciente: {{ planilla['nombre_paciente'] }}
             </div>
-            <h5 class="card-title">Detalles del Diagnóstico</h5>
-            <div class="card-body">
-                
+            <div class="card-body" id="content">
+                <h3 class="card-title fw-bold">Detalles del Diagnóstico</h3>
                 <p><strong>Motivo de ingreso/diagnóstico:</strong> {{ planilla['motivo_ingreso_diag'] }}</p>
                 <p><strong>Dolor precordial:</strong> {{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</p>
                 <p><strong>SCAs:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
@@ -85,45 +83,19 @@
             </div>
         </div>
 
-    <button id="copyButton">Copiar al Portapapeles</button>
+    </div>
 
-    <script>
-        // Obtén el botón de copiar
-        const copyButton = document.getElementById('copyButton');
-    
-        // Selecciona los elementos que contienen los datos que quieres copiar
-        const contentToCopy = [
-            "Motivo de ingreso/diagnóstico: " + document.querySelector('p strong').nextElementSibling.textContent,
-            "Shock: " + (document.querySelector('p strong:contains("Shock")').nextElementSibling.textContent),
-            "Ecocardiograma: " + document.querySelector('p strong:contains("Ecocardiograma")').nextElementSibling.textContent
-        ].join("\n");
-    
-        // Agrega el evento al botón
-        copyButton.addEventListener('click', () => {
-            // Crear un área de texto temporal para copiar
-            const textarea = document.createElement('textarea');
-            textarea.value = contentToCopy;
-            document.body.appendChild(textarea);
-    
-            // Seleccionar y copiar el contenido
-            textarea.select();
-            document.execCommand('copy');
-    
-            // Eliminar el área de texto temporal
-            document.body.removeChild(textarea);
-    
-            // Notificación de que se ha copiado
-            alert('Información específica copiada al portapapeles!');
-        });
-    </script> 
+    <div class="text-center mt-3">
+        <button class="btn btn-success" id="copyButton">Copiar al Portapapeles</button>
+        <a class="btn btn-danger" href="{{ url_for('editar_cardiologico', archivo=archivo) }}">Editar Planilla</a>
+    </div>
 
-    <a href="{{ url_for('editar_cardiologico', archivo=archivo) }}">Editar Planilla</a>
+    <div id="mensaje" class="d-none">Información copiada en Portapapeles</div>
 
-    <hr>
-    <footer class="text-center mt-4">
-        <p>Archivo: {{ archivo }}</p>
-    </footer>
+    <p class="text-center mt-3">Archivo: {{ archivo }}</p>
 </div>
+
+<script src="/static/js/copyText.js"></script>
 
 {% endblock %}
 
