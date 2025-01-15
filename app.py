@@ -584,7 +584,5 @@ def editar_politraumatizado(archivo):
     return render_template('editar_politraumatizado.html', form=form, archivo=archivo)
 
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)
