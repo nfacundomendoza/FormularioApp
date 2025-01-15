@@ -13,7 +13,7 @@
 {% from "messages.html" import show_messages %}
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-ligth">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
                 <img src="/static/images/logo_pinamar.png">
@@ -41,11 +41,11 @@
 
     {{ show_messages() }}
 
-    <main class="container text-center mt-5" style="min-height: 600px;">
+    <main style="min-height: 600px;">
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-secondary py-3 mt-auto">
+    <footer class="bg-light border py-3 mt-auto">
         <div class="container text-center">
             <p class="mb-0">&copy; 2025 - Hospital Comunitario de Pinamar</p>
         </div>
