@@ -3,16 +3,6 @@
 {% block title %} Seleccionar Planilla {% endblock %}
 
 {% block content %}
-    
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul class="list-unstyled">
-        {% for category, message in messages %}
-            <li class="alert alert-{{ category }}">{{ message }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Seleccionar tipo de planilla</h1>
@@ -37,24 +27,29 @@
     </div>
 
     {% if tipo_planilla %}
-    <div id="lista_planillas">
-        <h2>Planillas guardadas:</h2>
-        <ul id="archivos" class="list-group">
-            {% if archivos %}
-                {% for archivo in archivos %}
-                    {% if tipo_planilla == 'cardiologico' %}
-                        <li><a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}">{{ archivo }}</a></li>
-                    {% elif tipo_planilla == 'politraumatizado' %}
-                        <li><a href="{{ url_for('detalle_politraumatizado', archivo=archivo) }}">{{ archivo }}</a></li>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-                <li class="list-group-item">No se encontraron formularios.</li>
-            {% endif %}
-        </ul>
-    </div>
+        <div id="lista_planillas" class="mt-4">
+            <h2 class="text-center mb-4">Planillas guardadas:</h2>
+            <ul id="archivos" class="list-group">
+                {% if archivos %}
+                    {% for archivo in archivos %}
+                        {% if tipo_planilla == 'cardiologico' %}
+                            <li class="list-group-item">
+                                <a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}" class="text-decoration-none">{{ archivo }}</a>
+                            </li>
+                        {% elif tipo_planilla == 'politraumatizado' %}
+                            <li class="list-group-item">
+                                <a href="{{ url_for('detalle_politraumatizado', archivo=archivo) }}" class="text-decoration-none">{{ archivo }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item text-center">No se encontraron formularios.</li>
+                {% endif %}
+            </ul>
+        </div>
     {% endif %}
 
     <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver</a>
 </div>
+
 {% endblock %}

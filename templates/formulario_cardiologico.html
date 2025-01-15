@@ -8,11 +8,9 @@
 
 </div>
     <div class="container mt-5">
-
         <h1 class="text-center mb-4 display-4 fw-bold">Formulario GUIA T CARDIOLÓGICO</h1>
-
         <form method="POST" class="mb-4" novalidate>
-
+            
             {{ form.hidden_tag() }}
 
             <div class="form-group row mb-3">
@@ -362,7 +360,6 @@
                 <a href="{{ url_for('generar_planilla') }}" class="btn btn-secondary me-2">Volver a Seleccionar Guía</a>
                 {{ form.submit(class="btn btn-primary", value="Guardar") }}
             </div>
-
         </form>
     </div>
 </div>
