@@ -6,8 +6,10 @@
 
 <div>
 
-    <h1 class="text-center mb-3 display-4 fw-bold">Detalle Planilla Cardiológica</h1>
-    
+    <div class="texto-centro mt-4">
+        <h1 class="titulo-principal">Detalle Planilla Politraumatizado</h1>
+    </div>
+
     <div class="text-center mt-3">
         <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver al Menú Principal</a>
         <a href="{{ url_for('seleccionar_planilla') }}" class="btn btn-secondary">Volver a Seleccionar Planilla</a>
@@ -31,7 +33,6 @@
                 <p><strong>Cianosis:</strong> {{ 'Sí' if planilla['cianosis'] else 'No' }}</p>
                 <p><strong>Edemas:</strong> {{ 'Sí' if planilla['edemas'] else 'No' }}</p>
                 <p><strong>Lesiones de Piel y Partes Blandas:</strong> {{ planilla['lesiones_piel_partes_blandas'] }}</p>
-
                 <p><strong>Respiratorio:</strong> {{ planilla['respiratorio'] }}</p>
                 <p><strong>Trauma de Tórax Cerrado:</strong> {{ 'Sí' if planilla['trauma_torax_cerrado'] else 'No' }}</p>
                 <p><strong>Fracturas Costales:</strong> {{ 'Sí' if planilla['fracturas_costales'] else 'No' }}</p>

@@ -8,7 +8,11 @@
 
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Seleccionar tipo de planilla</h1>
+    
+    <div class="texto-centro mb-5">
+        <h1 class="titulo-principal">Seleccionar tipo de planilla</h1>
+    </div>
+    
     <div class="form-container mx-auto">
         <form method="POST" id="form_select" class="mb-4">
             <div class="form-group mb-3">
@@ -31,7 +35,9 @@
 
     {% if tipo_planilla %}
         <div id="lista_planillas" class="mt-4">
-            <h2 class="text-center mb-4">Planillas guardadas:</h2>
+            <div class="texto-centro mb-3">
+                <h2 class="titulo-principal">Planillas guardadas:</h2>
+            </div>
             <ul id="archivos" class="list-group">
                 {% if archivos %}
                     {% for archivo in archivos %}
@@ -59,8 +65,10 @@
             </ul>
         </div>
     {% endif %}
-
-    <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver</a>
+    
+    <div class="texto-centro mt-3">
+        <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver</a>
+    </div>
 </div>
 
 {% endblock %}
