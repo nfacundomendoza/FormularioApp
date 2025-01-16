@@ -7,6 +7,8 @@
 
 {% from "macro.html" import show_errors %}
 
+{% from 'confirmacion.html' import confirmacion %}
+
 </div>
     <div class="container mt-5">
         <h1 class="text-center mb-4 display-4 fw-bold">Formulario para Paciente Cardiológico</h1>
@@ -355,30 +357,16 @@
             <div class="form-group row mb-3">
                 {{ form.ecocardiograma.label }}
                 {{ form.ecocardiograma(class="form-control", placeholder="Ingresar ecocardiograma.") }}
-            </div>
+            </div>  
 
             <div class="text-center mt-4">
-                <a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}" id="cancelarBtn" class="btn btn-secondary me-2">Cancelar</a>
-                {{ form.submit(id="guardarBtn", class="btn btn-primary", value="Guardar") }}
-            </div>
+                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#bajaModal">Guardar</button>
+                </div>
+            {{ confirmacion(url_for('editar_cardiologico', archivo=archivo)) }}
+         
+            <a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}" class="btn btn-secondary">Cancelar</a>
             
-            <script>
-                document.getElementById("guardarBtn").addEventListener("click", function(event) {
-                    var confirmacion = confirm("¿Estás seguro de que quieres guardar los cambios?");
-                    if (!confirmacion) {
-                        event.preventDefault();  
-                    }
-                });
-            
-                document.getElementById("cancelarBtn").addEventListener("click", function(event) {
-                    var confirmacion = confirm("¿Estás seguro de que quieres cancelar? Los cambios no guardados se perderán.");
-                    if (!confirmacion) {
-                        event.preventDefault();  
-                    }
-                });
-            </script>
-            
-            
+    
         </form>
     </div>
 </div>

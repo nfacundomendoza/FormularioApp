@@ -6,6 +6,8 @@
 
 {% from "macro.html" import show_errors %}
 
+{% from 'confirmacion.html' import confirmacion %}
+
 
 <div class="container mt-5">
     <h1 class="text-center mb-4 display-4 fw-bold">Editar Planilla para Paciente Politraumatizado</h1>
@@ -509,8 +511,19 @@
                 if (!confirmacion) {
                     event.preventDefault();  
                 }
-            });
+            }); 
         </script>
+       
+        <div class="text-center mt-4">
+            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#bajaModal">Guardar</button>
+            </div>
+        {{ confirmacion(url_for('editar_cardiologico', archivo=archivo)) }}
+        
+        <a href="{{ url_for('detalle_cardiologico', archivo=archivo) }}" class="btn btn-secondary">Cancelar</a>
+
+
+
+        </div>
     </form>
 </div>
     
