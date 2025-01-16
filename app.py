@@ -274,6 +274,16 @@ def seleccionar_planilla():
 
     return render_template('seleccionar_planilla.html', tipo_planilla=tipo_planilla, archivos=archivos, buscar_nombre=buscar_nombre)
 
+@app.route('/eliminar_archivo/<archivo>/<tipo_planilla>', methods=['GET', 'POST'])
+def eliminar_archivo(archivo, tipo_planilla):
+    """ 
+    Ruta para eliminar un archivo JSON de una planilla guardada.
+    """
+    print(f"Archivo a eliminar: {archivo}")
+    print(f"Tipo de planilla: {tipo_planilla}")
+    flash('Formulario guardado correctamente.', 'success')
+    return render_template('index.html')
+
 
 @app.route('/detalle_cardiologico/<archivo>', methods=['GET'])
 def detalle_cardiologico(archivo):
