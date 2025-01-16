@@ -8,11 +8,14 @@
 
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4 display-4 fw-bold">Formulario para Paciente Politraumatizado</h1>
+    
+    <div class="texto-centro mb-5">
+        <h1 class="titulo-principal">Formulario para Paciente Politraumatizado</h1>
+    </div>
+    
     <form method="POST" class="mb-4" novalidate>
 
         {{ form.hidden_tag() }}
-    
 
         <div class="form-group row mb-3">
             {{ form.nombre_paciente.label(for="nombre_paciente", class="col-sm-2 col-form-label") }}
@@ -57,7 +60,7 @@
         <div class="form-group row mb-3">
             {{ form.estado_general.label(for="estado_general", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.estado_general(class="form-control", id="estado_general") }}
+                {{ form.estado_general(class="form-control", id="estado_general", placeholder="Ingresar estado general.") }}
                 {{ show_errors(form.estado_general) }}
             </div>
         </div>
@@ -65,7 +68,7 @@
         <div class="form-group row mb-3">
             {{ form.temperatura.label(for="temperatura", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.temperatura(class="form-control", id="temperatura") }}
+                {{ form.temperatura(class="form-control", id="temperatura", placeholder="Ingresar temperatura.") }}
                 {{ show_errors(form.temperatura) }}
             </div>
         </div>
@@ -92,7 +95,7 @@
         <div class="form-group row mb-3">
             {{ form.lesiones_piel_partes_blandas.label(for="lesiones_piel_partes_blandas", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.lesiones_piel_partes_blandas(class="form-control", id="lesiones_piel_partes_blandas") }}
+                {{ form.lesiones_piel_partes_blandas(class="form-control", id="lesiones_piel_partes_blandas", placeholder="Ingresar lesiones de piel y partes blandas.") }}
                 {{ show_errors(form.lesiones_piel_partes_blandas) }}
             </div>
         </div>
@@ -100,7 +103,7 @@
         <div class="form-group row mb-3">
             {{ form.respiratorio.label(for="respiratorio", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.respiratorio(class="form-control", id="respiratorio") }}
+                {{ form.respiratorio(class="form-control", id="respiratorio", placeholder="Ingresar situación respiratoria.") }}
                 {{ show_errors(form.respiratorio) }}
             </div>
         </div>
@@ -159,11 +162,6 @@
                 {{ show_errors(form.fr) }}
             </div>
         </div>
-
-        <div class="mb-3">
-            <label for="fr" class="form-label">FR</label>
-            {{ form.fr(class="form-control") }}
-        </div>
         
         <div class="form-group row mb-3">
             <div class="col-md-6">
@@ -175,7 +173,10 @@
                     {{ form.hipoventilacion_izquierda(class="form-check-input", id="hipoventilacion_izquierda") }}
                     {{ form.hipoventilacion_izquierda.label(class="form-check-label", for="hipoventilacion_izquierda") }}           
                 </div>
-                
+                <div class="form-check">
+                    {{ form.tap(class="form-check-input", id="tap") }}
+                    {{ form.tap.label(class="form-check-label", for="tap") }}
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-check">
@@ -186,36 +187,40 @@
                     {{ form.hemotorax(class="form-check-input", id="hemotorax") }}
                     {{ form.hemotorax.label(class="form-check-label", for="hemotorax") }}
                 </div>
-                <div class="form-check">
-                    {{ form.tap(class="form-check-input", id="tap") }}
-                    {{ form.tap.label(class="form-check-label", for="tap") }}
-                </div>
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="circulatorio" class="form-label">Circulatorio</label>
-            {{ form.circulatorio(class="form-control") }}
+        <div class="form-group row mb-3">
+            {{ form.circulatorio.label }}
+            {{ form.circulatorio(class="form-control", placeholder="Ingresar estado circulatorio.") }}
         </div>
         
-        <div class="mb-3">
-            <label for="ta" class="form-label">TA</label>
-            {{ form.ta(class="form-control") }}
+        <div class="form-group row mb-3">
+            {{ form.ta.label(for="ta", class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+                {{ form.ta(class="form-control", id="ta", placeholder="Ingresar tensión arterial.") }}
+            </div>
         </div>
-        
-        <div class="mb-3">
-            <label for="tam" class="form-label">TAM</label>
-            {{ form.tam(class="form-control") }}
+
+        <div class="form-group row mb-3">
+            {{ form.tam.label(for="tam", class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+                {{ form.tam(class="form-control", id="tam", placeholder="Ingresar tensión arterial media.") }}
+            </div>
         </div>
-        
-        <div class="mb-3">
-            <label for="pvc" class="form-label">PVC</label>
-            {{ form.pvc(class="form-control") }}
+
+        <div class="form-group row mb-3">
+            {{ form.pvc.label(for="pvc", class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+                {{ form.pvc(class="form-control", id="pvc", placeholder="Ingresar presión venosa central.") }}
+            </div>
         </div>
-        
-        <div class="mb-3">
-            <label for="fc" class="form-label">FC</label>
-            {{ form.fc(class="form-control") }}
+
+        <div class="form-group row mb-3">
+            {{ form.fc.label(for="fc", class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+                {{ form.fc(class="form-control", id="fc", placeholder="Ingresar frecuencia cardíaca.") }}
+            </div>
         </div>
         
         <div class="form-group row mb-3">
@@ -236,6 +241,10 @@
                     {{ form.fallo_de_bomba(class="form-check-input", id="fallo_de_bomba") }}
                     {{ form.fallo_de_bomba.label(class="form-check-label", for="fallo_de_bomba") }}
                 </div>
+                <div class="form-check">
+                    {{ form.requerimiento_de_transfusion(class="form-check-input", id="requerimiento_de_transfusion") }}
+                    {{ form.requerimiento_de_transfusion.label(class="form-check-label", for="requerimiento_de_transfusion") }}
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-check">
@@ -254,19 +263,12 @@
                     {{ form.inotropicos(class="form-check-input", id="inotropicos") }}
                     {{ form.inotropicos.label(class="form-check-label", for="inotropicos") }}
                 </div>
-                <div class="form-check">
-                    {{ form.requerimiento_de_transfusion(class="form-check-input", id="requerimiento_de_transfusion") }}
-                    {{ form.requerimiento_de_transfusion.label(class="form-check-label", for="requerimiento_de_transfusion") }}
-                </div>
             </div>
         </div>
         
         <div class="form-group row mb-3">
-            {{ form.abdomen.label(for="abdomen", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.abdomen(class="form-control", id="abdomen") }}
-                {{ show_errors(form.abdomen) }}
-            </div>
+            {{ form.abdomen.label }}
+            {{ form.abdomen(class="form-control", placeholder="Ingresar información de abdomen.") }}
         </div>
 
         <div class="form-group row mb-3">
@@ -291,7 +293,7 @@
         <div class="form-group row mb-3">
             {{ form.rha.label(for="rha", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.rha(class="form-control", id="rha") }}
+                {{ form.rha(class="form-control", id="rha", placeholder="Ingresar RHA.") }}
                 {{ show_errors(form.rha) }}
             </div>
         </div>
@@ -320,11 +322,9 @@
         </div>
 
         <div class="form-group row mb-3">
-            {{ form.detalle_intervencion.label(for="detalle_intervencion", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.detalle_intervencion(class="form-control", id="detalle_intervencion") }}
-                {{ show_errors(form.detalle_intervencion) }}
-            </div>
+            {{ form.detalle_intervencion.label }}
+            {{ form.detalle_intervencion(class="form-control", id="detalle_intervencion", placeholder="Ingresar detalle de intervención.") }}
+            {{ show_errors(form.detalle_intervencion) }}
         </div>
 
         <div class="form-group row mb-3">
@@ -337,11 +337,8 @@
         </div>
 
         <div class="form-group row mb-3">
-            {{ form.diuresis.label(for="diuresis", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.diuresis(class="form-control", id="diuresis") }}
-                {{ show_errors(form.diuresis) }}
-            </div>
+            {{ form.diuresis.label }}   
+            {{ form.diuresis(class="form-control", placeholder="Ingresar diuresis.") }}
         </div>
 
         <div class="form-group row mb-3">
@@ -355,11 +352,9 @@
         
 
         <div class="form-group row mb-3">
-            {{ form.funcion_neurologica.label(for="funcion_neurologica", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.funcion_neurologica(class="form-control", id="funcion_neurologica") }}
-                {{ show_errors(form.funcion_neurologica) }}
-            </div>
+            {{ form.funcion_neurologica.label }}
+            {{ form.funcion_neurologica(class="form-control", id="funcion_neurologica", placeholder="Ingresar función neurológica.") }}
+            {{ show_errors(form.funcion_neurologica) }}
         </div>
 
         <div class="form-group row mb-3">
@@ -383,24 +378,21 @@
         <div class="form-group row mb-3">
             {{ form.glasgow.label(for="glasgow", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.glasgow(class="form-control", id="glasgow") }}
-                {{ show_errors(form.glasgow) }}
-            </div>
-        </div>
-
-        <div class="form-group row mb-3">
-            {{ form.pupilas.label(for="pupilas", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.pupilas(class="form-control", id="pupilas") }}
-                {{ show_errors(form.pupilas) }}
+                {{ form.glasgow(class="form-control", id="glasgow", placeholder="Ingresar glasgow.") }} 
             </div>
         </div>
         
         <div class="form-group row mb-3">
+            {{ form.pupilas.label(for="pupilas", class="col-sm-2 col-form-label") }}
+            <div class="col-sm-10">
+                {{ form.pupilas(class="form-control", id="pupilas", placeholder="Ingresar pupilas.") }} 
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
             {{ form.foco_motor.label(for="foco_motor", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.foco_motor(class="form-control", id="foco_motor") }}
-                {{ show_errors(form.foco_motor) }}
+                {{ form.foco_motor(class="form-control", id="foco_motor", placeholder="Ingresar foco motor.") }} 
             </div>
         </div>
         
@@ -430,7 +422,7 @@
         <div class="form-group row mb-3">
             {{ form.lesion_traumatologica.label(for="lesion_traumatologica", class="col-sm-2 col-form-label") }}    
             <div class="col-sm-10">
-                {{ form.lesion_traumatologica(class="form-control", id="lesion_traumatologica") }}
+                {{ form.lesion_traumatologica(class="form-control", id="lesion_traumatologica", placeholder="Ingresar lesión traumatológica.") }}
                 {{ show_errors(form.lesion_traumatologica) }}
             </div>
         </div>
@@ -446,49 +438,39 @@
         <div class="form-group row mb-3">
             {{ form.imagenes.label(for="imagenes", class="col-sm-2 col-form-label") }}
             <div class="col-sm-10">
-                {{ form.imagenes(class="form-control", id="imagenes") }}
+                {{ form.imagenes(class="form-control", id="imagenes", placeholder="Ingresar información de imágenes.") }}
                 {{ show_errors(form.imagenes) }}
             </div>
         </div>
         
         <div class="form-group row mb-3">
-            {{ form.laboratorio.label(for="laboratorio", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.laboratorio(class="form-control", id="laboratorio") }}
-                {{ show_errors(form.laboratorio) }}
-            </div>
+            {{ form.laboratorio.label }}
+            {{ form.laboratorio(class="form-control", placeholder="Ingresar laboratorio.") }}
+            {{ show_errors(form.laboratorio) }}
         </div>
         
         <div class="form-group row mb-3">
-            {{ form.interconsultas.label(for="interconsultas", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.interconsultas(class="form-control", id="interconsultas") }}
-                {{ show_errors(form.interconsultas) }}
-            </div>
+            {{ form.interconsultas.label }}
+            {{ form.interconsultas(class="form-control", id="interconsultas", placeholder="Ingresar información de interconsultas.") }}
+            {{ show_errors(form.interconsultas) }}
         </div>
         
         <div class="form-group row mb-3">
-            {{ form.pronostico.label(for="pronostico", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.pronostico(class="form-control", id="pronostico") }}
-                {{ show_errors(form.pronostico) }}
-            </div>
+            {{ form.pronostico.label }}
+            {{ form.pronostico(class="form-control", id="pronostico", placeholder="Ingresar información de pronóstico.") }}
+            {{ show_errors(form.pronostico) }}
         </div>
         
         <div class="form-group row mb-3">
-            {{ form.apache_ii.label(for="apache_ii", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.apache_ii(class="form-control", id="apache_ii") }}
-                {{ show_errors(form.apache_ii) }}
-            </div>
+            {{ form.apache_ii.label }}
+            {{ form.apache_ii(class="form-control", id="apache_ii", placeholder="Ingresar información de Apache II.") }}
+            {{ show_errors(form.apache_ii) }}
         </div>
         
         <div class="form-group row mb-3">
-            {{ form.sofa.label(for="sofa", class="col-sm-2 col-form-label") }}
-            <div class="col-sm-10">
-                {{ form.sofa(class="form-control", id="sofa") }}
-                {{ show_errors(form.sofa) }}
-            </div>
+            {{ form.sofa.label }}
+            {{ form.sofa(class="form-control", id="sofa", placeholder="Ingresar información de SOFA.") }}
+            {{ show_errors(form.sofa) }}
         </div>
 
         <div class="text-center mt-4">
