@@ -28,9 +28,6 @@ def crear_carpetas():
         os.makedirs(subcarpeta_politraumatizado)
         print(f"Subcarpeta creada: {subcarpeta_politraumatizado}")
 
-
-crear_carpetas()
-
 @app.route('/')
 def home():
     """
@@ -139,7 +136,7 @@ def guia_t_cardiologico():
         except Exception as e:
             flash(f'Error al guardar el formulario: {str(e)}', 'danger')
 
-        return redirect(url_for('generar_planilla'))
+        return redirect(url_for('detalle_cardiologico', archivo=filename))
 
     return render_template('formulario_cardiologico.html', form=form)
 
@@ -156,7 +153,7 @@ def guia_t_politraumatizado():
             formulario_data = {
             'nombre_paciente': form.nombre_paciente.data,
             'sexo': form.sexo.data,
-            'fecha_evento': form.fecha_evento.data,
+            'fecha_evento': form.fecha_evento.data.strftime('%d/%m/%Y'),
             'hora': form.hora.data.strftime('%H:%M') if form.hora.data else '',
             'tipo_evento': form.tipo_evento.data,
             'estado_general': form.estado_general.data,
@@ -241,7 +238,7 @@ def guia_t_politraumatizado():
         except Exception as e:
             flash(f'Error al guardar el formulario: {str(e)}', 'danger')
 
-        return redirect(url_for('generar_planilla'))
+        return redirect(url_for('detalle_politraumatizado', archivo=filename))
 
     return render_template('formulario_politraumatizado.html', form=form)
 
@@ -327,11 +324,6 @@ def detalle_politraumatizado(archivo):
             planilla_data = json.load(file)
     except Exception as e:
         return f"Error al cargar el archivo: {e}", 500
-
-    fecha_evento_str = planilla_data.get('fecha_evento')
-    if fecha_evento_str:
-        fecha_evento = datetime.strptime(fecha_evento_str, '%a, %d %b %Y %H:%M:%S GMT')
-        planilla_data['fecha_evento'] = fecha_evento.strftime('%d de %B de %Y')
 
     return render_template('detalle_politraumatizado.html', planilla=planilla_data, archivo=archivo)
 
