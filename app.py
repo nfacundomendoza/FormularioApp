@@ -447,6 +447,15 @@ def editar_politraumatizado(archivo):
     except Exception as e:
         return f"Error al cargar el archivo: {e}", 500
 
+    try:
+        fecha_evento_str = planilla_data.get("fecha_evento")
+        if fecha_evento_str:
+            planilla_data["fecha_evento"] = datetime.strptime(fecha_evento_str, "%a, %d %b %Y %H:%M:%S %Z")
+        else:
+            planilla_data["fecha_evento"] = None
+    except Exception as e:
+        return f"Error al procesar fecha_evento u hora: {e}", 500
+      
     hora_str = planilla_data.get("hora")
     if hora_str:
         try:
