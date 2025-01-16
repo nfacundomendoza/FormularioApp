@@ -247,15 +247,15 @@ def guia_t_politraumatizado():
 
 @app.route('/seleccionar_planilla', methods=['GET', 'POST'])
 def seleccionar_planilla():
-    tipo_planilla = ""
-    archivos = []
-    buscar_nombre = ""
+    tipo_planilla = request.args.get('tipo_planilla', '') 
+    archivos = [] 
+    buscar_nombre = request.args.get('buscar_nombre', '').lower()  
 
     if request.method == 'POST':
         tipo_planilla = request.form.get('tipo_planilla')
         buscar_nombre = request.form.get('buscar_nombre', '').lower() 
-      
 
+    if tipo_planilla:
         if tipo_planilla == 'cardiologico':
             folder_path = 'saved_forms/formularios_cardiologicos'  
         elif tipo_planilla == 'politraumatizado':
@@ -268,21 +268,34 @@ def seleccionar_planilla():
                 archivos = [f for f in os.listdir(folder_path) if f.endswith('.json')]
                 if buscar_nombre:
                     archivos = [f for f in archivos if buscar_nombre in f.lower()]
-
             except FileNotFoundError:
                 archivos = [] 
 
     return render_template('seleccionar_planilla.html', tipo_planilla=tipo_planilla, archivos=archivos, buscar_nombre=buscar_nombre)
-
 @app.route('/eliminar_archivo/<archivo>/<tipo_planilla>', methods=['POST'])
 def eliminar_archivo(archivo, tipo_planilla):
     """ 
     Ruta para eliminar un archivo JSON de una planilla guardada.
     """
-    print(f"Archivo a eliminar: {archivo}")
-    print(f"Tipo de planilla: {tipo_planilla}")
-    flash('Formulario guardado correctamente.', 'success')
-    return render_template('index.html')
+    if tipo_planilla == 'cardiologico':
+        carpeta = 'saved_forms/formularios_cardiologicos'
+    elif tipo_planilla == 'politraumatizado':
+        carpeta = 'saved_forms/formularios_politraumatizados'
+    else:
+        flash('Tipo de planilla no válido.', 'danger')
+        return redirect(url_for('home'))
+
+    # Ruta completa del archivo
+    ruta_archivo = os.path.join(carpeta, archivo)
+
+    # Verificar si el archivo existe y eliminarlo
+    if os.path.exists(ruta_archivo):
+        os.remove(ruta_archivo)
+        flash(f'Planilla {archivo} eliminada correctamente.', 'success')
+    else:
+        flash(f'El archivo {archivo} no se encuentra en la carpeta {carpeta}.', 'danger')
+
+    return redirect(url_for('seleccionar_planilla',tipo_planilla=tipo_planilla))
 
 
 @app.route('/detalle_cardiologico/<archivo>', methods=['GET'])
