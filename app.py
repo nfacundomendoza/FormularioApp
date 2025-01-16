@@ -274,7 +274,7 @@ def seleccionar_planilla():
 
     return render_template('seleccionar_planilla.html', tipo_planilla=tipo_planilla, archivos=archivos, buscar_nombre=buscar_nombre)
 
-@app.route('/eliminar_archivo/<archivo>/<tipo_planilla>', methods=['GET', 'POST'])
+@app.route('/eliminar_archivo/<archivo>/<tipo_planilla>', methods=['POST'])
 def eliminar_archivo(archivo, tipo_planilla):
     """ 
     Ruta para eliminar un archivo JSON de una planilla guardada.
@@ -548,7 +548,6 @@ def editar_politraumatizado(archivo):
         return redirect(url_for('detalle_politraumatizado', archivo=archivo))
 
     return render_template('editar_politraumatizado.html', form=form, archivo=archivo)
-
 
 if __name__ == '__main__':
     app.run(debug=True)

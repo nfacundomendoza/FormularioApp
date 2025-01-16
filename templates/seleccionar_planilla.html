@@ -46,8 +46,9 @@
                         <li class="list-group-item">
                                 <a href="{{ url_for('detalle_politraumatizado', archivo=archivo) }}" class="text-decoration-none">{{ archivo }}</a>
                                 
-                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#bajaModal">X</button>
-                                {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla=tipo_planilla)) }}
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#bajaModal">Eliminar</button>
+                                
+                                {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla=tipo_planilla )) }}
                             </li>
                         {% endif %}                 
                     {% endfor %}
