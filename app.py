@@ -1,4 +1,5 @@
 from datetime import datetime, time
+from math import ceil
 import os
 from flask import Flask, flash, json, render_template, redirect, request, url_for
 from forms.formulario_cardiologico import FormularioCardiologico 
@@ -247,6 +248,8 @@ def seleccionar_planilla():
     tipo_planilla = request.args.get('tipo_planilla', '') 
     archivos = [] 
     buscar_nombre = request.args.get('buscar_nombre', '').lower()  
+    page = int(request.args.get('page', 1))  # Página actual
+    per_page = 10  # Archivos por página
 
     if request.method == 'POST':
         tipo_planilla = request.form.get('tipo_planilla')
@@ -268,8 +271,19 @@ def seleccionar_planilla():
             except FileNotFoundError:
                 archivos = [] 
 
-    return render_template('seleccionar_planilla.html', tipo_planilla=tipo_planilla, archivos=archivos, buscar_nombre=buscar_nombre)
+    # Paginación
+    total_archivos = len(archivos)
+    total_paginas = ceil(total_archivos / per_page)
+    archivos_paginados = archivos[(page - 1) * per_page : page * per_page]
 
+    return render_template(
+        'seleccionar_planilla.html', 
+        tipo_planilla=tipo_planilla, 
+        archivos=archivos_paginados, 
+        buscar_nombre=buscar_nombre,
+        page=page,
+        total_paginas=total_paginas
+    )
 @app.route('/eliminar_archivo/<archivo>/<tipo_planilla>', methods=['POST'])
 def eliminar_archivo(archivo, tipo_planilla):
     """ 
