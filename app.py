@@ -449,10 +449,10 @@ def editar_politraumatizado(archivo):
 
     try:
         fecha_evento_str = planilla_data.get("fecha_evento")
-        if fecha_evento_str:
-            planilla_data["fecha_evento"] = datetime.strptime(fecha_evento_str, "%a, %d %b %Y %H:%M:%S %Z")
-        else:
-            planilla_data["fecha_evento"] = None
+        planilla_data["fecha_evento"] = datetime.strptime(fecha_evento_str, "%d/%m/%Y")
+    except Exception as e:
+        return f"Error al procesar fecha_evento u hora: {e}", 500
+
     except Exception as e:
         return f"Error al procesar fecha_evento u hora: {e}", 500
       
@@ -473,7 +473,7 @@ def editar_politraumatizado(archivo):
             formulario_data = {
                 'nombre_paciente': form.nombre_paciente.data,
             'sexo': form.sexo.data,
-            'fecha_evento': form.fecha_evento.data,
+            'fecha_evento': form.fecha_evento.data.strftime('%d/%m/%Y'),
             'hora': form.hora.data.strftime('%H:%M') if form.hora.data else '',
             'tipo_evento': form.tipo_evento.data,
             'estado_general': form.estado_general.data,
