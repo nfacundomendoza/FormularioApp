@@ -268,6 +268,7 @@ def seleccionar_planilla():
                 archivos = [f for f in os.listdir(folder_path) if f.endswith('.json')]
                 if buscar_nombre:
                     archivos = [f for f in archivos if buscar_nombre in f.lower()]
+                archivos = sorted(archivos, key=lambda f: os.path.getmtime(os.path.join(folder_path, f)), reverse=True)
             except FileNotFoundError:
                 archivos = [] 
 
