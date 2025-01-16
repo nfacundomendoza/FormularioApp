@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/logo.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/tipografia.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/flashes.css') }}">
 </head>
 
 {% from "messages.html" import show_messages %}
@@ -28,8 +29,8 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('generar_planilla') }}">Generar planilla</a>
                     </li>
@@ -56,4 +57,3 @@
 </body>
 
 </html>
-

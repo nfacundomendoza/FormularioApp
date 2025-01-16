@@ -3,9 +3,9 @@
         {% if messages %}
             <div class="container mt-3">
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show flash-alert" role="alert">
-                        {{ message }}
-                    </div>
+                <div class="alert alert-{{ category }} alert-dismissible fade show flash-alert" role="alert" data-dismiss-time="5000">
+                    {{ message }}
+                </div>
                 {% endfor %}
             </div>
         {% endif %}
@@ -13,13 +13,25 @@
 {% endmacro %}
 
 <script>
-    // Seleccionar todas las alertas con la clase flash-alert
-    const alerts = document.querySelectorAll('.flash-alert');
-    
-    // Aplicar un temporizador para ocultar cada alerta
-    alerts.forEach((alert) => {
-        setTimeout(() => {
-            alert.className = ('d-none'); // Añadir clase para ocultar
-        }, 3000); // 3000 ms = 3 segundos
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.flash-alert');
+        alerts.forEach(function(alert) {
+            const dismissTime = alert.getAttribute('data-dismiss-time') || 5000;
+            
+            setTimeout(function() {
+                alert.classList.add('fade');  
+            }, dismissTime);
+
+            setTimeout(function() {
+                alert.remove();
+            }, dismissTime + 1000); 
+        });
     });
 </script>
+
+<style>
+    .fade {
+        opacity: 0;
+        transition: opacity 1s ease-out;
+    }
+</style>
