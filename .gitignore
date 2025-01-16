@@ -2,6 +2,9 @@ __pycache__/
 *.pyc
 *.pyo
 
+__pycache__
+forms\__pycache__
+
 saved_forms/
 formularios_cardiologicos/
 formularios_politraumatizados/

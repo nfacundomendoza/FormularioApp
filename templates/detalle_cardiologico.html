@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Detalle cardiologico{% endblock %}
+{% block title %}Detalle Cardiológico{% endblock %}
 
 {% block content %}
 
@@ -14,7 +14,6 @@
     </div>
 
     <div class="container mt-3">
-    
         <div class="card">
             <div class="card-header">
                 Información del Paciente: {{ planilla['nombre_paciente'] }}
@@ -23,8 +22,8 @@
                 <h3 class="card-title fw-bold">Detalles del Diagnóstico</h3>
                 <p><strong>Motivo de ingreso/diagnóstico:</strong> {{ planilla['motivo_ingreso_diag'] }}</p>
                 <p><strong>Dolor precordial:</strong> {{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</p>
-                <p><strong>SCAs:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
-                <p><strong>SCACEs:</strong> {{ 'Sí' if planilla['scacest'] else 'No' }}</p>
+                <p><strong>SCASEST:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
+                <p><strong>SCACEST:</strong> {{ 'Sí' if planilla['scacest'] else 'No' }}</p>
                 <p><strong>Insuficiencia Cardiaca Descompensada:</strong> {{ 'Sí' if planilla['insuficiencia_cardiaca_descompensada'] else 'No' }}</p>
                 <p><strong>Pericarditis:</strong> {{ 'Sí' if planilla['pericarditis'] else 'No' }}</p>
                 <p><strong>Emergencia Hipertensiva:</strong> {{ 'Sí' if planilla['emergencia_hipertensiva'] else 'No' }}</p>
