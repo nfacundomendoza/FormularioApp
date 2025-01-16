@@ -3,12 +3,23 @@
         {% if messages %}
             <div class="container mt-3">
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <div class="alert alert-{{ category }} alert-dismissible fade show flash-alert" role="alert">
                         {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
     {% endwith %}
 {% endmacro %}
+
+<script>
+    // Seleccionar todas las alertas con la clase flash-alert
+    const alerts = document.querySelectorAll('.flash-alert');
+    
+    // Aplicar un temporizador para ocultar cada alerta
+    alerts.forEach((alert) => {
+        setTimeout(() => {
+            alert.className = ('d-none'); // Añadir clase para ocultar
+        }, 3000); // 3000 ms = 3 segundos
+    });
+</script>

@@ -272,6 +272,7 @@ def seleccionar_planilla():
                 archivos = [] 
 
     return render_template('seleccionar_planilla.html', tipo_planilla=tipo_planilla, archivos=archivos, buscar_nombre=buscar_nombre)
+
 @app.route('/eliminar_archivo/<archivo>/<tipo_planilla>', methods=['POST'])
 def eliminar_archivo(archivo, tipo_planilla):
     """ 
