@@ -306,8 +306,9 @@ def detalle_politraumatizado(archivo):
 
     fecha_evento_str = planilla_data.get('fecha_evento')
     if fecha_evento_str:
-        fecha_evento = datetime.strptime(fecha_evento_str, '%Y-%m-%d') 
-        planilla_data['fecha_evento'] = fecha_evento.strftime('%d de %B de %Y') 
+        fecha_evento = datetime.strptime(fecha_evento_str, '%a, %d %b %Y %H:%M:%S GMT')
+        planilla_data['fecha_evento'] = fecha_evento.strftime('%d de %B de %Y')
+
     return render_template('detalle_politraumatizado.html', planilla=planilla_data, archivo=archivo)
 
 @app.route('/editar_cardiologico/<archivo>', methods=['GET', 'POST'])
