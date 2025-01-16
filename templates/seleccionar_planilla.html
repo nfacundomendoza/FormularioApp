@@ -4,6 +4,9 @@
 
 {% block content %}
 
+{% from 'confirmacion.html' import confirmacion %}
+
+
 <div class="container mt-5">
     <h1 class="text-center mb-4">Seleccionar tipo de planilla</h1>
     <div class="form-container mx-auto">
@@ -40,11 +43,11 @@
                                 </button>
                             </li>
                         {% elif tipo_planilla == 'politraumatizado' %}
-                            <li class="list-group-item">
+                        <li class="list-group-item">
                                 <a href="{{ url_for('detalle_politraumatizado', archivo=archivo) }}" class="text-decoration-none">{{ archivo }}</a>
-                                <button type="button" class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#confirmDeleteModal" data-archivo="{{ archivo }}" data-tipo-planilla="{{ tipo_planilla }}">
-                                    <i class="fas fa-times">X</i>
-                                </button>
+                                
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#bajaModal">X</button>
+                                {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla=tipo_planilla)) }}
                             </li>
                         {% endif %}                 
                     {% endfor %}
@@ -58,39 +61,4 @@
     <a href="{{ url_for('home') }}" class="btn btn-secondary mt-3">Volver</a>
 </div>
 
-
-<!-- Modal de confirmación de eliminación -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar este archivo?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form id="deleteForm" method="POST" style="display: inline;">
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Script para configurar el archivo y tipo de planilla a eliminar en el modal -->
-<script>
-    $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var archivo = button.data('archivo');
-        var tipo_planilla = button.data('tipo-planilla');
-        
-        var form = $('#deleteForm');
-        form.attr('action', '/eliminar_archivo/' + archivo + '/' + tipo_planilla);  // Ajusta la URL según tu ruta de eliminación
-    });
-</script>
 {% endblock %}
