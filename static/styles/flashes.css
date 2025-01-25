@@ -1,0 +1,8 @@
+.alert {
+    transition: opacity 1s ease; /* Aplica una transición suave al cambio de opacidad */
+    opacity: 1; /* Opacidad inicial */
+}
+
+.alert.fadeout {
+    opacity: 0; /* Cambia la opacidad a 0 para el efecto de desvanecimiento */
+}
