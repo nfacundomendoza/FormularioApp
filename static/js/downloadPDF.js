@@ -3,12 +3,11 @@ document.getElementById('generatePdfButton').addEventListener('click', () => {
     const doc = new jsPDF();
     const content = document.getElementById('content');
 
-    const title = content.querySelector('h3').innerText;
+  
     const paragraphs = content.querySelectorAll('p');
 
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(18);
-    doc.text(title, 10, 20); 
+    doc.setFontSize(18); 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(12);
 
