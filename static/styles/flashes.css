@@ -1,12 +1,12 @@
 .alert {
-    opacity: 0; /* Inicia invisible */
-    transition: opacity 1s ease; /* Suaviza los cambios de opacidad */
+    opacity: 0;
+    transition: opacity 1s ease; 
 }
 
 .alert.fadein {
-    opacity: 1; /* Cambia la opacidad a 1 para el efecto de aparición */
+    opacity: 1;
 }
 
 .alert.fadeout {
-    opacity: 0; /* Cambia la opacidad a 0 para el efecto de desaparición */
+    opacity: 0;
 }

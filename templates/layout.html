@@ -9,11 +9,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/messages.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/logo.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/tipografia.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/flashes.css') }}">
 </head>
-
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light border">
@@ -42,7 +42,7 @@
         </div>
     </nav>
 
-    <main style="min-height: 600px;">
+    <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -52,15 +52,14 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-light border py-3 mt-auto">
+    <footer >
         <div class="container text-center">
             <p class="mb-0">&copy; 2025 - Hospital Comunitario de Pinamar</p>
         </div>
     </footer>
-
 </body>
-
 </html>
