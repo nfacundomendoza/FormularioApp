@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/messages.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/logo.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/tipografia.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/flashes.css') }}">
 </head>
 
-{% from "messages.html" import show_messages %}
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light border">
@@ -42,9 +42,16 @@
         </div>
     </nav>
 
-    {{ show_messages() }}
-
     <main style="min-height: 600px;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </main>
 
