@@ -1,6 +1,9 @@
 from datetime import datetime, time
 from math import ceil
 import os
+import webbrowser
+import atexit
+from threading import Timer
 from flask import Flask, flash, json, render_template, redirect, request, url_for
 from forms.formulario_cardiologico import FormularioCardiologico 
 from forms.formulario_politraumatizado import FormularioPolitraumatizado
@@ -564,5 +567,14 @@ def editar_politraumatizado(archivo):
 
     return render_template('editar_politraumatizado.html', form=form, archivo=archivo)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def error(error):
+    return render_template('error.html', error=error), 404
+
+app.register_error_handler(404, error)
+
+def open_browser():
+    webbrowser.open("http://127.0.0.1:5000")
+
+if __name__ == "__main__":
+    Timer(1, open_browser).start()  # Abre el navegador después de 1 segundo
+    app.run(host="127.0.0.1", port=5000, debug=False)

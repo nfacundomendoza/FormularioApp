@@ -475,11 +475,9 @@
             {{ show_errors(form.sofa) }}
         </div>
 
-        <div class="text-center mt-4">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#bajaModal">Guardar</button>
+        <div class="texto-centro mb-5">    
+            {{ form.submit(class="btn btn-success") }}
         </div>
-
-        {{ confirmacion(url_for('editar_cardiologico', archivo=archivo)) }}
     
     </form>
 </div>
