@@ -15,19 +15,13 @@ app.secret_key = 'secretkey'
 page_active = True
 
 # Tiempo de espera en segundos para detener el servidor si no hay actividad
-timeout = 10  # 30 minutos sin actividad
-def print_message():
-    """Esta función se ejecuta en el segundo hilo y imprime un mensaje cada 2 segundos."""
-    while True:
-        time.sleep(2)
-        print("Hilo secundario: Este es un mensaje cada 2 segundos")
+timeout = 10  #10 segundos
+
 
 def shutdown_server():
     """Apagar el servidor."""
     print("Apagando el servidor...")
     os._exit(0)
-
-
 
 @app.route('/heartbeat', methods=['POST'])
 def heartbeat():
@@ -617,5 +611,5 @@ def open_browser():
 
 if __name__ == "__main__":
     threading.Timer(1, open_browser).start()  # Abre el navegador después de 1 segundo
-    threading.Thread(target=print_message, daemon=True).start()
+    threading.Thread(target=monitor_activity, daemon=True).start()
     app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)
