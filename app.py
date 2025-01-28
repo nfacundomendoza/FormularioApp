@@ -11,11 +11,11 @@ from forms.formulario_politraumatizado import FormularioPolitraumatizado
 app = Flask(__name__)
 app.secret_key = 'secretkey'
 
-# Variable para monitorear si la página está activa
+
 page_active = True
 
-# Tiempo de espera en segundos para detener el servidor si no hay actividad
-timeout = 10  #10 segundos
+
+timeout = 1500  #25 minutos
 
 
 def shutdown_server():
@@ -37,11 +37,11 @@ def monitor_activity():
     while True:
         time_module.sleep(timeout)
         print("Monitoreando actividad...")
-        if not page_active:  # Si no se recibe un 'heartbeat', detener el servidor
+        if not page_active:  
             print(f"Sin actividad en {timeout} segundos. Apagando el servidor.")
             shutdown_server()
             break
-        page_active = False  # Reiniciar la variable para esperar el siguiente 'heartbeat'
+        page_active = False 
 
 
 
@@ -285,8 +285,8 @@ def seleccionar_planilla():
     tipo_planilla = request.args.get('tipo_planilla', '') 
     archivos = [] 
     buscar_nombre = request.args.get('buscar_nombre', '').lower()  
-    page = int(request.args.get('page', 1))  # Página actual
-    per_page = 10  # Archivos por página
+    page = int(request.args.get('page', 1))  
+    per_page = 10 
 
     if request.method == 'POST':
         tipo_planilla = request.form.get('tipo_planilla')
@@ -309,7 +309,7 @@ def seleccionar_planilla():
             except FileNotFoundError:
                 archivos = [] 
 
-    # Paginación
+
     total_archivos = len(archivos)
     total_paginas = ceil(total_archivos / per_page)
     archivos_paginados = archivos[(page - 1) * per_page : page * per_page]
@@ -335,10 +335,8 @@ def eliminar_archivo(archivo, tipo_planilla):
         flash('Tipo de planilla no válido.', 'danger')
         return redirect(url_for('home'))
 
-    # Ruta completa del archivo
     ruta_archivo = os.path.join(carpeta, archivo)
 
-    # Verificar si el archivo existe y eliminarlo
     if os.path.exists(ruta_archivo):
         os.remove(ruta_archivo)
         flash(f'Planilla {archivo} eliminada correctamente.', 'success')
@@ -610,6 +608,6 @@ def open_browser():
     webbrowser.open("http://127.0.0.1:5000")
 
 if __name__ == "__main__":
-    threading.Timer(1, open_browser).start()  # Abre el navegador después de 1 segundo
+    threading.Timer(1, open_browser).start() 
     threading.Thread(target=monitor_activity, daemon=True).start()
     app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)
