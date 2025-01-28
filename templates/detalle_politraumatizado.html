@@ -105,12 +105,15 @@
     <div class="text-center mt-3">
         <button class="btn btn-success" id="copyButton">Copiar al Portapapeles</button>
         <button class="btn btn-primary" id="generatePdfButton">Descargar PDF</button>
-        <a class="btn btn-danger" href="{{ url_for('editar_politraumatizado', archivo=archivo) }}">Editar Planilla</a>
+        <a class="btn btn-warning text-white" href="{{ url_for('editar_politraumatizado', archivo=archivo) }}">Editar Planilla</a>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#bajaModal">Eliminar Planilla</button>
     </div>
+
+    {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla='politraumatizado')) }}
 
     <div id="mensaje" class="d-none">Información copiada en Portapapeles</div>
 
-    <p id="archivo" class="text-center mt-3"> {{ archivo }}</p>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

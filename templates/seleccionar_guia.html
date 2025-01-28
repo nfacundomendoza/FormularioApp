@@ -3,16 +3,18 @@
 {% block title %}Seleccionar Guía{% endblock %}
 
 {% block content %}
-    <div class="texto-centro mt-4">
+<div class="container mt-5">
+    <div class="text-center">
         <h1 class="titulo-principal">Selecciona una Guía</h1>
     </div>
     <div class="d-flex flex-column align-items-center mt-4">
-        <div class="d-flex justify-content-center mb-3">
-            <a href="/guia_t_cardiologico" class="btn btn-success mx-1" style="width: 300px; height: 40px;">Guía para Paciente Cardiológico</a>
-            <a href="/guia_t_politraumatizado" class="btn btn-success mx-1" style="width: 300px; height: 40px;">Guía para Paciente Politraumatizado</a>
+        <div class="btn-group-vertical">
+            <a href="/guia_t_cardiologico" class="btn btn-success btn-lg mb-2">Guía para Paciente Cardiológico</a>
+            <a href="/guia_t_politraumatizado" class="btn btn-success btn-lg mb-2">Guía para Paciente Politraumatizado</a>
         </div>
-        <div class="mt-2">
-            <a href="/" class="btn btn-secondary mx-2">Volver</a>
+        <div class="mt-4">
+            <a href="/" class="btn btn-secondary">Volver</a>
         </div>
-    </div>        
+    </div>
+</div>
 {% endblock %}
