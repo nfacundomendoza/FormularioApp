@@ -2,14 +2,54 @@ from datetime import datetime, time
 from math import ceil
 import os
 import webbrowser
-import atexit
-from threading import Timer
+import threading
+import time as time_module
 from flask import Flask, flash, json, render_template, redirect, request, url_for
 from forms.formulario_cardiologico import FormularioCardiologico 
 from forms.formulario_politraumatizado import FormularioPolitraumatizado
 
 app = Flask(__name__)
 app.secret_key = 'secretkey'
+
+# Variable para monitorear si la página está activa
+page_active = True
+
+# Tiempo de espera en segundos para detener el servidor si no hay actividad
+timeout = 10  # 30 minutos sin actividad
+def print_message():
+    """Esta función se ejecuta en el segundo hilo y imprime un mensaje cada 2 segundos."""
+    while True:
+        time.sleep(2)
+        print("Hilo secundario: Este es un mensaje cada 2 segundos")
+
+def shutdown_server():
+    """Apagar el servidor."""
+    print("Apagando el servidor...")
+    os._exit(0)
+
+
+
+@app.route('/heartbeat', methods=['POST'])
+def heartbeat():
+    """Ruta para mantener la conexión activa."""
+    global page_active
+    page_active = True
+    return '', 204
+
+def monitor_activity():
+    """Monitorea la actividad de la página y apaga el servidor si no hay actividad."""
+    print(f"Monitoreando actividad. Apagando el servidor en {timeout} segundos si no hay actividad.")
+    global page_active
+    while True:
+        time_module.sleep(timeout)
+        print("Monitoreando actividad...")
+        if not page_active:  # Si no se recibe un 'heartbeat', detener el servidor
+            print(f"Sin actividad en {timeout} segundos. Apagando el servidor.")
+            shutdown_server()
+            break
+        page_active = False  # Reiniciar la variable para esperar el siguiente 'heartbeat'
+
+
 
 def crear_carpetas():
     """
@@ -576,5 +616,6 @@ def open_browser():
     webbrowser.open("http://127.0.0.1:5000")
 
 if __name__ == "__main__":
-    Timer(1, open_browser).start()  # Abre el navegador después de 1 segundo
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    threading.Timer(1, open_browser).start()  # Abre el navegador después de 1 segundo
+    threading.Thread(target=print_message, daemon=True).start()
+    app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)

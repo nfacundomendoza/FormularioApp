@@ -61,5 +61,32 @@
             <p class="mb-0">&copy; 2025 - Hospital Comunitario de Pinamar</p>
         </div>
     </footer>
+
+     <!-- Script para mantener la conexión activa -->
+     <script>
+        // Función para enviar la solicitud POST al servidor
+        function sendHeartbeat() {
+            fetch('/heartbeat', {
+                method: 'POST', // Solicitud POST
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({}) // Cuerpo vacío, solo para mantener la conexión activa
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Error al enviar heartbeat');
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+            });
+        }
+
+        // Enviar la solicitud cada 10 segundos
+        setInterval(sendHeartbeat, 5000); // 5 segundos
+    </script>
+
+
 </body>
 </html>
