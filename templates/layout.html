@@ -64,16 +64,16 @@
         
     </footer>
 
-     <!-- Script para mantener la conexión activa -->
+    
      <script>
-        // Función para enviar la solicitud POST al servidor
+  
         function sendHeartbeat() {
             fetch('/heartbeat', {
-                method: 'POST', // Solicitud POST
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({}) // Cuerpo vacío, solo para mantener la conexión activa
+                body: JSON.stringify({}) 
             })
             .then(response => {
                 if (!response.ok) {
@@ -86,9 +86,11 @@
         }
 
         
-        setInterval(sendHeartbeat, 600000); // 10 min
+        window.onload = function() {
+            sendHeartbeat(); 
+            setInterval(sendHeartbeat, 600000); // Iniciar el temporizador (cada 10 min)
+        };
     </script>
-
 
 </body>
 </html>
