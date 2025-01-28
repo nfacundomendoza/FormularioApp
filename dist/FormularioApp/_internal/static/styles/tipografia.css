@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'VAG Rounded Next Bold';
+    src: url('/static/fonts/VAG-Rounded-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.contenedor-principal {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.texto-centro {
+    text-align: center;
+}
+
+.titulo-principal {
+    font-family: 'VAG Rounded Next Bold', sans-serif;
+    font-weight: bold;
+    font-size: 3.5rem;
+    color: #6c757d;
+}
+
+.subtitulo {
+    font-family: 'VAG Rounded Next Bold', sans-serif;
+    font-size: 1.8rem;
+    color: #6c757d;
+}
+
+.texto-destacado {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-top: 15px;
+}
+
+.texto-suave {
+    color: #6c757d !important;
+}
