@@ -20,7 +20,6 @@ timeout = 1500  #25 minutos
 
 def shutdown_server():
     """Apagar el servidor."""
-    print("Apagando el servidor...")
     os._exit(0)
 
 @app.route('/heartbeat', methods=['POST'])
@@ -31,14 +30,11 @@ def heartbeat():
     return '', 204
 
 def monitor_activity():
-    """Monitorea la actividad de la página y apaga el servidor si no hay actividad."""
-    print(f"Monitoreando actividad. Apagando el servidor en {timeout} segundos si no hay actividad.")
+    """Monitorea la actividad de la página y apaga el servidor si no hay actividad.""" 
     global page_active
     while True:
         time_module.sleep(timeout)
-        print("Monitoreando actividad...")
         if not page_active:  
-            print(f"Sin actividad en {timeout} segundos. Apagando el servidor.")
             shutdown_server()
             break
         page_active = False 
