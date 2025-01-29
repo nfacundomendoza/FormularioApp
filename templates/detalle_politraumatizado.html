@@ -47,7 +47,6 @@
                 <p><strong>Neumotórax:</strong> {{ 'Sí' if planilla['neumotorax'] else 'No' }}</p>
                 <p><strong>Hemotórax:</strong> {{ 'Sí' if planilla['hemotorax'] else 'No' }}</p>
                 <p><strong>TAP:</strong> {{ 'Sí' if planilla['tap'] else 'No' }}</p>
-
                 <p><strong>Circulatorio:</strong> {{ planilla['circulatorio'] }}</p>
                 <p><strong>TA:</strong> {{ planilla['ta'] }}</p>
                 <p><strong>TAM:</strong> {{ planilla['tam'] }}</p>
@@ -61,7 +60,6 @@
                 <p><strong>Aceptable Perfusión Periférica:</strong> {{ 'Sí' if planilla['aceptable_perfusion_periferica'] else 'No' }}</p>
                 <p><strong>Shock:</strong> {{ 'Sí' if planilla['shock'] else 'No' }}</p>
                 <p><strong>Inotrópicos:</strong> {{ 'Sí' if planilla['inotropicos'] else 'No' }}</p>
-
                 <p><strong>Abdomen:</strong> {{ planilla['abdomen'] }}</p>
                 <p><strong>Trauma Abdominal Cerrado:</strong> {{ 'Sí' if planilla['trauma_abdominal_cerrado'] else 'No' }}</p>
                 <p><strong>Trauma Abdominal Abierto:</strong> {{ 'Sí' if planilla['trauma_abdominal_abierto'] else 'No' }}</p>
@@ -70,10 +68,8 @@
                 <p><strong>Distendido:</strong> {{ 'Sí' if planilla['distendido'] else 'No' }}</p>
                 <p><strong>SNG:</strong> {{ 'Sí' if planilla['sng'] else 'No' }}</p>
                 <p><strong>Alimentación Enteral:</strong> {{ 'Sí' if planilla['alim_enteral'] else 'No' }}</p>
-
                 <p><strong>Intervención Quirúrgica:</strong> {{ 'Sí' if planilla['intervencion_quirurgica'] else 'No' }}</p>
                 <p><strong>Detalle de Intervención:</strong> {{ planilla['detalle_intervencion'] }}</p>
-
                 <p><strong>Drenajes:</strong> {{ 'Sí' if planilla['drenajes'] else 'No' }}</p>
                 <p><strong>Diuresis:</strong> {{ planilla['diuresis'] }}</p>
                 <p><strong>Sonda Vesical:</strong> {{ 'Sí' if planilla['sonda_vesical'] else 'No' }}</p>
@@ -84,11 +80,9 @@
                 <p><strong>Glasgow:</strong> {{ planilla['glasgow'] }}</p>
                 <p><strong>Pupilas:</strong> {{ planilla['pupilas'] }}</p>
                 <p><strong>Foco Motor:</strong> {{ planilla['foco_motor'] }}</p>
-
                 <p><strong>PIC:</strong> {{ planilla['pic'] }}</p>
                 <p><strong>Collar Cervical:</strong> {{ 'Sí' if planilla['collar_cervical'] else 'No' }}</p>
                 <p><strong>Inmovilización con Tabla:</strong> {{ 'Sí' if planilla['inmovilizacion_tabla'] else 'No' }}</p>
-
                 <p><strong>Lesión Traumatológica:</strong> {{ planilla['lesion_traumatologica'] }}</p>
                 <p><strong>RTS:</strong> {{ planilla['rts'] }}</p>
                 <p><strong>Imágenes:</strong> {{ planilla['imagenes'] }}</p>
@@ -99,10 +93,9 @@
                 <p><strong>SOFA:</strong> {{ planilla['sofa'] }}</p>
             </div>
         </div>
-
     </div>
 
-    <div class="text-center mt-3">
+    <div class="text-center mt-3 mb-3">
         <button class="btn btn-success" id="copyButton">Copiar al Portapapeles</button>
         <button class="btn btn-primary" id="generatePdfButton">Descargar PDF</button>
         <a class="btn btn-warning text-white" href="{{ url_for('editar_politraumatizado', archivo=archivo) }}">Editar Planilla</a>
@@ -111,8 +104,7 @@
 
     {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla='politraumatizado')) }}
 
-    <div id="mensaje" class="alert alert-success d-none mt-3" role="alert">Texto copiado en portapapeles</div>
-
+    <div id="mensaje" class="alert alert-success d-none" role="alert">Texto copiado en portapapeles</div>
 
 </div>
 

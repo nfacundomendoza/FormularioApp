@@ -2,8 +2,6 @@ document.getElementById('generatePdfButton').addEventListener('click', () => {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const content = document.getElementById('content');
-
-  
     const paragraphs = content.querySelectorAll('p');
 
     doc.setFont("helvetica", "bold");

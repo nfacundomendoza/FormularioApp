@@ -23,7 +23,6 @@
                 <strong>Nombre del Paciente:</strong> {{ planilla['nombre_paciente'] }}
             </div>
             <div class="card-body" id="content">
-           
                 <p><strong>Motivo de ingreso/diagnóstico:</strong> {{ planilla['motivo_ingreso_diag'] }}</p>
                 <p><strong>Dolor precordial:</strong> {{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</p>
                 <p><strong>SCASEST:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
@@ -85,10 +84,9 @@
                 <p><strong>Ecocardiograma:</strong> {{ planilla['ecocardiograma'] }}</p>
             </div>
         </div>
-
     </div>
 
-    <div class="text-center mt-3">
+    <div class="text-center mt-3 mb-3">
         <button class="btn btn-success" id="copyButton">Copiar al Portapapeles</button>
         <button class="btn btn-primary" id="generatePdfButton">Descargar PDF</button>
         <a class="btn btn-warning text-white" href="{{ url_for('editar_cardiologico', archivo=archivo) }}">Editar Planilla</a>
@@ -97,7 +95,7 @@
 
     {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla='cardiologico')) }}
 
-    <div id="mensaje" class="alert alert-success d-none mt-3" role="alert">Texto copiado en portapapeles</div>
+    <div id="mensaje" class="alert alert-success d-none" role="alert">Texto copiado en portapapeles</div>
 
 </div>
 

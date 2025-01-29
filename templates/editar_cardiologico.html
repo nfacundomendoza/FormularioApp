@@ -18,9 +18,7 @@
         </div>
     
         <form method="POST" class="mb-4" novalidate>
-            
             {{ form.hidden_tag() }}
-
             <div class="form-group row mb-3">
                 {{ form.nombre_paciente.label(for="nombre_paciente", class="col-sm-2 col-form-label") }}
                 <div class="col-sm-10">
@@ -366,8 +364,7 @@
 
             <div class="texto-centro mb-5">    
                 {{ form.submit(class="btn btn-success") }}
-            </div>
-            
+            </div> 
         </form>
     </div>
 </div>

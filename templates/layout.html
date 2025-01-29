@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/messages.js"></script>
+    <script src="/static/js/heartBeat.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/logo.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/tipografia.css') }}">
@@ -59,38 +60,7 @@
     <footer >
         <div class="container text-center">
             <p class="mb-0">&copy; 2025 - Hospital Comunitario de Pinamar</p>  
-   
         </div>
-        
     </footer>
-
-    
-     <script>
-  
-        function sendHeartbeat() {
-            fetch('/heartbeat', {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({}) 
-            })
-            .then(response => {
-                if (!response.ok) {
-                    console.error('Error al enviar heartbeat');
-                }
-            })
-            .catch(error => {
-                console.error('Error en la solicitud:', error);
-            });
-        }
-
-        
-        window.onload = function() {
-            sendHeartbeat(); 
-            setInterval(sendHeartbeat, 600000); // Iniciar el temporizador (cada 10 min)
-        };
-    </script>
-
 </body>
 </html>
