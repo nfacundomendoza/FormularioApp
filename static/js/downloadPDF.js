@@ -25,8 +25,8 @@ document.getElementById('generatePdfButton').addEventListener('click', () => {
         }
     });
 
-    const nombreArchivo = document.getElementById('archivo').innerText;
-    const nombreSinExtension = nombreArchivo.replace(/\.json$/, '');
+    const nombreArchivo = document.getElementById('nombre-paciente').innerText;
+    const nombreSinExtension = nombreArchivo.replace("Nombre del Paciente: ", '');
     doc.save(nombreSinExtension + '.pdf');
     
 });

@@ -19,12 +19,10 @@
 
     <div class="container mt-3">
         <div class="card">
-            <div class="card-header">
-                Información del Paciente: {{ planilla['nombre_paciente'] }}
+            <div class="card-header" id="nombre-paciente">
+                <strong>Nombre del Paciente:</strong> {{ planilla['nombre_paciente'] }}
             </div>
             <div class="card-body" id="content">
-          
-                <p><strong>Nombre del Paciente:</strong> {{ planilla['nombre_paciente'] }}</p>
                 <p><strong>Sexo:</strong> {{ planilla['sexo'] }}</p>
                 <p><strong>Fecha del Evento:</strong> {{ planilla['fecha_evento'] }}</p>
                 <p><strong>Hora:</strong> {{ planilla['hora'] }}</p>
@@ -113,7 +111,7 @@
 
     {{ confirmacion(url_for('eliminar_archivo', archivo=archivo, tipo_planilla='politraumatizado')) }}
 
-    <div id="mensaje" class="d-none">Información copiada en Portapapeles</div>
+    <div id="mensaje" class="alert alert-success d-none mt-3" role="alert">Texto copiado en portapapeles</div>
 
 
 </div>
