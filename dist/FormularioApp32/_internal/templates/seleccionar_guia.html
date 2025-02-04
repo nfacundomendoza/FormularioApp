@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}Seleccionar Guía{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="titulo-principal">Selecciona una Guía</h1>
+    </div>
+    <div class="d-flex flex-column align-items-center mt-4">
+        <div class="btn-group-vertical">
+            <a href="/guia_t_cardiologico" class="btn btn-success btn-lg mb-2">Guía para Paciente Cardiológico</a>
+            <a href="/guia_t_politraumatizado" class="btn btn-success btn-lg mb-2">Guía para Paciente Politraumatizado</a>
+        </div>
+        <div class="mt-4">
+            <a href="/" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

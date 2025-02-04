@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FormularioApp{% endblock %}</title>
+    <link rel="icon" href="/static/images/logo_pinamar.PNG" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/messages.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/logo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/tipografia.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/flashes.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/static/images/logo_pinamar.png">
+                <div class="navbar-text">
+                    <span>Hospital Comunitario</span>
+                    <span class="hospital-brand">Municipalidad de Pinamar</span>
+                    <span>Servicio de Terapia Intensiva</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('generar_planilla') }}">Generar planilla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('seleccionar_planilla') }}">Ver Planilla</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer >
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 - Hospital Comunitario de Pinamar</p>  
+        </div>
+    </footer>
+
+    <script src="/static/js/heartBeat.js"></script>
+</body>
+</html>

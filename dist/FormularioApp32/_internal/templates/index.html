@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}Página Principal{% endblock %}
+
+{% block content %}
+<div class="contenedor-principal py-5 d-flex justify-content-center align-items-center" >
+    <div class="texto-centro text-center">
+        <h1 class="titulo-principal">
+            Bienvenido al sistema de gestión
+        </h1>
+        <h2 class="subtitulo">
+            Servicio de Terapia Intensiva del Hospital Comunitario de Pinamar
+        </h2>
+    </div>
+</div>
+
+<img src="{{ url_for('static', filename='images/hospital1.webp') }}" 
+    class="img-fluid d-block mx-auto" 
+    alt="Imagen 1" 
+    style="max-width: 50%; height: auto; border-radius: 15px; margin-bottom: 20px;">
+
+     
+    <div class="py-4">
+        <p class="text-center text-muted">
+            Ante cualquier duda o sugerencia, comuníquese con: 
+            <a href="mailto:n.facundomendoza@gmail.com">n.facundomendoza@gmail.com</a> o 
+            <a href="mailto:gubia1263@gmail.com">gubia1263@gmail.com</a>
+        </p>
+    </div>
+
+{% endblock %}
