@@ -15,7 +15,7 @@ app.secret_key = 'secretkey'
 page_active = True
 
 
-timeout = 1500  #25 minutos
+timeout = 120  #25 minutos
 
 
 def shutdown_server():

@@ -18,5 +18,5 @@ function sendHeartbeat() {
 
 window.onload = function() {
     sendHeartbeat(); 
-    setInterval(sendHeartbeat, 600000);
+    setInterval(sendHeartbeat, 100000); // 1 minuto y 40 segundos
 };
