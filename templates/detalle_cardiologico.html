@@ -7,11 +7,10 @@
 {% block content %}
 
 <div>
-
     <div class="texto-centro mt-4">
         <h1 class="titulo-principal">Detalle Planilla Cardiológica</h1>
     </div>
-    
+
     <div class="text-center mt-3">
         <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver al Menú Principal</a>
         <a href="{{ url_for('seleccionar_planilla') }}" class="btn btn-secondary">Volver a Seleccionar Planilla</a>
@@ -24,61 +23,103 @@
             </div>
             <div class="card-body" id="content">
                 <p><strong>Motivo de ingreso/diagnóstico:</strong> {{ planilla['motivo_ingreso_diag'] }}</p>
-                <p><strong>Dolor precordial:</strong> {{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</p>
-                <p><strong>SCASEST:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
-                <p><strong>SCACEST:</strong> {{ 'Sí' if planilla['scacest'] else 'No' }}</p>
-                <p><strong>Insuficiencia Cardiaca Descompensada:</strong> {{ 'Sí' if planilla['insuficiencia_cardiaca_descompensada'] else 'No' }}</p>
-                <p><strong>Pericarditis:</strong> {{ 'Sí' if planilla['pericarditis'] else 'No' }}</p>
-                <p><strong>Emergencia Hipertensiva:</strong> {{ 'Sí' if planilla['emergencia_hipertensiva'] else 'No' }}</p>
-                <p><strong>Sincope:</strong> {{ 'Sí' if planilla['sincope'] else 'No' }}</p>
-                <p><strong>Shock:</strong> {{ 'Sí' if planilla['shock'] else 'No' }}</p>
-                <p><strong>TEP:</strong> {{ 'Sí' if planilla['tep'] else 'No' }}</p>
-                <p><strong>Arritmias:</strong> {{ 'Sí' if planilla['arritmia'] else 'No' }}</p>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>Dolor precordial:</strong> {{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</p>
+                        <p><strong>SCASEST:</strong> {{ 'Sí' if planilla['scasest'] else 'No' }}</p>
+                        <p><strong>SCACEST:</strong> {{ 'Sí' if planilla['scacest'] else 'No' }}</p>
+                        <p><strong>Insuficiencia Cardiaca Descompensada:</strong> {{ 'Sí' if planilla['insuficiencia_cardiaca_descompensada'] else 'No' }}</p>
+                        <p><strong>Pericarditis:</strong> {{ 'Sí' if planilla['pericarditis'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Emergencia Hipertensiva:</strong> {{ 'Sí' if planilla['emergencia_hipertensiva'] else 'No' }}</p>
+                        <p><strong>Sincope:</strong> {{ 'Sí' if planilla['sincope'] else 'No' }}</p>
+                        <p><strong>Shock:</strong> {{ 'Sí' if planilla['shock'] else 'No' }}</p>
+                        <p><strong>TEP:</strong> {{ 'Sí' if planilla['tep'] else 'No' }}</p>
+                        <p><strong>Arritmias:</strong> {{ 'Sí' if planilla['arritmia'] else 'No' }}</p>
+                    </div>
+                </div>
                 <p><strong>Antecedentes:</strong> {{ planilla['antecedentes'] }}</p>
                 <p><strong>Enfermedad Actual:</strong> {{ planilla['enfermedad_actual'] }}</p>
-                <p><strong>Disnea:</strong> {{ 'Sí' if planilla['disnea'] else 'No' }}</p>
-                <p><strong>Dolor precordial típico:</strong> {{ 'Sí' if planilla['dolor_precordial_tipico'] else 'No' }}</p>
-                <p><strong>HTA:</strong> {{ 'Sí' if planilla['hta'] else 'No' }}</p>
-                <p><strong>Mareos:</strong> {{ 'Sí' if planilla['mareos'] else 'No' }}</p>
-                <p><strong>Palpitaciones:</strong> {{ 'Sí' if planilla['palpitaciones'] else 'No' }}</p>
-                <p><strong>Taquicardia:</strong> {{ 'Sí' if planilla['taquicardia'] else 'No' }}</p>
-                <p><strong>Bradicardia:</strong> {{ 'Sí' if planilla['bradicardia'] else 'No' }}</p>
-                <p><strong>Hipotensión/Shock:</strong> {{ 'Sí' if planilla['hipotension_shock'] else 'No' }}</p>
-                <p><strong>Cianosis:</strong> {{ 'Sí' if planilla['cianosis'] else 'No' }}</p>
-                <p><strong>Respiratorio:</strong> {{ 'Sí' if planilla['respiratorio'] else 'No' }}</p>
-                <p><strong>Mecánica ventilatoria:</strong> {{ 'Sí' if planilla['mecanica_ventilatoria'] else 'No' }}</p>
-                <p><strong>Buena entrada de aire bilateral:</strong> {{ 'Sí' if planilla['buena_entrada_aire_bilateral'] else 'No' }}</p>
-                <p><strong>Hipoventilación derecha:</strong> {{ 'Sí' if planilla['hipoventilacion_der'] else 'No' }}</p>
-                <p><strong>Hipoventilación izquierda:</strong> {{ 'Sí' if planilla['hipoventilacion_izq'] else 'No' }}</p>
-                <p><strong>Roncus:</strong> {{ 'Sí' if planilla['roncus'] else 'No' }}</p>
-                <p><strong>Sibilancias:</strong> {{ 'Sí' if planilla['sibilancias'] else 'No' }}</p>
-                <p><strong>Rales:</strong> {{ 'Sí' if planilla['rales'] else 'No' }}</p>
-                <p><strong>Arm:</strong> {{ 'Sí' if planilla['arm'] else 'No' }}</p>
-                <p><strong>TA:</strong> {{ 'Sí' if planilla['ta'] else 'No' }}</p>
-                <p><strong>TAM:</strong> {{ 'Sí' if planilla['tam'] else 'No' }}</p>
-                <p><strong>PVC:</strong> {{ 'Sí' if planilla['pvc'] else 'No' }}</p>
-                <p><strong>FC:</strong> {{ 'Sí' if planilla['fc'] else 'No' }}</p>
-                <p><strong>Relleno capilar:</strong> {{ 'Sí' if planilla['relleno_capilar'] else 'No' }}</p>
-                <p><strong>Soplos:</strong> {{ 'Sí' if planilla['soplos'] else 'No' }}</p>
-                <p><strong>Ingurgitación yugular:</strong> {{ 'Sí' if planilla['ingurgitacion_yugular'] else 'No' }}</p>
-                <p><strong>Edemas:</strong> {{ 'Sí' if planilla['edemas'] else 'No' }}</p>
-                <p><strong>Pulsos regulares:</strong> {{ 'Sí' if planilla['pulsos_regulares'] else 'No' }}</p>
-                <p><strong>Pulsos irregulares:</strong> {{ 'Sí' if planilla['pulsos_irregulares'] else 'No' }}</p>
-                <p><strong>Fallo bomba:</strong> {{ 'Sí' if planilla['fallo_bomba'] else 'No' }}</p>
-                <p><strong>Killip-Kimball:</strong> {{ 'Sí' if planilla['killip_kimball'] else 'No' }}</p>
-                <p><strong>Derrame pericárdico:</strong> {{ 'Sí' if planilla['derrame_pericardico'] else 'No' }}</p>
-                <p><strong>Perfusión periférica aceptable:</strong> {{ 'Sí' if planilla['aceptable_perfusion_periferica'] else 'No' }}</p>
-                <p><strong>Shock 2:</strong> {{ 'Sí' if planilla['shock_2'] else 'No' }}</p>
-                <p><strong>Inotrópicos:</strong> {{ 'Sí' if planilla['inotropicos'] else 'No' }}</p>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>Disnea:</strong> {{ 'Sí' if planilla['disnea'] else 'No' }}</p>
+                        <p><strong>Dolor precordial típico:</strong> {{ 'Sí' if planilla['dolor_precordial_tipico'] else 'No' }}</p>
+                        <p><strong>HTA:</strong> {{ 'Sí' if planilla['hta'] else 'No' }}</p>
+                        <p><strong>Mareos:</strong> {{ 'Sí' if planilla['mareos'] else 'No' }}</p>
+                        <p><strong>Palpitaciones:</strong> {{ 'Sí' if planilla['palpitaciones'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Taquicardia:</strong> {{ 'Sí' if planilla['taquicardia'] else 'No' }}</p>
+                        <p><strong>Bradicardia:</strong> {{ 'Sí' if planilla['bradicardia'] else 'No' }}</p>
+                        <p><strong>Hipotensión/Shock:</strong> {{ 'Sí' if planilla['hipotension_shock'] else 'No' }}</p>
+                        <p><strong>Cianosis:</strong> {{ 'Sí' if planilla['cianosis'] else 'No' }}</p>
+                    </div>
+                </div>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>Respiratorio:</strong> {{ 'Sí' if planilla['respiratorio'] else 'No' }}</p>
+                        <p><strong>Mecánica ventilatoria:</strong> {{ 'Sí' if planilla['mecanica_ventilatoria'] else 'No' }}</p>
+                        <p><strong>Buena entrada de aire bilateral:</strong> {{ 'Sí' if planilla['buena_entrada_aire_bilateral'] else 'No' }}</p>
+                        <p><strong>Hipoventilación derecha:</strong> {{ 'Sí' if planilla['hipoventilacion_der'] else 'No' }}</p>
+                        <p><strong>Hipoventilación izquierda:</strong> {{ 'Sí' if planilla['hipoventilacion_izq'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Roncus:</strong> {{ 'Sí' if planilla['roncus'] else 'No' }}</p>
+                        <p><strong>Sibilancias:</strong> {{ 'Sí' if planilla['sibilancias'] else 'No' }}</p>
+                        <p><strong>Rales:</strong> {{ 'Sí' if planilla['rales'] else 'No' }}</p>
+                        <p><strong>Arm:</strong> {{ 'Sí' if planilla['arm'] else 'No' }}</p>
+                    </div>
+                </div>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>TA:</strong> {{ 'Sí' if planilla['ta'] else 'No' }}</p>
+                        <p><strong>TAM:</strong> {{ 'Sí' if planilla['tam'] else 'No' }}</p>
+                        <p><strong>PVC:</strong> {{ 'Sí' if planilla['pvc'] else 'No' }}</p>
+                        <p><strong>FC:</strong> {{ 'Sí' if planilla['fc'] else 'No' }}</p>
+                        <p><strong>Relleno capilar:</strong> {{ 'Sí' if planilla['relleno_capilar'] else 'No' }}</p>                        
+                        <p><strong>Soplos:</strong> {{ 'Sí' if planilla['soplos'] else 'No' }}</p>
+                        <p><strong>Ingurgitación yugular:</strong> {{ 'Sí' if planilla['ingurgitacion_yugular'] else 'No' }}</p>
+                        <p><strong>Edemas:</strong> {{ 'Sí' if planilla['edemas'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Pulsos regulares:</strong> {{ 'Sí' if planilla['pulsos_regulares'] else 'No' }}</p>
+                        <p><strong>Pulsos irregulares:</strong> {{ 'Sí' if planilla['pulsos_irregulares'] else 'No' }}</p>
+                        <p><strong>Fallo bomba:</strong> {{ 'Sí' if planilla['fallo_bomba'] else 'No' }}</p>
+                        <p><strong>Killip-Kimball:</strong> {{ 'Sí' if planilla['killip_kimball'] else 'No' }}</p>
+                        <p><strong>Derrame pericárdico:</strong> {{ 'Sí' if planilla['derrame_pericardico'] else 'No' }}</p>
+                        <p><strong>Perfusión periférica aceptable:</strong> {{ 'Sí' if planilla['aceptable_perfusion_periferica'] else 'No' }}</p>
+                        <p><strong>Shock 2:</strong> {{ 'Sí' if planilla['shock_2'] else 'No' }}</p>
+                        <p><strong>Inotrópicos:</strong> {{ 'Sí' if planilla['inotropicos'] else 'No' }}</p>
+                    </div>
+                </div>
                 <p><strong>Abdomen:</strong> {{ planilla['abdomen'] }}</p>
-                <p><strong>Blando, depresible, indoloro:</strong> {{ 'Sí' if planilla['blando_depresible_indoloro'] else 'No' }}</p>
-                <p><strong>RHA:</strong> {{ 'Sí' if planilla['rha'] else 'No' }}</p>
-                <p><strong>Diuresis:</strong> {{ 'Sí' if planilla['diuresis'] else 'No' }}</p>
-                <p><strong>Sonda vesical:</strong> {{ 'Sí' if planilla['sonda_vesical'] else 'No' }}</p>
-                <p><strong>Bajo sedoanalgesia:</strong> {{ 'Sí' if planilla['bajo_sedoanalgesia'] else 'No' }}</p>
-                <p><strong>Glasgow:</strong> {{ 'Sí' if planilla['glasgow'] else 'No' }}</p>
-                <p><strong>Pupilas:</strong> {{ 'Sí' if planilla['pupilas'] else 'No' }}</p>
-                <p><strong>Foco motor:</strong> {{ 'Sí' if planilla['foco_motor'] else 'No' }}</p>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>Blando, depresible, indoloro:</strong> {{ 'Sí' if planilla['blando_depresible_indoloro'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>RHA:</strong> {{ 'Sí' if planilla['rha'] else 'No' }}</p>
+                    </div>
+                </div>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>Diuresis:</strong> {{ 'Sí' if planilla['diuresis'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Sonda vesical:</strong> {{ 'Sí' if planilla['sonda_vesical'] else 'No' }}</p>
+                    </div>
+                </div>
+                <div class="row border-bottom pb-2 mb-2">
+                    <div class="col-md-6">
+                        <p><strong>Bajo sedoanalgesia:</strong> {{ 'Sí' if planilla['bajo_sedoanalgesia'] else 'No' }}</p>
+                        <p><strong>Glasgow:</strong> {{ 'Sí' if planilla['glasgow'] else 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Pupilas:</strong> {{ 'Sí' if planilla['pupilas'] else 'No' }}</p>
+                        <p><strong>Foco motor:</strong> {{ 'Sí' if planilla['foco_motor'] else 'No' }}</p>
+                    </div>
+                </div>
                 <p><strong>Laboratorio:</strong> {{ planilla['laboratorio'] }}</p>
                 <p><strong>ECG:</strong> {{ planilla['ecg'] }}</p>
                 <p><strong>Ecocardiograma:</strong> {{ planilla['ecocardiograma'] }}</p>
