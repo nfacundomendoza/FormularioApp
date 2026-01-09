@@ -140,6 +140,164 @@
 
 </div>
 
+<div id="copy-table-wrapper" class="d-none">
+    <table>
+        <tr>
+            <td colspan="4"><strong>Paciente:</strong> {{ planilla['nombre_paciente'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Motivo de ingreso/diagnóstico:</strong> {{ planilla['motivo_ingreso_diag'] }}</td>
+        </tr>
+
+        <tr>
+            <th>Dolor precordial</th><td>{{ 'Sí' if planilla['dolor_precordial'] else 'No' }}</td>
+            <th>Emergencia hipertensiva</th><td>{{ 'Sí' if planilla['emergencia_hipertensiva'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>SCASEST</th><td>{{ 'Sí' if planilla['scasest'] else 'No' }}</td>
+            <th>íncope</th><td>{{ 'Sí' if planilla['sincope'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>SCACEST</th><td>{{ 'Sí' if planilla['scacest'] else 'No' }}</td>
+            <th>Shock</th><td>{{ 'Sí' if planilla['shock'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Insuficiencia Cardiaca Descompensada</th><td>{{ 'Sí' if planilla['insuficiencia_cardiaca_descompensada'] else 'No' }}</td>
+            <th>TEP</th><td>{{ 'Sí' if planilla['tep'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Pericarditis</th><td>{{ 'Sí' if planilla['pericarditis'] else 'No' }}</td>
+            <th>Arritmias</th><td>{{ 'Sí' if planilla['arritmia'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Antecedentes:</strong> {{ planilla['antecedentes'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Enfermedad actual:</strong> {{ planilla['enfermedad_actual'] }}</td>
+        </tr>
+
+        <tr>
+            <th>Disnea</th><td>{{ 'Sí' if planilla['disnea'] else 'No' }}</td>
+            <th>Taquicardia</th><td>{{ 'Sí' if planilla['taquicardia'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Dolor precordial tipico</th><td>{{ 'Sí' if planilla['dolor_precordial_tipico'] else 'No' }}</td>
+            <th>Bradicardia</th><td>{{ 'Sí' if planilla['bradicardia'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>HTA</th><td>{{ 'Sí' if planilla['hta'] else 'No' }}</td>
+            <th>Hipotensión/Shock</th><td>{{ 'Sí' if planilla['hipotension_shock'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Mareos</th><td>{{ 'Sí' if planilla['mareos'] else 'No' }}</td>
+            <th>Cianosis</th><td>{{ 'Sí' if planilla['cianosis'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Palpitaciones</th><td>{{ 'Sí' if planilla['palpitaciones'] else 'No' }}</td>
+        </tr>
+            
+        <tr>    
+            <th>Respiratorio</th><td>{{ 'Sí' if planilla['respiratorio'] else 'No' }}</td>
+            <th>Roncus</th><td>{{ 'Sí' if planilla['roncus'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Mecánica ventilatoria</th><td>{{ 'Sí' if planilla['mecanica_ventilatoria'] else 'No' }}</td>
+            <th>Sibilancias</th><td>{{ 'Sí' if planilla['sibilancias'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Buena entrada de aire bilateral</th><td>{{ 'Sí' if planilla['buena_entrada_aire_bilateral'] else 'No' }}</td>
+            <th>Rales</th><td>{{ 'Sí' if planilla['rales'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Hipoventilación derecha</th><td>{{ 'Sí' if planilla['hipoventilacion_der'] else 'No' }}</td>
+            <th>Arm</th><td>{{ 'Sí' if planilla['arm'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Hipoventilación izquierda</th><td>{{ 'Sí' if planilla['hipoventilacion_izq'] else 'No' }}</td>
+        </tr>
+        
+        <tr>
+            <th>TA</th><td>{{ 'Sí' if planilla['ta'] else 'No' }}</td>
+            <th>Pulsos regulares</th><td>{{ 'Sí' if planilla['pulsos_regulares'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>TAM</th><td>{{ 'Sí' if planilla['tam'] else 'No' }}</td>
+            <th>Pulsos irregulares</th><td>{{ 'Sí' if planilla['pulsos_irregulares'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>PVC</th><td>{{ 'Sí' if planilla['pvc'] else 'No' }}</td>
+            <th>Fallo bomba</th><td>{{ 'Sí' if planilla['fallo_bomba'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>FC</th><td>{{ 'Sí' if planilla['fc'] else 'No' }}</td>
+            <th>Killip-Kimball</th><td>{{ 'Sí' if planilla['killip_kimball'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Relleno capilar</th><td>{{ 'Sí' if planilla['relleno_capilar'] else 'No' }}</td>
+            <th>Derrame pericárdico</th><td>{{ 'Sí' if planilla['derrame_pericardico'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Soplos</th><td>{{ 'Sí' if planilla['soplos'] else 'No' }}</td>
+            <th>Perfusión periférica aceptable</th><td>{{ 'Sí' if planilla['aceptable_perfusion_periferica'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Ingurgitación yugular</th><td>{{ 'Sí' if planilla['ingurgitacion_yugular'] else 'No' }}</td>
+            <th>Shock 2</th><td>{{ 'Sí' if planilla['shock_2'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Edemas</th><td>{{ 'Sí' if planilla['edemas'] else 'No' }}</td>
+            <th>Inotrópicos</th><td>{{ 'Sí' if planilla['inotropicos'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <td colspan="4"><strong>Abdomen:</strong> {{ planilla['abdomen'] }}</td>
+        </tr>
+
+        <tr>
+            <th>Blando, depresible, indoloro</th><td>{{ 'Sí' if planilla['blando_depresible_indoloro'] else 'No' }}</td>
+            <th>RHA</th><td>{{ 'Sí' if planilla['rha'] else 'No' }}</td>
+        </tr>
+        
+        <tr>
+            <th>Diuresis</th><td>{{ 'Sí' if planilla['diuresis'] else 'No' }}</td>
+            <th>Sonda vesical</th><td>{{ 'Sí' if planilla['sonda_vesical'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Bajo sedoanalgesia</th><td>{{ 'Sí' if planilla['bajo_sedoanalgesia'] else 'No' }}</td>
+            <th>Pupilas</th><td>{{ 'Sí' if planilla['pupilas'] else 'No' }}</td>
+        </tr>
+
+        <tr>
+            <th>Glasgow</th><td>{{ 'Sí' if planilla['glasgow'] else 'No' }}</td>
+            <th>Foco motor</th><td>{{ 'Sí' if planilla['foco_motor'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Laboratorio:</strong> {{ planilla['laboratorio'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>ECG:</strong> {{ planilla['ecg'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Ecocardiograma:</strong> {{ planilla['ecocardiograma'] }}</td>
+        </tr>
+    </table>
+</div>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="/static/js/downloadPDF.js"></script>
 <script src="/static/js/copyText.js"></script>

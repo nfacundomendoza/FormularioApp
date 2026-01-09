@@ -44,4 +44,4 @@ git push origin feature/mi-nueva-caracteristica
 
 ## Contacto
 Para cualquier duda o sugerencia, puedes ponerte en contacto a través de:
-n.facundomendoza@gmail.com
+n.facundomendoza@gmail.com o gubia1263@gmail.com
