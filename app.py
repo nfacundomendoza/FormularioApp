@@ -603,7 +603,7 @@ app.register_error_handler(404, error)
 def open_browser():
     webbrowser.open("http://127.0.0.1:5000")
 
-if __name__ == "__main__":
+if os.getenv("FLASK_ENV") == "development":
     threading.Timer(1, open_browser).start() 
     threading.Thread(target=monitor_activity, daemon=True).start()
     app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)
