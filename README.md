@@ -6,16 +6,23 @@ FormularioApp es una aplicación que permite completar, editar e imprimir formul
 
 ### En Windows (usando PowerShell):
 
-1. Activa el entorno virtual:
+1. Clona el repositorio y entra al proyecto:
+    git clone https://github.com/nfacundomendoza/FormularioApp.git
+    cd FormularioApp
+
+2. Crea el entorno virtual:
+    python -m venv venv
+
+3. Activa el entorno virtual:
     .\venv\Scripts\Activate
 
-2. Instala las dependencias necesarias:
+4. Instala las dependencias necesarias:
     pip install -r requirements.txt
 
-3. Configura la aplicación Flask:
+5. Configura la aplicación Flask:
     set FLASK_APP=app.py
 
-4. Ejecuta la aplicación:
+6. Ejecuta la aplicación:
     flask run
 
 ### Usando el ejecutable

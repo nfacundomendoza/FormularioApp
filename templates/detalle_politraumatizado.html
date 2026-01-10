@@ -138,6 +138,166 @@
 
 </div>
 
+<div id="copy-table-wrapper" class="d-none">
+    <table>
+        <tr>
+            <td colspan="4"><strong>Nombre del Paciente:</strong> {{ planilla['nombre_paciente'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Sexo:</strong> {{ planilla['sexo'] }}</td>  
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Fecha del Evento:</strong> {{ planilla['fecha_evento'] }}</td>  
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Hora:</strong> {{ planilla['hora'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Tipo de Evento:</strong> {{ planilla['tipo_evento'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Estado General:</strong> {{ planilla['estado_general'] }}</td>
+        </tr>
+        <tr>
+            <th>Temperatura</th><td>{{ planilla['temperatura'] }}</td>
+            <th>Edemas</th><td>{{ 'Sí' if planilla['edemas'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Palidez</th><td>{{ 'Sí' if planilla['palidez'] else 'No' }}</td>
+            <th>Lesiones de Piel y Partes Blandas</th><td>{{ planilla['lesiones_piel_partes_blandas'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Cianosis:</strong> {{ 'Sí' if planilla['cianosis'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Respiratorio</strong></td>
+        </tr>
+        <tr>
+            <th>Trauma de Tórax Cerrado</th><td>{{ 'Sí' if planilla['trauma_torax_cerrado'] else 'No' }}</td>
+            <th>FR </th><td>{{ planilla['fr'] }}</td>
+        </tr>
+        <tr>
+            <th>Fracturas Costales</th><td>{{ 'Sí' if planilla['fracturas_costales'] else 'No' }}</td>
+            <th>Hipoventilación Derecha</th><td>{{ 'Sí' if planilla['hipoventilacion_derecha'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Contusiones</th><td>{{ 'Sí' if planilla['contusiones'] else 'No' }}</td>
+            <th>Hipoventilación Izquierda</th><td>{{ 'Sí' if planilla['hipoventilacion_izquierda'] else 'No' }}</td> 
+        </tr>
+        <tr>
+            <th>ARM</th><td>{{ 'Sí' if planilla['arm'] else 'No' }}</td>
+            <th>Neumotórax</th><td>{{ 'Sí' if planilla['neumotorax'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Sato2</th><td>{{ 'Sí' if planilla['sato2'] else 'No' }}</td>
+            <th>Hemotórax</th><td>{{ 'Sí' if planilla['hemotorax'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Pafi</th><td>{{ planilla['pafi'] }}</td>
+            <th>TAP</th><td>{{ 'Sí' if planilla['tap'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Buena Entrada de Aire Bilateral:</strong> {{ 'Sí' if planilla['buena_entrada_aire_bilateral'] else 'No' }}</td>
+        </tr>
+        <tr><th colspan="4">Circulatorio</th></tr>
+        <tr>
+            <th>TA</th><td>{{ planilla['ta'] }}</td>
+            <th>Sospecha de Hemorragia Interna</th><td>{{ 'Sí' if planilla['sospecha_hemorragia_interna'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>TAM</th><td>{{ planilla['tam'] }}</td>
+            <th>Fallo de Bomba</th><td>{{ 'Sí' if planilla['fallo_de_bomba'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>PVC</th><td>{{ planilla['pvc'] }}</td>
+            <th>Derrame Pericárdico</th><td>{{ 'Sí' if planilla['derrame_pericardico'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>FC</th><td>{{ planilla['fc'] }}</td>
+            <th>Aceptable Perfusión Periférica</th><td>{{ 'Sí' if planilla['aceptable_perfusion_periferica'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Relleno Capilar</th><td>{{ 'Sí' if planilla['relleno_capilar'] else 'No' }}</td>
+            <th>Shock</th><td>{{ 'Sí' if planilla['shock'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Hemorragia Externa Activa</th><td>{{ 'Sí' if planilla['hemorragia_externa_activa'] else 'No' }}</td>
+            <th>Inotrópicos</th><td>{{ 'Sí' if planilla['inotropicos'] else 'No' }}</td>
+        </tr>
+        <tr><th colspan="4">Abdomen</th></tr>
+        <tr>
+            <th>Trauma Abdominal Cerrado</th><td>{{ 'Sí' if planilla['trauma_abdominal_cerrado'] else 'No' }}</td>
+            <th>SNG</th><td>{{ 'Sí' if planilla['sng'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Trauma Abdominal Abierto</th><td>{{ 'Sí' if planilla['trauma_abdominal_abierto'] else 'No' }}</td>
+            <th>Alimentación Enteral</th><td>{{ 'Sí' if planilla['alim_enteral'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Blando, Depresible, Indoloro</th><td>{{ 'Sí' if planilla['blando_depresible_indoloro'] else 'No' }}</td>
+            <th>Intervención Quirúrgica</th><td>{{ 'Sí' if planilla['intervencion_quirurgica'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>RHA</th><td>{{ planilla['rha'] }}</td>
+            <th>Detalle de Intervención</th><td>{{ planilla['detalle_intervencion'] }}</td>
+        </tr>
+        <tr>
+            <th>Distendido</th><td>{{ 'Sí' if planilla['distendido'] else 'No' }}</td>
+            <th>Drenajes</th><td>{{ 'Sí' if planilla['drenajes'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Diuresis:</strong> {{ planilla['diuresis'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Sonda Vesical:</strong> {{ 'Sí' if planilla['sonda_vesical'] else 'No' }}</td>    
+        </tr>
+        <tr><th colspan="4">Función Neurológica</th></tr>
+        <tr>
+            <th>TEC</th><td>{{ 'Sí' if planilla['tec'] else 'No' }}</td>
+            <th>Foco Motor</th><td>{{ planilla['foco_motor'] }}</td>
+        </tr>
+        <tr>
+            <th>Trauma Columna</th><td>{{ 'Sí' if planilla['trauma_columna'] else 'No' }}</td>
+            <th>PIC</th><td>{{ planilla['pic'] }}</td>
+        </tr>
+        <tr>
+            <th>Bajo Sedoanalgesia</th><td>{{ 'Sí' if planilla['bajo_sedanalgesia'] else 'No' }}</td>
+            <th>Collar Cervical</th><td>{{ 'Sí' if planilla['collar_cervical'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <th>Glasgow</th><td>{{ planilla['glasgow'] }}</td>
+            <th>Inmovilización con Tabla</th><td>{{ 'Sí' if planilla['inmovilizacion_tabla'] else 'No' }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Pupilas:</strong> {{ planilla['pupilas'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Lesión Traumatológica:</strong> {{ planilla['lesion_traumatologica'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>RTS:</strong> {{ planilla['rts'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Imágenes:</strong> {{ planilla['imagenes'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Laboratorio:</strong> {{ planilla['laboratorio'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Interconsultas:</strong> {{ planilla['interconsultas'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Pronóstico:</strong> {{ planilla['pronostico'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Apache II:</strong> {{ planilla['apache_ii'] }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>SOFA:</strong> {{ planilla['sofa'] }}</td>
+        </tr>
+    </table>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="/static/js/downloadPDF.js"></script>
 <script src="/static/js/copyText.js"></script>
